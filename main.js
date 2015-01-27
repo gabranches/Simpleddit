@@ -8,23 +8,8 @@ $(function()
 	count = 0;
 	limit = 47;
 	sort = "hot";
+	buildHandlebars();
 	getItems(sub, sort);
-	
-	
-	// Build Handlebars templates
-
-	var raw_template = $('#entry-template').html();
-	entryTemplate = Handlebars.compile(raw_template);
-	entryPlaceHolder = $("#main");
-
-	var raw_template = $('#comment-template').html();
-	commentTemplate = Handlebars.compile(raw_template);
-	commentPlaceHolder = $("#comments");
-
-	var raw_template = $('#story-template').html();
-	storyTemplate = Handlebars.compile(raw_template);
-	storyPlaceHolder = $("#story");
-
 }); 
 
 // ** EVENT HANDLERS ** //
@@ -83,6 +68,21 @@ $(window).resize(function(){
 });
 
 // ** FUNCTIONS ** //
+
+function buildHandlebars()
+{
+	var raw_template = $('#entry-template').html();
+	entryTemplate = Handlebars.compile(raw_template);
+	entryPlaceHolder = $("#main");
+
+	var raw_template = $('#comment-template').html();
+	commentTemplate = Handlebars.compile(raw_template);
+	commentPlaceHolder = $("#comments");
+
+	var raw_template = $('#story-template').html();
+	storyTemplate = Handlebars.compile(raw_template);
+	storyPlaceHolder = $("#story");
+}
 
 function resize()	// Resize containers when window changes
 {
@@ -226,8 +226,14 @@ function getStory(sub,id)
 				}
 			});
 		});
+
+		// Change links to open in new window
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
+		// Change subreddit internal links
+		var internalLink = $("a[href^='/r/']");
+		var intenalLinkurl = internalLink.val();
+		internalLink.attr("href",internalLinkurl);
 	})
 }
 

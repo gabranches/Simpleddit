@@ -1,9 +1,5 @@
-# Use PHP5.4 as default
-#AddHandler application/x-httpd-php54 .php
-
-# For security reasons, Option followsymlinks cannot be overridden.
-#Options +FollowSymLinks
-Options +SymLinksIfOwnerMatch
-
 RewriteEngine On
-RewriteRule ^/?r/([^/d]+)/?$ /rv/index.php?r=$1 [L,QSA]
+RewriteBase /
+
+RewriteRule ^r/(.*)$ http://www.simplereddit.net/$1 [L,R=301]
+RewriteRule ^([^/.]+)/?$ index.php?r=$1 [L,NC,QSA]
