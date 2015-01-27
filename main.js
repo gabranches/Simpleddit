@@ -63,7 +63,7 @@ $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 $(document).on("click", "#options-button", function() // Show options
 { 	
 	ClearRightSide();
-	if (readCookie("showImages") == "1"
+	if (readCookie("showImages") == "1")
 	{
 		$('#hide-images').attr('checked', false);
 	}
