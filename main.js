@@ -1,15 +1,19 @@
 $(function()
 {
-	loading = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
-	getPopularSubs();
+	// Global Variables
 	maxNest = 15;
-	resize();
 	after = null;
 	count = 0;
 	limit = 47;
 	sort = "hot";
+	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
+
+	// Run
+	resize();
+	getPopularSubs();
 	buildHandlebars();
 	getItems(sub, sort);
+	
 }); 
 
 // ** EVENT HANDLERS ** //
@@ -112,7 +116,7 @@ function getItems(sub, sort) // Get stories
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
 	var countUrl 	= (count == 0) ? "" : "&count="+count;
 
-	$("#subnameheader").html(loading);
+	$("#subnameheader").html(loadHtml);
 
 	switch(sort) 
 	{	
@@ -150,8 +154,8 @@ function getItems(sub, sort) // Get stories
 			break;
 	}
 	
-	$("#subnameheader").html(loading);
-	$("#getmore").html(loading);
+	$("#subnameheader").html(loadHtml);
+	$("#getmore").html(loadHtml);
 	
 	var url = "http://www.reddit.com/" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
 
@@ -204,7 +208,7 @@ function getStory(sub,id)
 {
 	var url = "r/"+sub+"/comments/"+id;
 
-	$("#storyheader").html(loading);
+	$("#storyheader").html(loadHtml);
 
 	var requestUrl = "http://www.reddit.com/"+url+"/.json";
 
@@ -230,10 +234,6 @@ function getStory(sub,id)
 		// Change links to open in new window
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
-		// Change subreddit internal links
-		var internalLink = $("a[href^='/r/']");
-		var intenalLinkurl = internalLink.val();
-		internalLink.attr("href",internalLinkurl);
 	})
 }
 
