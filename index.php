@@ -17,7 +17,7 @@ if(isset($_GET["r"])){
 <head>
 
 <meta charset="utf-8">
-<title>simplereddit</title>
+<title>simplereddit.net: a simple reddit browser</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
