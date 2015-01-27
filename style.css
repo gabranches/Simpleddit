@@ -1,6 +1,16 @@
 body
 {
-	padding-top: 94px;
+	padding-top: 92px;
+}
+
+a:active
+{
+	text-decoration: none;
+}
+
+input[type=checkbox]
+{
+	cursor:pointer;
 }
 
 .title small
@@ -93,7 +103,7 @@ body
 	padding: 8px 0;
 	border-top: 1px solid #eee;
 	border-bottom:1px solid #eee;
-	font-size:16px;
+	font-size: 14px;
 }
 
 #getmore
@@ -140,11 +150,11 @@ p
 
 blockquote 
 {
-padding: 10px 20px;
-margin: 5px 0 10px;
-font-size: 12px;
-border-left: 3px solid rgba(66, 139, 202, 0.32);
-background-color: rgba(128, 128, 128, 0.03);
+	padding: 10px 20px;
+	margin: 5px 0 10px;
+	font-size: 12px;
+	border-left: 3px solid rgba(66, 139, 202, 0.32);
+	background-color: rgba(128, 128, 128, 0.03);
 }
 
 #options div
@@ -157,8 +167,16 @@ background-color: rgba(128, 128, 128, 0.03);
 	margin-left:5px;
 }
 
-#logo{
+#logo, #options-button, #about-button
+{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	margin-top: 5px;
+	cursor: pointer;
+}
+
+#btclogo
+{
+	width: 40px;
+	margin: 15px;
 }

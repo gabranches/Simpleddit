@@ -6,6 +6,7 @@ $(function()
 	count = 0;
 	limit = 47;
 	sort = "hot";
+	hideImages = true;
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 
 	// Run
@@ -22,23 +23,47 @@ $("#form-sub").submit(function(e) // Subreddit form submit
 { 	
 	e.preventDefault();
 	sub = $("#input-sub").val();
-	ClearMain();
+	ClearLeftSide();
 	getItems(sub, sort);
 });
 
 $(document).on("click", ".story-sublink span", function() // Go to subreddit on click
 { 	
 	sub = $(this).html();
-	ClearMain();
+	ClearLeftSide();
 	$("#input-sub").val(sub);
 	getItems(sub, sort);
 });
 
 $(document).on("click", ".entries", function() // Go to story
 { 	
-	ClearComments();
+	ClearRightSide();
 	id = $(this).attr("data-id");
 	getStory($(this).attr("data-sub"),id);
+});
+
+$(document).on("click", "#options-button", function() // Show options
+{ 	
+	ClearRightSide();
+	$("#options").show();
+});
+
+$(document).on("click", "#about-button", function() // Show about
+{ 	
+	ClearRightSide();
+	$("#about").show();
+});
+
+$(document).on("change", "#hide-images", function() // Auto-hide images toggle
+{ 	
+	hideImages == true ? hideImages = false : hideImages = true;
+});
+
+
+$(document).on("click", "#options-button", function() // Show options
+{ 	
+	ClearRightSide();
+	$("#options").show();
 });
 
 $(document).on("click", "#showimage", function() // Show story image
@@ -55,14 +80,14 @@ $("#getmore").click(function() // Load more
 $("#select-sort").change(function() // Sort dropdown submit
 { 	
 	sort = $("#select-sort").find(":selected").val();
-	ClearMain();
+	ClearLeftSide();
 	getItems(sub, sort);
 });
 
 $("#select-sub").change(function() // Dropdown submit
 { 	
 	sub = $("#select-sub").val();
-	ClearMain();
+	ClearLeftSide();
 	$("#input-sub").val(sub);
 	getItems(sub, sort);
 });
@@ -95,7 +120,7 @@ function resize()	// Resize containers when window changes
 	$("#rightcolumn").css("height", ht-91 + "px");
 }
 
-function ClearMain() // Clear all stories
+function ClearLeftSide() // Clear all stories
 {
 	$("#getmore").hide();
 	$("#main").html("");
@@ -103,8 +128,11 @@ function ClearMain() // Clear all stories
 	after = "";
 }
 
-function ClearComments() // Clear all stories
+function ClearRightSide() // Clear all stories
 {
+	$("#storyheader").html("");
+	$("#about").hide();
+	$("#options").hide();
 	$("#story").html("");
 	$("#comments").html("");
 }
@@ -175,7 +203,7 @@ function getItems(sub, sort) // Get stories
 	}
 	).fail(function(data) 
 	{
-		ClearMain();
+		ClearLeftSide();
 		$("#subnameheader").html("<div class='col-xs-12'>Could not get data from subreddit '"+sub+"'. Please make sure that this subreddit exists, or try again in a few minutes.</div>");
 	});
 

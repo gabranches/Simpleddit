@@ -6,8 +6,6 @@ if(isset($_GET["r"])){
 	$sub = $_GET["r"];
 }
 
-// Test commit
-
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +25,6 @@ if(isset($_GET["r"])){
 <script src="lib/handlebars-v2.0.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="https://d3dy5gmtp8yhk7.cloudfront.net/2.1/pusher.min.js"></script>
 
 </head>
 
@@ -37,7 +34,9 @@ if(isset($_GET["r"])){
 	<div class="container-fixed">
 		<div id="formrow" class="row">
 			<form id="form-sub" role="form">
-				<div id="logo" class="col-xs-1 text-center"><a href="/">simplereddit</a></div>
+				<div id="logo" class="col-xs-1 text-center">
+					<a href="/">simplereddit</a>
+				</div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
@@ -63,9 +62,8 @@ if(isset($_GET["r"])){
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
 				<div class="col-xs-3"></div>
-				<div class="col-xs-2"></div>
-				
-				
+				<div id="options-button" class="col-xs-1">options</div>
+				<div id="about-button" class="col-xs-1">about</div>
 			</form>
 		</div>
 		<div class="row" id="main-top">
@@ -94,8 +92,53 @@ if(isset($_GET["r"])){
 	<div id="rightcolumn" class="col-xs-6">
 		<div id="options" style="display:none" class="row">
 			<div class="col-xs-6">
-				Change page title: <br /><br />
-				<input type="input" class="form-control" id="pagetitleinput" placeholder="rViewer">
+				<h4>Options</h4>
+				<div class="form-group">
+					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
+				</div>
+				<div class="form-group">
+				</div>
+			</div>
+			<div class="col-xs-6">
+			</div>
+			<div class="col-xs-12">
+				<p>Would you like to see more functionality added here? Please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
+			</div>
+		</div>
+		<div id="about" class="row">
+			<div class="col-xs-12">
+				<h4>About SimpleReddit.net</h4>
+				<p>SimpleReddit is an efficient and discreet way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
+				<br />
+				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
+				<br />
+				<h4>Tips</h4>
+				<ul>
+					<li>You can link directly to a subreddit with simplereddit.com/{sub} or simplereddit.com/r/{sub} Example: <a href="pics">simplereddit.com/pics</a></li>
+					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
+					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
+				</ul>
+
+				<br />
+				<h4>Future plans</h4>
+				<ul>
+					<li>Allow users to log in their reddit account and view their subscribed subreddits</li>
+					<li>Allow nested comments to be hidden</li>
+				</ul>
+				<br />
+				<h4>Feedback</h4>
+				<p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
+				<br />
+				<h4>Contributions</h4>
+				<p>This site does not have and will never have ads. If you enjoy using SimpleReddit, please consider donating to the developer!</p>
+				<img id="btclogo" src="images/btc.png" />1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="E7JNNEU4WCBN2">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+				<br />
 			</div>
 		</div>
 		<div class="row">

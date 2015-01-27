@@ -41,8 +41,17 @@ Handlebars.registerHelper("ptsHelper", function (ups)
 
 Handlebars.registerHelper("picHelper", function (data)
 {
-	var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Show Image</div>";
-	var imgAttr = "<img id='storyimage' style='display:none' src='";
+    if (hideImages)
+    {
+        var imgAttr = "<img id='storyimage' style='display:none' src='";
+        var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Show Image</div>";
+    }
+    else
+    {
+        var imgAttr = "<img id='storyimage' src='";
+        var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Hide Image</div>";
+    }
+    
 	var prefix = picButton + imgAttr + data.url;
 	var suffix = "'' />";
 
