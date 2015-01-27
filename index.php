@@ -17,6 +17,8 @@ if(isset($_GET["r"])){
 <meta charset="utf-8">
 <title>simplereddit.net: a simple reddit browser</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
+<meta name="description" content="SimpleReddit is an efficient and discreet way of browsing reddit using a two-column layout." />
+<meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
@@ -112,7 +114,7 @@ if(isset($_GET["r"])){
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
-				<h4>Tips</h4>
+				<h4>Browsing Tips</h4>
 				<ul>
 					<li>You can link directly to a subreddit with simplereddit.com/{sub} or simplereddit.com/r/{sub} Example: <a href="pics">simplereddit.com/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
@@ -218,6 +220,7 @@ if(isset($_GET["r"])){
 
 <script src="main.js"></script>
 <script src="handlebars_helpers.js"></script>
+<script src="lib/cookies.js"></script>
 
 <!-- Google Analytics -->
 

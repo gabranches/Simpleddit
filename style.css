@@ -1,11 +1,18 @@
 body
 {
-	padding-top: 92px;
+	padding-top: 91px;
 }
 
 a:active
 {
 	text-decoration: none;
+}
+
+h4
+{
+	font-size: 16px;
+	font-weight: bold;
+	font-family: 'Open Sans', sans-serif;
 }
 
 input[type=checkbox]
@@ -173,6 +180,11 @@ blockquote
 	font-size: 16px;
 	margin-top: 5px;
 	cursor: pointer;
+}
+
+#about
+{
+	margin-top:10px;
 }
 
 #btclogo

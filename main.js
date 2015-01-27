@@ -6,7 +6,6 @@ $(function()
 	count = 0;
 	limit = 47;
 	sort = "hot";
-	hideImages = true;
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 
 	// Run
@@ -45,6 +44,7 @@ $(document).on("click", ".entries", function() // Go to story
 $(document).on("click", "#options-button", function() // Show options
 { 	
 	ClearRightSide();
+
 	$("#options").show();
 });
 
@@ -56,13 +56,21 @@ $(document).on("click", "#about-button", function() // Show about
 
 $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 { 	
-	hideImages == true ? hideImages = false : hideImages = true;
+	readCookie("showImages") == "1" ? createCookie("showImages", "0", 30) : createCookie("showImages", "1", 30);
 });
 
 
 $(document).on("click", "#options-button", function() // Show options
 { 	
 	ClearRightSide();
+	if (readCookie("showImages") == "1"
+	{
+		$('#hide-images').attr('checked', false);
+	}
+	else
+	{
+		$('#hide-images').attr('checked', true);
+	}
 	$("#options").show();
 });
 
@@ -248,8 +256,8 @@ function getStory(sub,id)
 		{ 
 			$.each(element.data.children, function(index, element)
 			{
-
-				if(element.data.title){
+				if(element.data.title)
+				{
 					printTitle(element);
 				}
 				else
@@ -306,9 +314,12 @@ function htmlDecode(input)  // Unescape html
 function getYoutubeId(url)  // Returns youtube data-id
 {
 	var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-	if(videoid != null) {
+	if(videoid != null) 
+	{
 	   return videoid;
-	} else { 
+	} 
+	else
+	{ 
 	    console.log("The youtube url is not valid.");
 	}
 }

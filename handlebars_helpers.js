@@ -41,15 +41,15 @@ Handlebars.registerHelper("ptsHelper", function (ups)
 
 Handlebars.registerHelper("picHelper", function (data)
 {
-    if (hideImages)
-    {
-        var imgAttr = "<img id='storyimage' style='display:none' src='";
-        var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Show Image</div>";
-    }
-    else
+    if (readCookie("showImages") == "1")
     {
         var imgAttr = "<img id='storyimage' src='";
         var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Hide Image</div>";
+    }
+    else
+    {
+        var imgAttr = "<img id='storyimage' style='display:none' src='";
+        var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Show Image</div>";
     }
     
 	var prefix = picButton + imgAttr + data.url;
