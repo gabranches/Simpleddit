@@ -116,7 +116,7 @@ if(isset($_GET["r"])){
 				<br />
 				<h4>Browsing Tips</h4>
 				<ul>
-					<li>You can link directly to a subreddit with simplereddit.com/{sub} or simplereddit.com/r/{sub} Example: <a href="pics">simplereddit.com/pics</a></li>
+					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
 				</ul>
