@@ -39,6 +39,7 @@ if(isset($_GET["r"])){
 				<div id="logo" class="col-xs-1 text-center">
 					<a href="/">simplereddit</a>
 				</div>
+				<div class="col-xs-1"></div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
@@ -63,7 +64,7 @@ if(isset($_GET["r"])){
 				<div class="col-xs-1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
-				<div class="col-xs-3"></div>
+				<div class="col-xs-2"></div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
