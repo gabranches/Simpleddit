@@ -1,3 +1,9 @@
+<FilesMatch "\.(ttf|otf|eot|woff|jpg|png|jpeg|gif|js|json|html|css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
 RewriteEngine On
 RewriteBase /
 
