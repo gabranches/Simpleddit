@@ -20,6 +20,7 @@ if(isset($_GET["r"])){
 <meta name="description" content="SimpleReddit is an efficient and discreet way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
 
+<link rel="shortcut icon" type="image/png" href="favicon.ico"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="style.css">
