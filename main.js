@@ -63,7 +63,7 @@ $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 $(document).on("click", "#options-button", function() // Show options
 { 	
 	ClearRightSide();
-	if (readCookie("showImages") == "1"
+	if (readCookie("showImages") == "1")
 	{
 		$('#hide-images').attr('checked', false);
 	}
@@ -198,8 +198,12 @@ function getItems(sub, sort) // Get stories
 	$.getJSON( url, function(data) 
 	{
 		listItems(data, sub);
-		$("#getmore").show();
-		$("#getmore").html("Load more...");
+		if(sort != "rising")
+		{
+			$("#getmore").show();
+			$("#getmore").html("Load more...");
+		}
+		
 		if(sub=="") // Change sub name header
 		{
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/'>Front Page</a>");

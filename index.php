@@ -36,10 +36,9 @@ if(isset($_GET["r"])){
 	<div class="container-fixed">
 		<div id="formrow" class="row">
 			<form id="form-sub" role="form">
-				<div id="logo" class="col-xs-1 text-center">
+				<div id="logo" class="col-xs-2 text-center">
 					<a href="/">simplereddit</a>
 				</div>
-				<div class="col-xs-1"></div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
