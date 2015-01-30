@@ -1,13 +1,3 @@
-<?php
-
-$sub = "";
-
-if(isset($_GET["r"])){
-	$sub = $_GET["r"];
-}
-
-?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -100,6 +90,7 @@ if(isset($_GET["r"])){
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
 				</div>
 				<div class="form-group">
+					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
 				</div>
 			</div>
 			<div class="col-xs-6">
@@ -214,8 +205,11 @@ if(isset($_GET["r"])){
 
 <script>
 
-	sub = ""; // For local version
-	sub = <?php echo json_encode($sub); ?>;
+	// For local version
+	sub = ""; 
+
+	// For server version
+	sub = <?php echo isset($_GET["r"]) ? $_GET["r"] : "";  ?>;
 
 </script>
 

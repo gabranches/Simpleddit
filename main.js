@@ -10,6 +10,7 @@ $(function()
 
 	// Run
 	resize();
+	setTitle();
 	getPopularSubs();
 	buildHandlebars();
 	getItems(sub, sort);
@@ -74,6 +75,13 @@ $(document).on("click", "#options-button", function() // Show options
 	$("#options").show();
 });
 
+$(document).on("keyup", "#input-title", function() // Change page title
+{ 	
+	var newTitle = $("#input-title").val();
+	document.title = newTitle;
+	createCookie("title", newTitle, 30);
+});
+
 $(document).on("click", "#showimage", function() // Show story image
 { 	
 	$('#storyimage').toggle();
@@ -126,6 +134,14 @@ function resize()	// Resize containers when window changes
 	var ht = $(window).height();
 	$("#leftcolumn").css("height", ht-91 + "px");
 	$("#rightcolumn").css("height", ht-91 + "px");
+}
+
+function setTitle() // Set page title if cookie exists
+{
+	if (readCookie("title") != null)
+	{
+		document.title = readCookie("title");
+	}
 }
 
 function ClearLeftSide() // Clear all stories
