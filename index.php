@@ -1,3 +1,12 @@
+<?php
+	$sub = "";
+
+	if(isset($_GET["r"])){
+		$sub = $_GET["r"];
+	}
+?>
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -209,7 +218,7 @@
 	sub = ""; 
 
 	// For server version
-	sub = <?php echo isset($_GET["r"]) ? $_GET["r"] : "";  ?>;
+	sub = <?php echo json_encode($sub); ?>;
 
 </script>
 
