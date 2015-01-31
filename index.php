@@ -1,11 +1,10 @@
 <?php
-	$sub = "";
 
-	if(isset($_GET["r"])){
-		$sub = $_GET["r"];
-	}
+$sub = "";
+
+if(isset($_GET["r"])){	$sub = $_GET["r"];	}
+
 ?>
-
 
 <!DOCTYPE html>
 
