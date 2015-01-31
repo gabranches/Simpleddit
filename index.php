@@ -2,7 +2,10 @@
 
 $sub = "";
 
-if isset($_GET["r"]) {	$sub = $_GET["r"];	}
+if isset($_GET["r"]) 
+{	
+	$sub = $_GET["r"];	
+}
 
 ?>
 
