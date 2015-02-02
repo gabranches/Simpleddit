@@ -18,7 +18,7 @@ if (isset($_GET["r"]))
 <meta charset="utf-8">
 <title>simplereddit.net: a simple reddit browser</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
-<meta name="description" content="SimpleReddit is an efficient and discreet way of browsing reddit using a two-column layout." />
+<meta name="description" content="SimpleReddit is an easy and discreet way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
 
 <link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
@@ -113,7 +113,7 @@ if (isset($_GET["r"]))
 		<div id="about" class="row">
 			<div class="col-xs-12">
 				<h4>About SimpleReddit.net</h4>
-				<p>SimpleReddit is an efficient and discreet way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
+				<p>SimpleReddit is an easy and discreet way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
