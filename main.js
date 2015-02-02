@@ -7,6 +7,7 @@ $(function()
 	limit = 47;
 	sort = "hot";
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
+	OP = "";
 
 	// Run
 	resize();
@@ -278,6 +279,7 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
+					OP = element.data.author;
 					printTitle(element);
 				}
 				else

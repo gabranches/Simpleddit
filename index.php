@@ -173,7 +173,7 @@ if (isset($_GET["r"]))
 <script id="story-template" type="text/x-handlebars-template">
 	<div class="row">
 		<div class='story-title col-xs-12'>
-			<strong>{{{htmlHelper title}}}</strong><br /><small>{{author}} - {{timeHelper created_utc}}</small>
+			<strong>{{{htmlHelper title}}}</strong><br /><small>{{authorHelper author}} - {{timeHelper created_utc}}</small>
  	</div>
 </div>
 <div class="row">
@@ -201,7 +201,7 @@ if (isset($_GET["r"]))
  	<div style="{{indentHelper this}} {{colorHelper numNest}}" class='comment col-xs-12 '>
  		<div class="row">
  			<div class="col-xs-12">
- 				<small>{{ptsHelper ups}}</small>  <small>{{author}}</small>   <small>{{timeHelper created_utc}}</small>
+ 				<small>{{ptsHelper ups}}</small>  <small>{{authorHelper author}}</small>   <small>{{timeHelper created_utc}}</small>
  			</div>
  		</div>
  		<div class="row">

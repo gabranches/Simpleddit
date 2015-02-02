@@ -116,13 +116,13 @@ Handlebars.registerHelper("timeHelper", function (created_utc)
         }
     } else if (diff >= (60*60*24*30) && diff < (60*60*24*30*12)) {
         unit = "months";
-        diff = Math.round(diff/(60*60*24));
+        diff = Math.round(diff/(60*60*24*30));
         if (diff == 1){
             unit = "month";
         }
     } else if (diff >= (60*60*24*30*12)) {
         unit = "years";
-        diff = Math.round(diff/(60*60*24*30));
+        diff = Math.round(diff/(60*60*24*30*12));
         if (diff == 1){
             unit = "year";
         }
@@ -142,3 +142,9 @@ Handlebars.registerHelper("colorHelper", function (numNest)
     var i = numNest % 5;
    return "border-left:"+numNest+"px solid #eee;";
 });
+
+Handlebars.registerHelper("authorHelper", function (data)
+{
+   return data == OP ? "<span class='author'>" + data + "</span>" : "<span>" + data + "</span>";
+});
+

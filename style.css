@@ -192,3 +192,8 @@ blockquote
 	width: 40px;
 	margin: 15px;
 }
+
+.author
+{
+	color: red;
+}
