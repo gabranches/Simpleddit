@@ -171,10 +171,9 @@ if (isset($_GET["r"]))
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{score}}</span></div>
-<div class="col-xs-6 col-md-8 col-lg-10 title">{{{htmlHelper title}}} <small><span class="red">{{nsfwHelper over_18}} </span>{{subHelper this}}</small> </div>
-	<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
-	
-</div>
+		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{htmlHelper title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
+	</div>
 
 </script>
 
@@ -206,7 +205,7 @@ if (isset($_GET["r"]))
 </script>
 
 <script id="comment-template" type="text/x-handlebars-template">
- 	<div id="{{id}}" style="{{indentHelper this}} {{colorHelper numNest}}" class='comment col-xs-12 '>
+ 	<div id="{{id}}" class='comment col-xs-12 '>
  		<div class="row">
  			<div class="col-xs-12 comment-header">
  				<span class='nested-toggle glyphicon glyphicon-minus'></span> <small> {{ptsHelper ups}}</small>  <small>{{{authorHelper author}}}</small>   <small>{{timeHelper created_utc}}</small>

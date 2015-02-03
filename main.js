@@ -56,9 +56,10 @@ $(document).on("click", "#about-button", function() // Show about
 	$("#about").show();
 });
 
-$(document).on("click", ".nested-toggle", function() // Show about
+$(document).on("click", ".nested-toggle", function() // Toggle nested thread comments
 { 	
 	var toplevel = $(this).parents().eq(2).attr("id");
+
 	$("#"+toplevel + " .comment").toggle();
 	$("#"+toplevel + " .comment-body").toggle();
 
@@ -180,7 +181,7 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
-	var subUrl 		= (sub == "" ) ? "" : "r/"+sub;
+	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
 	var countUrl 	= (count == 0) ? "" : "&count="+count;
@@ -226,7 +227,7 @@ function getItems(sub, sort) // Get stories
 	$("#subnameheader").html(loadHtml);
 	$("#getmore").html(loadHtml);
 	
-	var url = "http://www.reddit.com/" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
+	var url = "http://www.reddit.com" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
 
 	$.getJSON( url, function(data) 
 	{
@@ -300,7 +301,7 @@ function getStory(sub,id)
 				}
 				else
 				{
-					printComment(element,-15, 30, 0, "comments");
+					printComment(element, 0, "comments");
 				}
 			});
 		});
@@ -322,14 +323,12 @@ function printTitle(data)
 	storyPlaceHolder.append(html); 
 }
 
-function printComment(data,indent1,indent2,numNest,lastComment) // Recursive function to print comments
+function printComment(data, numNest, lastComment) // Recursive function to print comments
 {
 	data = data.data;
 
 	if(data.body)
 	{
-		data.indent1 = indent1;
-		data.indent2 = indent2;
 		data.numNest = numNest;
 		var html = commentTemplate(data);
 		$("#" + lastComment).append(html);
@@ -343,7 +342,7 @@ function printComment(data,indent1,indent2,numNest,lastComment) // Recursive fun
 		{
 			if(numNest<maxNest)
 			{
-				printComment(element, (indent1+25), (indent2+30), numNest+1, lastComment);
+				printComment(element, numNest+1, lastComment);
 			}
 		});
 	} 

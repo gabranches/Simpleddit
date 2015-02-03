@@ -43,6 +43,11 @@ input[type=checkbox]
 	color:red;
 }
 
+.green
+{
+	color:rgb(55, 184, 41);
+}
+
 #comments
 {
 	border-top:2px solid #eee;

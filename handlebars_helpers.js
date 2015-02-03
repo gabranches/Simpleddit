@@ -2,14 +2,7 @@
 
 Handlebars.registerHelper("nsfwHelper", function (over_18)
 {
-    if (over_18 == true)
-    {
-        return "NSFW";
-    }
-    else
-    {
-        return "";
-    }
+       return over_18 == true ? "<span class='red'>NSFW</span>" : "";
 });
 
 Handlebars.registerHelper("subHelper", function (data)
@@ -125,20 +118,13 @@ Handlebars.registerHelper("timeHelper", function (created_utc)
     return (diff + " " + unit + " ago");
 });
 
-
-Handlebars.registerHelper("indentHelper", function (data)
-{
-   return "margin-right:"+data.indent2+"px;";
-});
-
-Handlebars.registerHelper("colorHelper", function (numNest)
-{
-    var i = numNest % 5;
-   return "border-left: 1px solid #eee;";
-});
-
 Handlebars.registerHelper("authorHelper", function (data)
 {
    return data == OP ? "<span class='author'>" + data + "</span>" : "<span>" + data + "</span>";
+});
+
+Handlebars.registerHelper("stickyHelper", function (sticky)
+{
+   return sticky == true ? "<span class='green'>sticky </span>" : "";
 });
 
