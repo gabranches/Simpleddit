@@ -15,6 +15,11 @@ h4
 	font-family: 'Open Sans', sans-serif;
 }
 
+h1
+{
+	font-size:13px;
+}
+
 input[type=checkbox]
 {
 	cursor:pointer;
@@ -41,6 +46,8 @@ input[type=checkbox]
 #comments
 {
 	border-top:2px solid #eee;
+	margin-left:-15px;
+	padding-right: 0;
 }
 
 .entries:hover
@@ -70,6 +77,7 @@ input[type=checkbox]
 	overflow-y:auto;
 	overflow-x:hidden;
 	border-left: 1px solid #eee;
+	padding-right:0;
 }
 
 #topnav
@@ -93,10 +101,31 @@ input[type=checkbox]
 .comment
 {
 	background-color: white;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	border-bottom: 1px solid #eee;
+	border-left: 1px solid #eee;
+	/*border-top: 1px solid #eee;*/
 	font-size:12px;
+	padding-right: 0;
+}
+
+.nested-toggle
+{
+	cursor:pointer;
+	font-weight: bold;
+	margin-right:5px;
+	color:#428bca;
+	font-size:10px;
+}
+
+.comment-header
+{
+	margin-top:10px;
+	padding-bottom:3px;
+}
+
+.comment-body
+{
+	margin-bottom: 10px;
+	padding-right: 25px;
 }
 
 .title

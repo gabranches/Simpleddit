@@ -125,10 +125,18 @@ if (isset($_GET["r"]))
 				</ul>
 
 				<br />
+				<h4>Recent updates</h4>
+				<ul>
+					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
+					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
+					<li>Jan 30 2015 - Users are now able to change the page title from the options page</li>
+					<li>Jan 27 2015 - Options are now saved in your browser's cookies for 30 days</li>
+					<li>Jan 26 2015 - Site is live!</li>
+				</ul>
+				<br />
 				<h4>Future plans</h4>
 				<ul>
-					<li>Allow users to log in their reddit account and view their subscribed subreddits</li>
-					<li>Allow nested comments to be hidden</li>
+					<li>Allow users to log in their reddit account and view subscribed subreddits</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>
@@ -173,14 +181,14 @@ if (isset($_GET["r"]))
 <script id="story-template" type="text/x-handlebars-template">
 	<div class="row">
 		<div class='story-title col-xs-12'>
-			<strong>{{{htmlHelper title}}}</strong><br /><small>{{authorHelper author}} - {{timeHelper created_utc}}</small>
+			<strong>{{{htmlHelper title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
  	</div>
 </div>
 <div class="row">
-		<div class='story-selftext col-xs-12'>
-			{{{htmlHelper selftext_html}}}
-			{{{picHelper this}}}
- 	</div>
+	<div class='story-selftext col-xs-12'>
+		{{{htmlHelper selftext_html}}}
+		{{{picHelper this}}}
+	</div>
 </div>
 <div class="row">
  	<div class='story-url col-xs-12'>
@@ -198,19 +206,18 @@ if (isset($_GET["r"]))
 </script>
 
 <script id="comment-template" type="text/x-handlebars-template">
- 	<div style="{{indentHelper this}} {{colorHelper numNest}}" class='comment col-xs-12 '>
+ 	<div id="{{id}}" style="{{indentHelper this}} {{colorHelper numNest}}" class='comment col-xs-12 '>
  		<div class="row">
- 			<div class="col-xs-12">
- 				<small>{{ptsHelper ups}}</small>  <small>{{authorHelper author}}</small>   <small>{{timeHelper created_utc}}</small>
+ 			<div class="col-xs-12 comment-header">
+ 				<span class='nested-toggle glyphicon glyphicon-minus'></span> <small> {{ptsHelper ups}}</small>  <small>{{{authorHelper author}}}</small>   <small>{{timeHelper created_utc}}</small>
  			</div>
  		</div>
  		<div class="row">
- 			<div class="col-xs-12">
+ 			<div class="col-xs-12 comment-body">
 	 			{{{htmlHelper body_html}}}
 	 		</div>
 	 	</div>
  	</div>
-</div>
 
 </script>
 

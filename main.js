@@ -56,6 +56,23 @@ $(document).on("click", "#about-button", function() // Show about
 	$("#about").show();
 });
 
+$(document).on("click", ".nested-toggle", function() // Show about
+{ 	
+	var toplevel = $(this).parents().eq(2).attr("id");
+	$("#"+toplevel + " .comment").toggle();
+	$("#"+toplevel + " .comment-body").toggle();
+
+	if ($(this).attr("class") == "nested-toggle glyphicon glyphicon-minus")
+	{
+		$(this).attr("class" ,"nested-toggle glyphicon glyphicon-plus");
+	}
+	else
+	{
+		$(this).attr("class" ,"nested-toggle glyphicon glyphicon-minus");
+	}
+
+});
+
 $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 { 	
 	readCookie("showImages") == "1" ? createCookie("showImages", "0", 30) : createCookie("showImages", "1", 30);
@@ -123,7 +140,6 @@ function buildHandlebars()
 
 	var raw_template = $('#comment-template').html();
 	commentTemplate = Handlebars.compile(raw_template);
-	commentPlaceHolder = $("#comments");
 
 	var raw_template = $('#story-template').html();
 	storyTemplate = Handlebars.compile(raw_template);
@@ -246,7 +262,7 @@ function getPopularSubs()
 		{ 
 			$("#select-sub").append("<option value='"+element.data.display_name+"' label='"+element.data.display_name+"'></option>");
 		});
-	})
+	});
 }
 
 function listItems(data,sub)
@@ -284,7 +300,7 @@ function getStory(sub,id)
 				}
 				else
 				{
-					printComment(element,-15, 15, 0);
+					printComment(element,-15, 30, 0, "comments");
 				}
 			});
 		});
@@ -292,7 +308,12 @@ function getStory(sub,id)
 		// Change links to open in new window
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
-	})
+	}
+	).fail(function(data) 
+	{
+		ClearRightSide();
+		$("#story").html("<div class='row'><div class='col-xs-12'>Could not fetch data from Reddit. Reddit may be experiencing heavy traffic. Please try again in a few minutes.</div></div>");
+	});
 }
 
 function printTitle(data)
@@ -301,7 +322,7 @@ function printTitle(data)
 	storyPlaceHolder.append(html); 
 }
 
-function printComment(data,indent1,indent2,numNest) // Recursive function to print comments
+function printComment(data,indent1,indent2,numNest,lastComment) // Recursive function to print comments
 {
 	data = data.data;
 
@@ -311,8 +332,10 @@ function printComment(data,indent1,indent2,numNest) // Recursive function to pri
 		data.indent2 = indent2;
 		data.numNest = numNest;
 		var html = commentTemplate(data);
-		commentPlaceHolder.append(html); 
+		$("#" + lastComment).append(html);
 	}
+
+	lastComment = data.id;
 
 	if(data.replies)
 	{
@@ -320,7 +343,7 @@ function printComment(data,indent1,indent2,numNest) // Recursive function to pri
 		{
 			if(numNest<maxNest)
 			{
-				printComment(element, (indent1+25), (indent2+25), numNest+1);
+				printComment(element, (indent1+25), (indent2+30), numNest+1, lastComment);
 			}
 		});
 	} 

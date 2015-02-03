@@ -114,19 +114,13 @@ Handlebars.registerHelper("timeHelper", function (created_utc)
         if (diff == 1){
             unit = "day";
         }
-    } else if (diff >= (60*60*24*30) && diff < (60*60*24*30*12)) {
+    } else if (diff >= (60*60*24*30)) {
         unit = "months";
         diff = Math.round(diff/(60*60*24*30));
         if (diff == 1){
             unit = "month";
         }
-    } else if (diff >= (60*60*24*30*12)) {
-        unit = "years";
-        diff = Math.round(diff/(60*60*24*30*12));
-        if (diff == 1){
-            unit = "year";
-        }
-    }
+    } 
 
     return (diff + " " + unit + " ago");
 });
@@ -134,13 +128,13 @@ Handlebars.registerHelper("timeHelper", function (created_utc)
 
 Handlebars.registerHelper("indentHelper", function (data)
 {
-   return "margin-left:"+data.indent1+"px; padding-right:"+data.indent2+"px;";
+   return "margin-right:"+data.indent2+"px;";
 });
 
 Handlebars.registerHelper("colorHelper", function (numNest)
 {
     var i = numNest % 5;
-   return "border-left:"+numNest+"px solid #eee;";
+   return "border-left: 1px solid #eee;";
 });
 
 Handlebars.registerHelper("authorHelper", function (data)
