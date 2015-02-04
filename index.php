@@ -1,12 +1,5 @@
-<?php
-
-$sub = "";
-
-if (isset($_GET["r"]))
-{	
-	$sub = $_GET["r"];	
-}
-
+<?php 
+	include("main.php"); 
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +9,7 @@ if (isset($_GET["r"]))
 <head>
 
 <meta charset="utf-8">
-<title>simplereddit.net: a simple reddit browser</title>
+<title>simplereddit</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
 <meta name="description" content="SimpleReddit is an easy and discreet way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
