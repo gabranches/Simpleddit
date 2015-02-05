@@ -261,7 +261,7 @@ function getPopularSubs()
 	{
 		$.each(data.data.children,function(index,element)
 		{ 
-			$("#select-sub").append("<option value='"+element.data.display_name+"' label='"+element.data.display_name+"'></option>");
+			$("#select-sub").append("<option value='"+element.data.display_name+"' label='"+element.data.display_name+"'>"+element.data.display_name+"</option>");
 		});
 	});
 }
