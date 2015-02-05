@@ -149,6 +149,11 @@ input[type=checkbox]
 	cursor: pointer;
 }
 
+#logo img
+{
+	margin-top: -5px;
+}
+
 #main-top
 {
 	background-color: rgb(250, 244, 244);
