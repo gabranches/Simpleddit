@@ -35,6 +35,8 @@
 				<div id="logo" class="col-xs-2 text-center">
 					<a href="/">simplereddit</a>
 				</div>
+				<div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
+				</div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
@@ -96,6 +98,8 @@
 				<h4>Options</h4>
 				<div class="form-group">
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
+					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
+					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW<br>
 				</div>
 				<div class="form-group">
 					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">

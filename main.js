@@ -10,8 +10,8 @@ $(function()
 	OP = "";
 		
 	// Run
+	init();
 	hashLocation();
-	nsfwInit();
 	resize();
 	setTitle();
 	getPopularSubs();
@@ -100,6 +100,35 @@ $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 	readCookie("showImages") == "1" ? createCookie("showImages", "0", 30) : createCookie("showImages", "1", 30);
 });
 
+$(document).on("change", '#hide-logo', function(){
+	var logo = readCookie("showLogo");
+	if(logo == "1")
+	{
+		createCookie("showLogo", "0", 30);
+		$("#logo").hide();
+		$("#logo-filler").show()
+	}else
+	{
+		createCookie("showLogo", "1", 30);
+		$("#logo").show();
+		$("#logo-filler").hide();
+	}
+});
+$(document).on("change", '#hide-nsfw', function() {
+	var nsfw = readCookie("nsfw");
+	if(nsfw=="off")
+	{
+		createCookie("nsfw", "on", 2);
+		$(".glyphicon-nsfw").css({opacity: "1"});
+	}
+	else
+	{
+		createCookie("nsfw", "off", 2);
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}
+	ClearLeftSide();
+	getItems(sub, sort);
+});
 
 $(document).on("click", "#options-button", function() // Show options
 { 	
@@ -154,6 +183,26 @@ $(window).resize(function(){
 });
 
 // ** FUNCTIONS ** //
+
+function init()
+{
+	console.log(readCookie("showLogo"));
+	if(readCookie("showLogo") == "0"){
+		$("#logo").hide();
+		$("#logo-filler").show();
+		document.getElementById("hide-logo").checked = true;
+	}else{
+		createCookie("showLogo", "1", 30);
+		document.getElementById("hide-logo").checked = false;
+	}
+	if(readCookie("nsfw")=="on")
+	{
+		document.getElementById("hide-nsfw").checked = false;
+	}else{
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+		createCookie("nsfw", "off", 2);
+	}
+}
 
 function buildHandlebars()
 {
@@ -292,11 +341,14 @@ function listItems(data,sub)
 {
 	$.each(data.data.children,function(index,element)
 	{ 
-		element.data.topsub = sub;
-		var html = entryTemplate(element.data);
-		entryPlaceHolder.append(html);
-		count++;
-		after = element.data.name;
+		if((element.data.over_18==true&&readCookie("nsfw")=="on")||element.data.over_18==false)
+		{
+			element.data.topsub = sub;
+			var html = entryTemplate(element.data);
+			entryPlaceHolder.append(html);
+			count++;
+			after = element.data.name;
+		}
 	});
 }
 
@@ -402,11 +454,13 @@ function hashLocation(){
 	//check if a hash is present
 	if(hash!=""){
 		var i = hash.search("-");
-		sub = hash.slice(1, i);
 		if(i!=-1){
+			sub = hash.slice(1, i);
 			ClearRightSide();
 			var post = hash.slice(i+1);
 			getStory(sub, post);
+		}else{
+			sub = hash.slice(1);
 		}
 	}
 }
@@ -418,13 +472,4 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     return false;
-}
-function nsfwInit(){
-	if(readCookie("nsfw")=="off")
-	{
-		$(".glyphicon-nsfw").css({opacity: ".5"});
-	}else{
-		createCookie("nsfw", "on", 2);
-	}
-
 }
