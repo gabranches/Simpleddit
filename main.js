@@ -8,8 +8,7 @@ $(function()
 	sort = "hot";
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 	OP = "";
-	
-	
+		
 	// Run
 	hashLocation();
 	resize();
@@ -285,7 +284,14 @@ function listItems(data,sub)
 
 function getStory(sub,id)
 {
-	var url = "r/"+sub+"/comments/"+id;
+	if (sub == "")
+	{
+		var url = "comments/"+id;
+	}
+	else
+	{
+		var url = "r/"+sub+"/comments/"+id;
+	}
 
 	$("#storyheader").html(loadHtml);
 
