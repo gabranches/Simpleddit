@@ -36,25 +36,24 @@ Handlebars.registerHelper("picHelper", function (data)
 {
     if (readCookie("showImages") == "1")
     {
+        var hidden = "";
         var imgAttr = "<img id='storyimage' src='";
         var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Hide Image</div>";
     }
     else
     {
-        var imgAttr = "<img id='storyimage' style='display:none' src='";
+        var hidden = "style='display:none'";
+        var imgAttr = "<img id='storyimage'" + hidden + " src='";
         var picButton = "<div id='showimage'><span class='glyphicon glyphicon-picture'></span> Show Image</div>";
     }
     
-	var prefix = picButton + imgAttr + data.url;
-	var suffix = "'' />";
+    var prefix = picButton + imgAttr + data.url;
+    var suffix = "'' />";
+    var prefixEmbed = picButton;
 
     if (data.url.indexOf("imgur.com/a/") != "-1")
     {
         return "";
-    }
-    else if (data.domain == "imgur.com")
-    {
-        return prefix + ".jpg" + suffix;
     }
     else if (data.domain == "i.imgur.com" && !isImgurVid(data.url))
     {
@@ -63,12 +62,26 @@ Handlebars.registerHelper("picHelper", function (data)
     else if (data.domain == "i.imgur.com" && isImgurVid(data.url))
     {
         var nakedUrl = data.url.split(data.url.match(/\.([A-Za-z0-9]+)$/g)[0])[0];
-        var embededVideo = "<video autoplay loop muted preload id='storyimage'>";
-		embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
+        var embededVideo = "<div id='storyimage' " + hidden + "><video autoplay loop muted>";
+        embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
         embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
-		embededVideo += "</video>";
+        embededVideo += "</video></div>";
 
-		return embededVideo;
+        return prefixEmbed + embededVideo;
+    }
+    else if (data.domain == "imgur.com" && !isImgurVid(data.url))
+    {
+        return prefix + ".jpg" + suffix;
+    }
+    else if (data.domain == "imgur.com" && isImgurVid(data.url))
+    {
+        var nakedUrl = data.url.split(data.url.match(/\.([A-Za-z0-9]+)$/g)[0])[0];
+        var embededVideo = "<div id='storyimage' " + hidden + "><video autoplay loop muted>";
+        embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
+        embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
+        embededVideo += "</video></div>";
+
+        return prefixEmbed + embededVideo;
     }
     else if (data.domain.indexOf("tumblr") != -1)
     {
@@ -76,8 +89,9 @@ Handlebars.registerHelper("picHelper", function (data)
     }
     else if (data.domain.indexOf("youtube") != -1)
     {
-    	var id = getYoutubeId(data.url);
-    	return "<iframe width='560' height='315' src='http://www.youtube.com/embed/"+id[1]+"' frameborder='0' allowfullscreen></iframe>";
+        var id = getYoutubeId(data.url);
+        var youtubeEmbed = "<div id='storyimage' " + hidden + "><iframe width='560' height='315' src='http://www.youtube.com/embed/"+id[1]+"' frameborder='0' allowfullscreen></iframe></div>";
+        return prefixEmbed + youtubeEmbed;
     }
     else
     {
