@@ -231,7 +231,7 @@ function getItems(sub, sort) // Get stories
 	$("#subnameheader").html(loadHtml);
 	$("#getmore").html(loadHtml);
 	
-	var url = "http://www.reddit.com" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
+	var url = "https://www.reddit.com" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
 
 	$.getJSON( url, function(data) 
 	{
@@ -261,7 +261,7 @@ function getItems(sub, sort) // Get stories
 
 function getPopularSubs()
 {
-	$.getJSON("http://www.reddit.com/subreddits/popular/.json?limit=100", function(data)
+	$.getJSON("https://www.reddit.com/subreddits/popular/.json?limit=100", function(data)
 	{
 		$.each(data.data.children,function(index,element)
 		{ 
@@ -295,7 +295,7 @@ function getStory(sub,id)
 
 	$("#storyheader").html(loadHtml);
 
-	var requestUrl = "http://www.reddit.com/"+url+"/.json";
+	var requestUrl = "https://www.reddit.com/"+url+"/.json";
 
 	$.getJSON(requestUrl, function(data)
 	{
