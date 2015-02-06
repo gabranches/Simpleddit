@@ -131,6 +131,13 @@ $("#select-sub").change(function() // Dropdown submit
 	getItems(sub, sort);
 });
 
+$("#select-theme").change(function() // Theme select
+{
+	theme = $('#select-theme').val();
+	$('#theme-style').remove();
+	if(theme.length) $('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
+});
+
 $(window).resize(function(){
 	resize();
 });

@@ -59,7 +59,13 @@
 				<div class="col-xs-1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
-				<div class="col-xs-2"></div>
+				<div class="col-xs-1">
+					<select id="select-theme" class="form-control">
+						<option value="">Light</option>
+						<option value="dark">Dark</option>
+					</select>
+				</div>
+				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
