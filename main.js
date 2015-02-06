@@ -8,8 +8,10 @@ $(function()
 	sort = "hot";
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 	OP = "";
-
+	
+	
 	// Run
+	hashLocation();
 	resize();
 	setTitle();
 	getPopularSubs();
@@ -25,6 +27,7 @@ $("#form-sub").submit(function(e) // Subreddit form submit
 	e.preventDefault();
 	sub = $("#input-sub").val();
 	ClearLeftSide();
+	window.location.hash = "#"+sub;
 	getItems(sub, sort);
 });
 
@@ -40,6 +43,7 @@ $(document).on("click", ".entries", function() // Go to story
 { 	
 	ClearRightSide();
 	id = $(this).attr("data-id");
+	window.location.hash = "#"+sub + "-" + id;
 	getStory($(this).attr("data-sub"),id);
 });
 
@@ -123,6 +127,7 @@ $("#select-sub").change(function() // Dropdown submit
 { 	
 	sub = $("#select-sub").val();
 	ClearLeftSide();
+	window.location.hash = "#"+sub;
 	$("#input-sub").val(sub);
 	getItems(sub, sort);
 });
@@ -365,6 +370,20 @@ function getYoutubeId(url)  // Returns youtube data-id
 	else
 	{ 
 	    console.log("The youtube url is not valid.");
+	}
+}
+
+function hashLocation(){
+	var hash = window.location.hash;
+	//check if a hash is present
+	if(hash!=""){
+		var i = hash.search("-");
+		sub = hash.slice(1, i);
+		if(i!=-1){
+			ClearRightSide();
+			var post = hash.slice(i+1);
+			getStory(sub, post);
+		}
 	}
 }
 
