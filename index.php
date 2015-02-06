@@ -120,7 +120,9 @@
 
 				<br />
 				<h4>Recent updates</h4>
+				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
 					<li>Jan 30 2015 - Users are now able to change the page title from the options page</li>
@@ -129,8 +131,16 @@
 				</ul>
 				<br />
 				<h4>Future plans</h4>
+				Feedback from the reddit thread:<br /><br />
 				<ul>
-					<li>Allow users to log in their reddit account and view subscribed subreddits</li>
+					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
+					<li>Allow option for a dark layout, maybe other themes</li>
+					<li>Filter out NSFW posts by default, make an option to allow NSFW posts</li>
+					<li>Enable https on web host</li>
+					<li>Implement an auto-complete for the drop-down menu</li>
+					<li>Use keyboard shortcuts for moving between posts</li>
+					<li>Fix multiple subs not working in url</li>
+					<li>Add an option to hide the site logo</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>
