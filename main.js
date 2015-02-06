@@ -11,6 +11,7 @@ $(function()
 		
 	// Run
 	hashLocation();
+	nsfwInit();
 	resize();
 	setTitle();
 	getPopularSubs();
@@ -76,6 +77,23 @@ $(document).on("click", ".nested-toggle", function() // Toggle nested thread com
 	}
 
 });
+
+$(document).on('click', '.glyphicon-nsfw', function(){
+	var nsfw = readCookie("nsfw");
+	if(nsfw=="off")
+	{
+		createCookie("nsfw", "on", 2);
+		$(".glyphicon-nsfw").css({opacity: "1"});
+	}
+	else
+	{
+		createCookie("nsfw", "off", 2);
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}
+	ClearLeftSide();
+	getItems(sub, sort);
+});
+
 
 $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 { 	
@@ -400,4 +418,13 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     return false;
+}
+function nsfwInit(){
+	if(readCookie("nsfw")=="off")
+	{
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}else{
+		createCookie("nsfw", "on", 2);
+	}
+
 }

@@ -59,7 +59,10 @@
 				<div class="col-xs-1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
-				<div class="col-xs-2"></div>
+				<div class="col-xs-1">
+					<img src="images/nsfw.jpg" class="glyphicon-nsfw"></img>
+				</div>
+				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
@@ -116,6 +119,7 @@
 					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
+					<li>If the nsfw button is black then you can see nsfw posts</li>
 				</ul>
 
 				<br />

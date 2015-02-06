@@ -108,6 +108,11 @@ body
 	top: 3px;
 }
 
+.glyphicon-nsfw {
+	width: 30%;
+	cursor: pointer;
+}
+
 .green
 {
 	color: rgb(55, 184, 41);
