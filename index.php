@@ -33,7 +33,7 @@
 		<div id="formrow" class="row">
 			<form id="form-sub" role="form">
 				<div id="logo" class="col-xs-2 text-center">
-					<a href="/"><img src="images/logo.png" /></a>
+					<a href="/">simplereddit</a>
 				</div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
