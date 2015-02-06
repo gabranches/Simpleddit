@@ -368,3 +368,11 @@ function getYoutubeId(url)  // Returns youtube data-id
 	}
 }
 
+function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
+{
+    var exts = [".gifv", ".webm", ".mp4"];
+    for (var i in exts) {
+        if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
+    }
+    return false;
+}
