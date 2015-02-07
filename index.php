@@ -35,6 +35,8 @@
 				<div id="logo" class="col-xs-2 text-center">
 					<a href="/">simplereddit</a>
 				</div>
+				<div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
+				</div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
@@ -43,6 +45,8 @@
 				</div>
 				<div class="col-xs-2">
 					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
+				</div>
+				<div id="results" style="display: none">
 				</div>
 				<div class="col-xs-1">
 					<select id="select-sort" class="form-control">
@@ -59,7 +63,10 @@
 				<div class="col-xs-1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
-				<div class="col-xs-2"></div>
+				<div class="col-xs-1">
+					<img src="images/nsfw.jpg" class="glyphicon-nsfw"></img>
+				</div>
+				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
@@ -93,6 +100,8 @@
 				<h4>Options</h4>
 				<div class="form-group">
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
+					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
+					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW<br>
 				</div>
 				<div class="form-group">
 					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
@@ -116,6 +125,7 @@
 					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
+					<li>If the nsfw button is black then you can see nsfw posts</li>
 				</ul>
 
 				<br />
@@ -233,7 +243,8 @@
 	sub = <?php echo json_encode($sub); ?>;
 
 </script>
-
+<script src="subreddits.js"></script>
+<script src="subreddits2.js"></script>
 <script src="main.js"></script>
 <script src="handlebars_helpers.js"></script>
 <script src="lib/cookies.js"></script>
