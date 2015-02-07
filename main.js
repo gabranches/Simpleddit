@@ -253,6 +253,7 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
+	$("#input-sub").val("");
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
@@ -328,7 +329,6 @@ function getItems(sub, sort) // Get stories
 }
 $(document).on("click", "", function(){
 	$("#results").empty();
-	$("#input-sub").val("");
 	$("#results").hide();
 });
 $('#input-sub').keyup(function(e) {
