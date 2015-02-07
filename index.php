@@ -46,6 +46,8 @@
 				<div class="col-xs-2">
 					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
 				</div>
+				<div id="results" style="display: none">
+				</div>
 				<div class="col-xs-1">
 					<select id="select-sort" class="form-control">
 					    <option selected="selected" value="hot">hot</option>
@@ -241,7 +243,8 @@
 	sub = <?php echo json_encode($sub); ?>;
 
 </script>
-
+<script src="subreddits.js"></script>
+<script src="subreddits2.js"></script>
 <script src="main.js"></script>
 <script src="handlebars_helpers.js"></script>
 <script src="lib/cookies.js"></script>

@@ -1,3 +1,4 @@
+var ResultLimit = 40;
 $(function()
 {
 	// Global Variables
@@ -325,6 +326,75 @@ function getItems(sub, sort) // Get stories
 	});
 
 }
+$(document).on("click", "", function(){
+	$("#results").empty();
+	$("#input-sub").val("");
+	$("#results").hide();
+});
+$('#input-sub').keyup(function(e) {
+	if((e.keyCode >= 37 && e.keyCode <= 40)
+	   || e.keyCode == 13)
+	{
+		// no arrow keys
+		return;
+	}
+	var query = $(this).val();
+	searchReddits($(this).val());
+	
+}).keydown(function (e) {
+	if(e.keyCode == 40 || e.keyCode == 38)
+	{	
+		// Up/down keys
+		if($('#results .result').length)
+		{
+			var delta = (e.keyCode == 40 ? 1 : -1);
+			// down arrow
+			var selected = $('#results .result.selected');
+			if(selected.length > 0)
+			{
+				var num = parseInt(selected.attr('num'));
+				num  = num + delta;
+				var next = $('#results .result[num='+num+']');
+				if(next.length > 0)
+				{
+					selected.removeClass('selected');
+					next.addClass('selected');
+				}
+				else if(delta < 0)
+				{
+					selected.removeClass('selected');
+				}
+				
+			}
+			else
+			{
+				// select first result
+				$('#results .result').first().addClass('selected');
+			}
+		}
+	}
+	else if(e.keyCode == 13)
+	{
+		// Enter
+		var selected = $('#results .result.selected');
+		if(selected.length > 0)
+		{
+			var name = selected.attr('reddit');
+			window.location = 'http://www.reddit.com/r/' + name;
+		}
+		else
+		{
+			// select first result
+			$('#results .result').first().addClass('selected');
+		}
+	}
+});
+
+$(document).on("click", ".result", function(){
+	ClearLeftSide();
+	window.location.hash = "#"+$(this)[0].innerText;
+	getItems($(this)[0].innerText, sort);	
+});
 
 function getPopularSubs()
 {
@@ -472,4 +542,44 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     return false;
+}
+
+function searchReddits(query)
+{
+	$("#results").show();
+	var html = '';
+	if(query.length > 0)
+	{
+		var re = new RegExp('[^:]*'+query+'[^:]*','g');
+		matches = getResults(re);
+		if(matches != null && matches.length > 0)
+		{
+			for(var i = 0; i < matches.length; i++)
+			{
+				var name = matches[i];
+				var start = name.search(query);
+				var displayName = name.substring(0,start) + '<span class="match">' + name.substring(start,start + query.length) + '</span>' + name.substring(start + query.length);
+				html += '<div class="result" num="'+i+'" reddit="'+name+'">' + displayName + '</div>';
+				if(i == ResultLimit - 1)
+					break;
+			}			
+		}
+		
+		if(html.length == 0)
+		{
+			html = '<div class="no_results">No results</div>';
+		}
+	}
+		
+	$('#results').html(html);
+}
+
+function getResults(re)
+{
+	var matches = RedditSearch.match(re);
+	var matches2 = RedditSearch2.match(re);
+	var results = [];
+	if (matches != null) results = results.concat(matches);
+	if (matches2 != null) results = results.concat(matches2);
+	return results;
 }

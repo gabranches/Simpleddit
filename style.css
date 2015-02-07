@@ -240,3 +240,27 @@ p
 {
 	background-color: white;
 }
+
+#results {
+	padding: 0px;
+	position: absolute;
+	background-color: white;
+	width: 300px;
+	height: 500px;
+	margin-left: 35%;
+	margin-top: 45px;
+	z-index: 10;
+	overflow: scroll;
+}
+
+.result {
+	width: 100%;
+	font-size: 14px;
+	padding: 8px;
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
+	color: #428bca;
+}
+.result:hover {
+	background-color: rgba(66, 139, 202, 0.04);
+}
