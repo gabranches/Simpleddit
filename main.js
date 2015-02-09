@@ -276,7 +276,14 @@ function getItems(sub, sort) // Get stories
 
 	if (readCookie("title") == null)
 	{
-	document.title = sub;
+		if (sub=="")
+		{
+			document.title = "simplereddit.net";
+		}
+		else
+		{
+			document.title = sub;
+		}
 	}
 
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
