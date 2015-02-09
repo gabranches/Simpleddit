@@ -1,5 +1,6 @@
 <?php 
-	include("main.php"); 
+	include("main.php");
+	$sub = "";
 ?>
 
 <!DOCTYPE html>
@@ -66,15 +67,16 @@
 				<div class="col-xs-1">
 					<img src="images/nsfw.jpg" class="glyphicon-nsfw"></img>
 				</div>
-				<div class="col-xs-1"></div>
+				<div id="favorites-button" class="col-xs-1" id="options-button">favorites</div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
 		</div>
 		<div class="row" id="main-top">
 			<div class="col-xs-6">
-				<div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span></div>
-				<div id="subnameheader" class="col-xs-6 col-md-8 col-lg-10 text-center text-center"></div>
+				<div class="col-xs-3 col-md-2 col-lg-4"><span class="glyphicon glyphicon-arrow-up"></span></div>
+				<div id="subnameheader" class="col-xs-3 col-md-6 col-lg-4 text-center text-center"></div>
+				<div class="col-xs-2 col-md-4 col-lg-3 text-center text-center" id="favorite-toggle">&#9734;</div>
 				<div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-comment"></span></div>
 			</div>
 			<div class="col-xs-6">
@@ -95,6 +97,14 @@
 		
 	</div>
 	<div id="rightcolumn" class="col-xs-6">
+		<div id="favorites" style="display: none" class="row">
+			<div class="col-xs-12">
+				<h4>Favorites</h4>
+				<div id="favorites-cont">
+					
+				</div>
+			</div>
+		</div>
 		<div id="options" style="display:none" class="row">
 			<div class="col-xs-6">
 				<h4>Options</h4>

@@ -157,6 +157,24 @@ $(document).on("click", "#showimage", function() // Show story image
 	$('#storyimage').toggle();
 	$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
 });
+$(document).on("click", "#favorites-button", function(){
+	ClearRightSide();
+	$('#favorites').show();
+});
+$(document).on("click", "#favorite-toggle", function(){
+	if($("#favorite-toggle").val() == "&#9734;"){
+		var f = readCookie("favorites");
+		createCookie("favorites", f+","+sub);
+		$("#favorite-toggle").empty();
+		$("#favorite-toggle").append("&#9733;");
+	}else{
+		var f = readCookie("favorites");
+		f = f.replace((","+sub), "");
+		createCookie("favorites", f);
+		$("#favorite-toggle").empty();
+		$("#favorite-toggle").append("&#9734;");
+	}
+});
 
 $("#getmore").click(function() // Load more
 {
@@ -187,7 +205,13 @@ $(window).resize(function(){
 
 function init()
 {
-	console.log(readCookie("showLogo"));
+	var f = readCookie("favorites");
+	if(f!=""&&f!=null){
+		var favorites = f.split(",")
+		for(var i=0;i<favorites.length;i++){
+			$("favorites-cont").append("<div class='favorite'>"+favorites[i]+"</div>")
+		}
+	}
 	if(readCookie("showLogo") == "0"){
 		$("#logo").hide();
 		$("#logo-filler").show();
@@ -247,6 +271,7 @@ function ClearRightSide() // Clear all stories
 	$("#storyheader").html("");
 	$("#about").hide();
 	$("#options").hide();
+	$('#favorites').hide();
 	$("#story").html("");
 	$("#comments").html("");
 }
