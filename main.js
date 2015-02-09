@@ -1,4 +1,5 @@
 var ResultLimit = 40;
+var favorite = false;
 $(function()
 {
 	// Global Variables
@@ -11,8 +12,8 @@ $(function()
 	OP = "";
 		
 	// Run
-	init();
 	hashLocation();
+	init();
 	resize();
 	setTitle();
 	getPopularSubs();
@@ -162,17 +163,22 @@ $(document).on("click", "#favorites-button", function(){
 	$('#favorites').show();
 });
 $(document).on("click", "#favorite-toggle", function(){
-	if($("#favorite-toggle").val() == "&#9734;"){
+	if(!favorite){
 		var f = readCookie("favorites");
 		createCookie("favorites", f+","+sub);
 		$("#favorite-toggle").empty();
 		$("#favorite-toggle").append("&#9733;");
+		favorite = true;
 	}else{
 		var f = readCookie("favorites");
-		f = f.replace((","+sub), "");
+		if(f!=""&&f!=null)
+			f = f.replace((","+sub), "");
+		else
+			f="";
 		createCookie("favorites", f);
 		$("#favorite-toggle").empty();
 		$("#favorite-toggle").append("&#9734;");
+		favorite = false;
 	}
 });
 
@@ -207,9 +213,14 @@ function init()
 {
 	var f = readCookie("favorites");
 	if(f!=""&&f!=null){
-		var favorites = f.split(",")
+		var favorites = f.split(",");
 		for(var i=0;i<favorites.length;i++){
-			$("favorites-cont").append("<div class='favorite'>"+favorites[i]+"</div>")
+			$("#favorites-cont").append("<div class='favorite'>"+favorites[i]+"</div>");
+			if(favorites[i]==sub){
+				favorite = true;
+				$("#favorite-toggle").empty();
+				$("#favorite-toggle").append("&#9733;");
+			}
 		}
 	}
 	if(readCookie("showLogo") == "0"){
@@ -279,13 +290,25 @@ function ClearRightSide() // Clear all stories
 function getItems(sub, sort) // Get stories
 {
 	$("#input-sub").val("");
+	
+	var f = readCookie("favorites").split(",");
+	for(var i=0;i<f.length;i++){
+		if(f[i]==sub){
+			favorite = true;
+			$("#favorite-toggle").empty();
+			$("#favorite-toggle").append("&#9733;");
+		}else{
+			$("#favorite-toggle").empty();
+			$("#favorite-toggle").append("&#9734;");
+		}
+	}
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
 	var countUrl 	= (count == 0) ? "" : "&count="+count;
 
 	$("#subnameheader").html(loadHtml);
-
+	
 	switch(sort) 
 	{	
 		case "hot":
