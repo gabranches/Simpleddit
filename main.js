@@ -424,7 +424,8 @@ $('#input-sub').keyup(function(e) {
 $(document).on("click", ".result", function(){
 	ClearLeftSide();
 	window.location.hash = "#"+$(this)[0].innerText;
-	getItems($(this)[0].innerText, sort);	
+	sub = $(this)[0].innerText;
+	getItems($(this)[0].innerText, sort);
 });
 
 function getPopularSubs()
