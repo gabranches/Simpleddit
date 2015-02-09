@@ -74,7 +74,7 @@
 					</select>
 				</div>
 				-->
-				<div class="col-xs-1"></div>
+				<div id="favorites-button" class="col-xs-1" id="options-button">favorites</div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
