@@ -133,17 +133,17 @@
 				<br />
 				<h4>Browsing Tips</h4>
 				<ul>
-					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
+					<li>You can link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
-					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
-					<li>If the nsfw button is black then you can see nsfw posts</li>
+					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a></li>
+					<li>See the options page for more browsing features</li>
 				</ul>
 
 				<br />
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
-					<li>Feb 08 2015 - NSFW threads can now by filtered out. The searchbox now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li> for the great contributions!) Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)
+					<li>Feb 08 2015 - NSFW threads can now by filtered out. The searchbox now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired. (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li> for the great contributions!) Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
