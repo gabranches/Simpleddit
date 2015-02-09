@@ -10,7 +10,7 @@
 <head>
 
 <meta charset="utf-8">
-<title>simplereddit</title>
+<title>simplereddit.net</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
 <meta name="description" content="SimpleReddit is an easy and discreet way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
@@ -50,6 +50,9 @@
 				<div id="results" style="display: none">
 				</div>
 				<div class="col-xs-1">
+					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				</div>
+				<div class="col-xs-1">
 					<select id="select-sort" class="form-control">
 					    <option selected="selected" value="hot">hot</option>
 					    <option value="new">new</option>
@@ -61,13 +64,17 @@
 					    <option value="all">top all time</option>
 					</select>
 				</div>
+				
+				<div class="col-xs-1"></div>
+				<!-- Button for dark theme - WIP
 				<div class="col-xs-1">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+					<select id="select-theme" class="form-control">
+						<option value="">Light</option>
+						<option value="dark">Dark</option>
+					</select>
 				</div>
-				<div class="col-xs-1">
-					<img src="images/nsfw.jpg" class="glyphicon-nsfw"></img>
-				</div>
-				<div id="favorites-button" class="col-xs-1" id="options-button">favorites</div>
+				-->
+				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
@@ -111,11 +118,13 @@
 				<div class="form-group">
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
 					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
-					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW<br>
+					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW threads<br>
 				</div>
+				
 				<div class="form-group">
-					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
+					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page (leave blank for default)">
 				</div>
+				
 			</div>
 			<div class="col-xs-6">
 			</div>
@@ -132,16 +141,17 @@
 				<br />
 				<h4>Browsing Tips</h4>
 				<ul>
-					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
+					<li>You can link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
-					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
-					<li>If the nsfw button is black then you can see nsfw posts</li>
+					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a></li>
+					<li>See the options page for more browsing features</li>
 				</ul>
 
 				<br />
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
@@ -155,12 +165,8 @@
 				<ul>
 					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
 					<li>Allow option for a dark layout, maybe other themes</li>
-					<li>Filter out NSFW posts by default, make an option to allow NSFW posts</li>
 					<li>Enable https on web host</li>
-					<li>Implement an auto-complete for the drop-down menu</li>
 					<li>Use keyboard shortcuts for moving between posts</li>
-					<li>Fix multiple subs not working in url</li>
-					<li>Add an option to hide the site logo</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>
@@ -195,7 +201,7 @@
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{score}}</span></div>
-		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{htmlHelper title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
 	</div>
 
@@ -204,7 +210,7 @@
 <script id="story-template" type="text/x-handlebars-template">
 	<div class="row">
 		<div class='story-title col-xs-12'>
-			<strong>{{{htmlHelper title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
+			<strong>{{{title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
  	</div>
 </div>
 <div class="row">

@@ -149,8 +149,15 @@ $(document).on("click", "#options-button", function() // Show options
 $(document).on("keyup", "#input-title", function() // Change page title
 { 	
 	var newTitle = $("#input-title").val();
-	document.title = newTitle;
-	createCookie("title", newTitle, 30);
+	if (newTitle == "")
+	{
+		eraseCookie("title");
+	}
+	else
+	{
+		document.title = newTitle;
+		createCookie("title", newTitle, 30);
+	}
 });
 
 $(document).on("click", "#showimage", function() // Show story image
@@ -203,6 +210,13 @@ $("#select-sub").change(function() // Dropdown submit
 	getItems(sub, sort);
 });
 
+$("#select-theme").change(function() // Theme select
+{
+	theme = $('#select-theme').val();
+	$('#theme-style').remove();
+	if(theme.length) $('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
+});
+
 $(window).resize(function(){
 	resize();
 });
@@ -237,6 +251,10 @@ function init()
 	}else{
 		$(".glyphicon-nsfw").css({opacity: ".5"});
 		createCookie("nsfw", "off", 2);
+	}
+	if(readCookie("title")!=null)
+	{
+		$("#input-title").val(readCookie("title"));
 	}
 }
 
@@ -290,7 +308,6 @@ function ClearRightSide() // Clear all stories
 function getItems(sub, sort) // Get stories
 {
 	$("#input-sub").val("");
-	
 	var f = readCookie("favorites").split(",");
 	for(var i=0;i<f.length;i++){
 		if(f[i]==sub){
@@ -300,6 +317,18 @@ function getItems(sub, sort) // Get stories
 		}else{
 			$("#favorite-toggle").empty();
 			$("#favorite-toggle").append("&#9734;");
+		}
+	}
+	document.title = sub;
+	if (readCookie("title") == null)
+	{
+		if (sub=="")
+		{
+			document.title = "simplereddit.net";
+		}
+		else
+		{
+			document.title = sub;
 		}
 	}
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
@@ -495,6 +524,10 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
+					if (readCookie("title") == null)
+					{
+					document.title = sub+" - "+element.data.title;
+					}
 					OP = element.data.author;
 					printTitle(element);
 				}
@@ -594,7 +627,11 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
 
 function searchReddits(query)
 {
-	$("#results").show();
+	if($("#input-sub").val() == ""){
+		$("#results").hide();
+	}else{
+		$("#results").show();
+	}
 	var html = '';
 	if(query.length > 0)
 	{
