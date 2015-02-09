@@ -35,6 +35,8 @@
 				<div id="logo" class="col-xs-2 text-center">
 					<a href="/">simplereddit</a>
 				</div>
+				<div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
+				</div>
 				<div class="col-xs-2">
 					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
 						<option selected="selected" disabled>Popular Subreddits</option>
@@ -43,6 +45,8 @@
 				</div>
 				<div class="col-xs-2">
 					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
+				</div>
+				<div id="results" style="display: none">
 				</div>
 				<div class="col-xs-1">
 					<select id="select-sort" class="form-control">
@@ -59,13 +63,19 @@
 				<div class="col-xs-1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
+				<div class="col-xs-1"></div>
+				<!-- Button for dark theme - WIP
 				<div class="col-xs-1">
 					<select id="select-theme" class="form-control">
 						<option value="">Light</option>
 						<option value="dark">Dark</option>
 					</select>
 				</div>
-				<div class="col-xs-1"></div>
+				-->
+				<div class="col-xs-1">
+				
+				</div>
+
 				<div id="options-button" class="col-xs-1">options</div>
 				<div id="about-button" class="col-xs-1">about</div>
 			</form>
@@ -99,10 +109,14 @@
 				<h4>Options</h4>
 				<div class="form-group">
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
+					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
+					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW threads<br>
 				</div>
+				
 				<div class="form-group">
-					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
+					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page (leave blank for default)">
 				</div>
+				
 			</div>
 			<div class="col-xs-6">
 			</div>
@@ -122,12 +136,14 @@
 					<li>You can link directly to a subreddit with simplereddit.net/{sub} or simplereddit.net/r/{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"</li>
+					<li>If the nsfw button is black then you can see nsfw posts</li>
 				</ul>
 
 				<br />
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 08 2015 - NSFW threads can now by filtered out. The searchbox now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li> for the great contributions!)
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
@@ -239,7 +255,8 @@
 	sub = <?php echo json_encode($sub); ?>;
 
 </script>
-
+<script src="subreddits.js"></script>
+<script src="subreddits2.js"></script>
 <script src="main.js"></script>
 <script src="handlebars_helpers.js"></script>
 <script src="lib/cookies.js"></script>

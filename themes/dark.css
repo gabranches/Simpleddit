@@ -1,3 +1,9 @@
 body, #topnav, #main-top,.comment,#getmore{ background-color:#000; color: #eee; }
 .title small{ color: #fff; }
 #getmore{ background-color:#000; }
+.entries
+{
+	border-top: 1px solid #474747;
+}
+
+
