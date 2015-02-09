@@ -192,6 +192,7 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
+	document.title = sub;
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
@@ -314,6 +315,7 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
+					document.title = sub+"-"+element.data.title;
 					OP = element.data.author;
 					printTitle(element);
 				}
