@@ -159,8 +159,6 @@
 					<li>Allow option for a dark layout, maybe other themes</li>
 					<li>Enable https on web host</li>
 					<li>Use keyboard shortcuts for moving between posts</li>
-					<li>Fix multiple subs not working in url</li>
-					<li>Add an option to hide the site logo</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>
