@@ -477,8 +477,12 @@ $('#input-sub').keyup(function(e) {
 
 $(document).on("click", ".result", function(){
 	ClearLeftSide();
-	window.location.hash = "#"+$(this)[0].innerText;
-	getItems($(this)[0].innerText, sort);	
+	var s = $(this)[0].innerHTML;
+	s = s.replace("<span class=\"match\">", "");
+	s = s.replace("</span>", "");
+	window.location.hash = "#"+s;
+	sub = s;
+	getItems(s, sort);
 });
 
 function getPopularSubs()
