@@ -146,7 +146,7 @@ input[type=checkbox]
 	margin-left: 5px;
 }
 
-#logo, #options-button, #about-button
+#logo, #options-button, #about-button, #favorites-button
 {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
@@ -253,7 +253,7 @@ p
 	overflow: scroll;
 }
 
-.result {
+.result, .favorite {
 	width: 100%;
 	font-size: 14px;
 	padding: 8px;
@@ -261,6 +261,15 @@ p
 	cursor: pointer;
 	color: #428bca;
 }
-.result:hover {
+.result:hover, .favorite:hover {
 	background-color: rgba(66, 139, 202, 0.04);
+}
+
+#favorite-icon 
+{
+	width: 50%;
+}
+#favorite-toggle 
+{
+	cursor: pointer;
 }
