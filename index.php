@@ -181,7 +181,7 @@
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{score}}</span></div>
-		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{htmlHelper title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
 	</div>
 
@@ -190,7 +190,7 @@
 <script id="story-template" type="text/x-handlebars-template">
 	<div class="row">
 		<div class='story-title col-xs-12'>
-			<strong>{{{htmlHelper title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
+			<strong>{{{title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
  	</div>
 </div>
 <div class="row">

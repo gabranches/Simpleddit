@@ -19,7 +19,7 @@ Handlebars.registerHelper("subHelper", function (data)
 
 Handlebars.registerHelper("htmlHelper", function (data)
 {
-   return htmlDecode(data);
+   return new Handlebars.SafeString(htmlDecode(data));
 });
 
 Handlebars.registerHelper("ptsHelper", function (ups)
