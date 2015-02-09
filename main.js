@@ -179,9 +179,7 @@ $(document).on("click", "#favorites-button", function(){
 	$('#favorites').show();
 });
 $(document).on("click", "#favorite-toggle", function(){
-	console.log(favorite);
 	if(!favorite){
-		console.log(sub);
 		var f = readCookie("favorites");
 		createCookie("favorites", f+","+sub);
 		$("#favorite-toggle").empty();
@@ -239,7 +237,6 @@ $(window).resize(function(){
 function init()
 {
 	var f = readCookie("favorites");
-	console.log(sub);
 	if(f!=""&&f!=null){
 		var favorites = f.split(",");
 		for(var i=1;i<favorites.length;i++){
@@ -325,7 +322,6 @@ function getItems(sub, sort) // Get stories
 	var f = readCookie("favorites");
 	if(f!=null){
 		f = f.split(",");
-		console.log(f);
 		for(var i=0;i<f.length;i++){
 			if(f[i]==sub){
 				favorite = true;
