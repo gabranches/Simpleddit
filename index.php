@@ -143,7 +143,7 @@
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
-					<li>Feb 08 2015 - NSFW threads can now by filtered out. The searchbox now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li> for the great contributions!)
+					<li>Feb 08 2015 - NSFW threads can now by filtered out. The searchbox now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li> for the great contributions!) Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
@@ -157,9 +157,7 @@
 				<ul>
 					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
 					<li>Allow option for a dark layout, maybe other themes</li>
-					<li>Filter out NSFW posts by default, make an option to allow NSFW posts</li>
 					<li>Enable https on web host</li>
-					<li>Implement an auto-complete for the drop-down menu</li>
 					<li>Use keyboard shortcuts for moving between posts</li>
 					<li>Fix multiple subs not working in url</li>
 					<li>Add an option to hide the site logo</li>
