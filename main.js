@@ -1,3 +1,4 @@
+var ResultLimit = 40;
 $(function()
 {
 	// Global Variables
@@ -10,6 +11,7 @@ $(function()
 	OP = "";
 		
 	// Run
+	init();
 	hashLocation();
 	resize();
 	setTitle();
@@ -77,11 +79,57 @@ $(document).on("click", ".nested-toggle", function() // Toggle nested thread com
 
 });
 
+$(document).on('click', '.glyphicon-nsfw', function(){
+	var nsfw = readCookie("nsfw");
+	if(nsfw=="off")
+	{
+		createCookie("nsfw", "on", 2);
+		$(".glyphicon-nsfw").css({opacity: "1"});
+	}
+	else
+	{
+		createCookie("nsfw", "off", 2);
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}
+	ClearLeftSide();
+	getItems(sub, sort);
+});
+
+
 $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 { 	
 	readCookie("showImages") == "1" ? createCookie("showImages", "0", 30) : createCookie("showImages", "1", 30);
 });
 
+$(document).on("change", '#hide-logo', function(){
+	var logo = readCookie("showLogo");
+	if(logo == "1")
+	{
+		createCookie("showLogo", "0", 30);
+		$("#logo").hide();
+		$("#logo-filler").show()
+	}else
+	{
+		createCookie("showLogo", "1", 30);
+		$("#logo").show();
+		$("#logo-filler").hide();
+	}
+});
+$(document).on("change", '#hide-nsfw', function() {
+	var nsfw = readCookie("nsfw");
+	if(nsfw=="off")
+	{
+		createCookie("nsfw", "on", 2);
+		$(".glyphicon-nsfw").css({opacity: "1"});
+	}
+	else
+	{
+		createCookie("nsfw", "off", 2);
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}
+	ClearLeftSide();
+	getItems(sub, sort);
+});
 
 $(document).on("click", "#options-button", function() // Show options
 { 	
@@ -137,6 +185,26 @@ $(window).resize(function(){
 
 // ** FUNCTIONS ** //
 
+function init()
+{
+	console.log(readCookie("showLogo"));
+	if(readCookie("showLogo") == "0"){
+		$("#logo").hide();
+		$("#logo-filler").show();
+		document.getElementById("hide-logo").checked = true;
+	}else{
+		createCookie("showLogo", "1", 30);
+		document.getElementById("hide-logo").checked = false;
+	}
+	if(readCookie("nsfw")=="on")
+	{
+		document.getElementById("hide-nsfw").checked = false;
+	}else{
+		$(".glyphicon-nsfw").css({opacity: ".5"});
+		createCookie("nsfw", "off", 2);
+	}
+}
+
 function buildHandlebars()
 {
 	var raw_template = $('#entry-template').html();
@@ -185,6 +253,11 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
+<<<<<<< HEAD
+	$("#input-sub").val("");
+=======
+	document.title = sub;
+>>>>>>> issue10
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
@@ -258,6 +331,74 @@ function getItems(sub, sort) // Get stories
 	});
 
 }
+$(document).on("click", "", function(){
+	$("#results").empty();
+	$("#results").hide();
+});
+$('#input-sub').keyup(function(e) {
+	if((e.keyCode >= 37 && e.keyCode <= 40)
+	   || e.keyCode == 13)
+	{
+		// no arrow keys
+		return;
+	}
+	var query = $(this).val();
+	searchReddits($(this).val());
+	
+}).keydown(function (e) {
+	if(e.keyCode == 40 || e.keyCode == 38)
+	{	
+		// Up/down keys
+		if($('#results .result').length)
+		{
+			var delta = (e.keyCode == 40 ? 1 : -1);
+			// down arrow
+			var selected = $('#results .result.selected');
+			if(selected.length > 0)
+			{
+				var num = parseInt(selected.attr('num'));
+				num  = num + delta;
+				var next = $('#results .result[num='+num+']');
+				if(next.length > 0)
+				{
+					selected.removeClass('selected');
+					next.addClass('selected');
+				}
+				else if(delta < 0)
+				{
+					selected.removeClass('selected');
+				}
+				
+			}
+			else
+			{
+				// select first result
+				$('#results .result').first().addClass('selected');
+			}
+		}
+	}
+	else if(e.keyCode == 13)
+	{
+		// Enter
+		var selected = $('#results .result.selected');
+		if(selected.length > 0)
+		{
+			var name = selected.attr('reddit');
+			window.location = 'http://www.reddit.com/r/' + name;
+		}
+		else
+		{
+			// select first result
+			$('#results .result').first().addClass('selected');
+		}
+	}
+});
+
+$(document).on("click", ".result", function(){
+	ClearLeftSide();
+	window.location.hash = "#"+$(this)[0].innerText;
+	getItems($(this)[0].innerText, sort);	
+});
 
 function getPopularSubs()
 {
@@ -274,11 +415,14 @@ function listItems(data,sub)
 {
 	$.each(data.data.children,function(index,element)
 	{ 
-		element.data.topsub = sub;
-		var html = entryTemplate(element.data);
-		entryPlaceHolder.append(html);
-		count++;
-		after = element.data.name;
+		if((element.data.over_18==true&&readCookie("nsfw")=="on")||element.data.over_18==false)
+		{
+			element.data.topsub = sub;
+			var html = entryTemplate(element.data);
+			entryPlaceHolder.append(html);
+			count++;
+			after = element.data.name;
+		}
 	});
 }
 
@@ -307,6 +451,7 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
+					document.title = sub+"-"+element.data.title;
 					OP = element.data.author;
 					printTitle(element);
 				}
@@ -384,11 +529,13 @@ function hashLocation(){
 	//check if a hash is present
 	if(hash!=""){
 		var i = hash.search("-");
-		sub = hash.slice(1, i);
 		if(i!=-1){
+			sub = hash.slice(1, i);
 			ClearRightSide();
 			var post = hash.slice(i+1);
 			getStory(sub, post);
+		}else{
+			sub = hash.slice(1);
 		}
 	}
 }
@@ -400,4 +547,44 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     return false;
+}
+
+function searchReddits(query)
+{
+	$("#results").show();
+	var html = '';
+	if(query.length > 0)
+	{
+		var re = new RegExp('[^:]*'+query+'[^:]*','g');
+		matches = getResults(re);
+		if(matches != null && matches.length > 0)
+		{
+			for(var i = 0; i < matches.length; i++)
+			{
+				var name = matches[i];
+				var start = name.search(query);
+				var displayName = name.substring(0,start) + '<span class="match">' + name.substring(start,start + query.length) + '</span>' + name.substring(start + query.length);
+				html += '<div class="result" num="'+i+'" reddit="'+name+'">' + displayName + '</div>';
+				if(i == ResultLimit - 1)
+					break;
+			}			
+		}
+		
+		if(html.length == 0)
+		{
+			html = '<div class="no_results">No results</div>';
+		}
+	}
+		
+	$('#results').html(html);
+}
+
+function getResults(re)
+{
+	var matches = RedditSearch.match(re);
+	var matches2 = RedditSearch2.match(re);
+	var results = [];
+	if (matches != null) results = results.concat(matches);
+	if (matches2 != null) results = results.concat(matches2);
+	return results;
 }
