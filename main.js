@@ -253,11 +253,8 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
-<<<<<<< HEAD
 	$("#input-sub").val("");
-=======
 	document.title = sub;
->>>>>>> issue10
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
@@ -551,7 +548,11 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
 
 function searchReddits(query)
 {
-	$("#results").show();
+	if($("#input-sub").val() == ""){
+		$("#results").hide();
+	}else{
+		$("#results").show();
+	}
 	var html = '';
 	if(query.length > 0)
 	{
