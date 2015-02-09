@@ -253,7 +253,7 @@ p
 	overflow: scroll;
 }
 
-.result {
+.result, .favorite {
 	width: 100%;
 	font-size: 14px;
 	padding: 8px;
@@ -261,10 +261,15 @@ p
 	cursor: pointer;
 	color: #428bca;
 }
-.result:hover {
+.result:hover, .favorite:hover {
 	background-color: rgba(66, 139, 202, 0.04);
 }
 
-#favorite-icon {
+#favorite-icon 
+{
 	width: 50%;
+}
+#favorite-toggle 
+{
+	cursor: pointer;
 }
