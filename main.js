@@ -148,8 +148,15 @@ $(document).on("click", "#options-button", function() // Show options
 $(document).on("keyup", "#input-title", function() // Change page title
 { 	
 	var newTitle = $("#input-title").val();
-	document.title = newTitle;
-	createCookie("title", newTitle, 30);
+	if (newTitle == "")
+	{
+		eraseCookie("title");
+	}
+	else
+	{
+		document.title = newTitle;
+		createCookie("title", newTitle, 30);
+	}
 });
 
 $(document).on("click", "#showimage", function() // Show story image
@@ -179,6 +186,13 @@ $("#select-sub").change(function() // Dropdown submit
 	getItems(sub, sort);
 });
 
+$("#select-theme").change(function() // Theme select
+{
+	theme = $('#select-theme').val();
+	$('#theme-style').remove();
+	if(theme.length) $('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
+});
+
 $(window).resize(function(){
 	resize();
 });
@@ -202,6 +216,10 @@ function init()
 	}else{
 		$(".glyphicon-nsfw").css({opacity: ".5"});
 		createCookie("nsfw", "off", 2);
+	}
+	if(readCookie("title")!=null)
+	{
+		$("#input-title").val(readCookie("title"));
 	}
 }
 
@@ -255,6 +273,18 @@ function getItems(sub, sort) // Get stories
 {
 	$("#input-sub").val("");
 	document.title = sub;
+	if (readCookie("title") == null)
+	{
+		if (sub=="")
+		{
+			document.title = "simplereddit.net";
+		}
+		else
+		{
+			document.title = sub;
+		}
+	}
+
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
@@ -448,7 +478,10 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
-					document.title = sub+"-"+element.data.title;
+					if (readCookie("title") == null)
+					{
+					document.title = sub+" - "+element.data.title;
+					}
 					OP = element.data.author;
 					printTitle(element);
 				}
