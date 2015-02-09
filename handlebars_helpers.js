@@ -151,4 +151,3 @@ Handlebars.registerHelper("stickyHelper", function (sticky)
 {
    return sticky == true ? "<span class='green'>sticky </span>" : "";
 });
-
