@@ -1,5 +1,5 @@
 <?php 
-	include("main.php"); 
+	// include("main.php"); 
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <title>simplereddit.net</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
-<meta name="description" content="SimpleReddit is an easy and discreet way of browsing reddit using a two-column layout." />
+<meta name="description" content="SimpleReddit is a simple and efficient way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
 
 <link rel="image_src" href="images/logo.png">
@@ -249,7 +249,7 @@
 	sub = ""; 
 
 	// For server version
-	sub = <?php echo json_encode($sub); ?>;
+	// sub = <?php echo json_encode($sub); ?>;
 
 </script>
 <script src="subreddits.js"></script>
