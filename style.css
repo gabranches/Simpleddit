@@ -264,3 +264,7 @@ p
 .result:hover {
 	background-color: rgba(66, 139, 202, 0.04);
 }
+
+.selected {
+	background-color: rgba(66, 139, 202, 0.04);
+}

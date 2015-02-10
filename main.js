@@ -272,7 +272,6 @@ function ClearRightSide() // Clear all stories
 function getItems(sub, sort) // Get stories
 {
 	$("#input-sub").val("");
-	document.title = sub;
 	if (readCookie("title") == null)
 	{
 		if (sub=="")
@@ -381,6 +380,7 @@ $('#input-sub').keyup(function(e) {
 			var delta = (e.keyCode == 40 ? 1 : -1);
 			// down arrow
 			var selected = $('#results .result.selected');
+
 			if(selected.length > 0)
 			{
 				var num = parseInt(selected.attr('num'));
@@ -411,7 +411,7 @@ $('#input-sub').keyup(function(e) {
 		if(selected.length > 0)
 		{
 			var name = selected.attr('reddit');
-			window.location = 'http://www.reddit.com/r/' + name;
+			$("#input-sub").val(name);
 		}
 		else
 		{
