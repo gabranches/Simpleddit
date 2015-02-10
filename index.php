@@ -249,8 +249,8 @@
 	sub = <?php echo json_encode($sub); ?>;
 
 </script>
-<script src="subreddits.js"></script>
-<script src="subreddits2.js"></script>
+<script src="lib/subreddits.js"></script>
+<script src="lib/subreddits2.js"></script>
 <script src="main.js"></script>
 <script src="handlebars_helpers.js"></script>
 <script src="lib/cookies.js"></script>
