@@ -60,9 +60,16 @@ $(document).keyup(function(e) {   // Keyboard navigation
 	if(e.which==75 && !($("#input-sub").is(':focus')))  // Next story
 	{
     	var currentStory = $(".entries.selected");
-    	var nextStory = currentStory.next();
-        var nextStoryId = nextStory.attr("data-id");
-        var nextStorySub = nextStory.attr("data-sub");
+    	if (currentStory.attr("data-id") == undefined) // If no current story is set
+    	{
+    		var nextStoryId = $(".entries:first").attr("data-id");  // Use first story
+    		var nextStorySub = $(".entries:first").attr("data-sub");
+    	}
+    	else
+    	{
+	        var nextStoryId = currentStory.next().attr("data-id"); // Select next story
+	        var nextStorySub = currentStory.next().attr("data-sub");
+    	}
         if (nextStoryId !== undefined)
         {
 	        ClearRightSide();
@@ -72,9 +79,8 @@ $(document).keyup(function(e) {   // Keyboard navigation
     else if (e.which==74 && !($("#input-sub").is(':focus')))  // Previous story
     {
     	var currentStory = $(".entries.selected");
-        var prevStory = currentStory.prev();
-        var prevStoryId = prevStory.attr("data-id");
-        var prevStorySub = prevStory.attr("data-sub");
+        var prevStoryId = currentStory.prev().attr("data-id");  // Select previous story
+        var prevStorySub = currentStory.prev().attr("data-sub");
 	    if (prevStoryId !== undefined)
         {
 	        ClearRightSide();
