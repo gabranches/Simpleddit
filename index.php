@@ -125,7 +125,7 @@
 		<div id="about" class="row">
 			<div class="col-xs-12">
 				<h4>About SimpleReddit.net</h4>
-				<p>SimpleReddit is an easy and discreet way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
+				<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
