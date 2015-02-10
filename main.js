@@ -312,20 +312,9 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
-	window.location.hash = "#"+sub;
+	history.replaceState(undefined, undefined, "#"+sub);
 
 	$("#input-sub").val("");
-	if (readCookie("title") == null)
-	{
-		if (sub=="")
-		{
-			document.title = "simplereddit.net";
-		}
-		else
-		{
-			document.title = sub;
-		}
-	}
 
 	var subUrl 		= (sub == "" ) ? "" : "/r/"+sub;
 	var limitUrl 	= "limit=" + limit;
@@ -508,7 +497,7 @@ function getStory(sub,id)
 	$("#main > div").attr("class","row entries");
 	$("div[data-id='"+id+"']").attr("class","row entries selected"); // Highlight entry
 
-	window.location.hash = "#"+sub + "-" + id;
+	history.replaceState(undefined, undefined, "#"+sub + "-" + id);
 
 	if (sub == "")
 	{
@@ -535,10 +524,6 @@ function getStory(sub,id)
 			{
 				if(element.data.title)
 				{
-					if (readCookie("title") == null)
-					{
-					document.title = sub+" - "+element.data.title;
-					}
 					OP = element.data.author;
 					printTitle(element);
 				}
