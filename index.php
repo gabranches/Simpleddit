@@ -1,5 +1,12 @@
 <?php 
-	include("main.php"); 
+
+$sub = "";
+
+if (isset($_GET["r"]))
+{	
+	$sub = $_GET["r"];	
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +138,8 @@
 				<br />
 				<h4>Browsing Tips</h4>
 				<ul>
-					<li>You can link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
+					<li>Use the "K" and "J" keys to move to the next/previous threads
+					<li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
 					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a></li>
 					<li>See the options page for more browsing features</li>
@@ -141,13 +149,10 @@
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 10 2015 - Added keyboard navigation. Use J and K to move between threads.</li>
 					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
-					<li>Feb 02 2015 - Author usernames now are now highlighted in red in thread titles and comments</li>
-					<li>Jan 30 2015 - Users are now able to change the page title from the options page</li>
-					<li>Jan 27 2015 - Options are now saved in your browser's cookies for 30 days</li>
-					<li>Jan 26 2015 - Site is live!</li>
 				</ul>
 				<br />
 				<h4>Future plans</h4>
@@ -191,7 +196,7 @@
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{score}}</span></div>
-		<div class="col-xs-6 col-md-8 col-lg-10 title">{{{title}}} <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+		<div class="col-xs-6 col-md-8 col-lg-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
 		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
 	</div>
 
@@ -249,11 +254,14 @@
 	sub = <?php echo json_encode($sub); ?>;
 
 </script>
+
+<script src="main.js"></script>
+<script src="event_handlers.js"></script>
+<script src="handlebars_helpers.js"></script>
+
+<script src="lib/cookies.js"></script>
 <script src="lib/subreddits.js"></script>
 <script src="lib/subreddits2.js"></script>
-<script src="main.js"></script>
-<script src="handlebars_helpers.js"></script>
-<script src="lib/cookies.js"></script>
 
 <!-- Google Analytics -->
 
