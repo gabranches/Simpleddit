@@ -78,10 +78,6 @@ body
 	border-top: 1px solid #eee;
 	cursor: pointer;
 }
-.entries:hover
-{
-	background-color: rgba(66, 139, 202, 0.04);
-}
 
 #formrow
 {

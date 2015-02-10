@@ -9,6 +9,7 @@ $(function()
 	sort = "hot";
 	loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 	OP = "";
+	id="";
 		
 	// Run
 	init();
@@ -28,7 +29,6 @@ $("#form-sub").submit(function(e) // Subreddit form submit
 	e.preventDefault();
 	sub = $("#input-sub").val();
 	ClearLeftSide();
-	window.location.hash = "#"+sub;
 	getItems(sub, sort);
 });
 
@@ -40,12 +40,48 @@ $(document).on("click", ".story-sublink span", function() // Go to subreddit on 
 	getItems(sub, sort);
 });
 
-$(document).on("click", ".entries", function() // Go to story
+$(document).on("click", ".entries", function() // Go to story (div handler)
 { 	
 	ClearRightSide();
 	id = $(this).attr("data-id");
-	window.location.hash = "#"+sub + "-" + id;
 	getStory($(this).attr("data-sub"),id);
+});
+
+$(document).on("click", ".entries a", function(event) // Go to story (anchor handler)
+{ 	
+	event.stopPropagation();
+	ClearRightSide();
+	id = $(this).parent().parent().attr("data-id");
+	getStory($(this).parent().parent().attr("data-sub"),id);
+});
+
+$(document).keyup(function(e) {   // Keyboard navigation
+
+	if(e.which==75 && !($("#input-sub").is(':focus')))  // Next story
+	{
+    	var currentStory = $(".entries.selected");
+    	var nextStory = currentStory.next();
+        var nextStoryId = nextStory.attr("data-id");
+        var nextStorySub = nextStory.attr("data-sub");
+        if (nextStoryId !== undefined)
+        {
+	        ClearRightSide();
+	        getStory(nextStorySub,nextStoryId);
+        }
+    }
+    else if (e.which==74 && !($("#input-sub").is(':focus')))  // Previous story
+    {
+    	var currentStory = $(".entries.selected");
+        var prevStory = currentStory.prev();
+        var prevStoryId = prevStory.attr("data-id");
+        var prevStorySub = prevStory.attr("data-sub");
+	    if (prevStoryId !== undefined)
+        {
+	        ClearRightSide();
+	        getStory(prevStorySub,prevStoryId);
+        }
+    }
+  
 });
 
 $(document).on("click", "#options-button", function() // Show options
@@ -181,7 +217,6 @@ $("#select-sub").change(function() // Dropdown submit
 { 	
 	sub = $("#select-sub").val();
 	ClearLeftSide();
-	window.location.hash = "#"+sub;
 	$("#input-sub").val(sub);
 	getItems(sub, sort);
 });
@@ -271,6 +306,8 @@ function ClearRightSide() // Clear all stories
 
 function getItems(sub, sort) // Get stories
 {
+	window.location.hash = "#"+sub;
+
 	$("#input-sub").val("");
 	if (readCookie("title") == null)
 	{
@@ -340,6 +377,8 @@ function getItems(sub, sort) // Get stories
 			$("#getmore").show();
 			$("#getmore").html("Load more...");
 		}
+
+		$("div[data-id='"+id+"']").attr("class","row entries selected");
 		
 		if(sub=="") // Change sub name header
 		{
@@ -361,6 +400,7 @@ $(document).on("click", "", function(){
 	$("#results").empty();
 	$("#results").hide();
 });
+
 $('#input-sub').keyup(function(e) {
 	if((e.keyCode >= 37 && e.keyCode <= 40)
 	   || e.keyCode == 13)
@@ -426,7 +466,6 @@ $(document).on("click", ".result", function(){
 	var s = $(this)[0].innerHTML;
 	s = s.replace("<span class=\"match\">", "");
 	s = s.replace("</span>", "");
-	window.location.hash = "#"+s;
 	sub = s;
 	getItems(s, sort);
 });
@@ -459,6 +498,12 @@ function listItems(data,sub)
 
 function getStory(sub,id)
 {
+
+	$("#main > div").attr("class","row entries");
+	$("div[data-id='"+id+"']").attr("class","row entries selected"); // Highlight entry
+
+	window.location.hash = "#"+sub + "-" + id;
+
 	if (sub == "")
 	{
 		var url = "comments/"+id;
@@ -467,6 +512,8 @@ function getStory(sub,id)
 	{
 		var url = "r/"+sub+"/comments/"+id;
 	}
+
+
 
 	$("#storyheader").html(loadHtml);
 
@@ -566,8 +613,9 @@ function hashLocation(){
 		if(i!=-1){
 			sub = hash.slice(1, i);
 			ClearRightSide();
-			var post = hash.slice(i+1);
-			getStory(sub, post);
+			id = hash.slice(i+1);
+			getStory(sub, id);
+
 		}else{
 			sub = hash.slice(1);
 		}
