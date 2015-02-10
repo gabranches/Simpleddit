@@ -1,5 +1,5 @@
 <?php 
-	// include("main.php"); 
+	include("main.php"); 
 ?>
 
 <!DOCTYPE html>
@@ -246,7 +246,7 @@
 	sub = ""; 
 
 	// For server version
-	// sub = <?php echo json_encode($sub); ?>;
+	sub = <?php echo json_encode($sub); ?>;
 
 </script>
 <script src="subreddits.js"></script>
