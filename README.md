@@ -9,7 +9,6 @@
 		<li>See the options page for more browsing features</li>
 	</ul>
 	<h4>Future plans</h4>
-	Feedback from the reddit thread:<br /><br />
 	<ul>
 		<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
 		<li>Allow option for a dark layout, maybe other themes</li>
