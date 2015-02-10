@@ -217,7 +217,6 @@ function init()
 		$(".glyphicon-nsfw").css({opacity: ".5"});
 		createCookie("nsfw", "off", 2);
 	}
-
 	if(readCookie("title")!=null)
 	{
 		$("#input-title").val(readCookie("title"));
@@ -273,7 +272,7 @@ function ClearRightSide() // Clear all stories
 function getItems(sub, sort) // Get stories
 {
 	$("#input-sub").val("");
-
+	document.title = sub;
 	if (readCookie("title") == null)
 	{
 		if (sub=="")
@@ -424,8 +423,12 @@ $('#input-sub').keyup(function(e) {
 
 $(document).on("click", ".result", function(){
 	ClearLeftSide();
-	window.location.hash = "#"+$(this)[0].innerText;
-	getItems($(this)[0].innerText, sort);	
+	var s = $(this)[0].innerHTML;
+	s = s.replace("<span class=\"match\">", "");
+	s = s.replace("</span>", "");
+	window.location.hash = "#"+s;
+	sub = s;
+	getItems(s, sort);
 });
 
 function getPopularSubs()
