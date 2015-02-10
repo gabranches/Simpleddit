@@ -19,6 +19,7 @@ $(function()
 	getPopularSubs();
 	buildHandlebars();
 	getItems(sub, sort);
+
 }); 
 
 
@@ -167,6 +168,7 @@ function getItems(sub, sort) // Get stories
 		{
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a>");
 		}
+		$("#rightcolumn").focus();
 	}
 	).fail(function(data) 
 	{
@@ -248,6 +250,8 @@ function getStory(sub,id)
 		// Change links to open in new window
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
+
+		$("#rightcolumn").focus();
 	}
 	).fail(function(data) 
 	{

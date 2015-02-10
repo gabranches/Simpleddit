@@ -39,19 +39,19 @@ if (isset($_GET["r"]))
 	<div class="container-fixed">
 		<div id="formrow" class="row">
 			<form id="form-sub" role="form">
-				<div id="logo" class="col-xs-2 text-center">
+				<div id="logo" class="col-xs-2 text-center" tabindex="1">
 					<a href="/">simplereddit</a>
 				</div>
 				<div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
 				</div>
 				<div class="col-xs-2">
-					<select id="select-sub" placeholder="Select Subreddit" class="form-control">
-						<option selected="selected" disabled>Popular Subreddits</option>
+					<select id="select-sub" placeholder="Select Subreddit" class="form-control" >
+						<option selected="selected" disabled tabindex="2">Popular Subreddits</option>
 						<option value="">Front Page</option>
 					</select>
 				</div>
-				<div class="col-xs-2">
-					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
+				<div class="col-xs-2" tabindex="3">
+					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit" >
 				</div>
 				<div id="results" style="display: none">
 				</div>
@@ -59,8 +59,8 @@ if (isset($_GET["r"]))
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
 				</div>
 				<div class="col-xs-1">
-					<select id="select-sort" class="form-control">
-					    <option selected="selected" value="hot">hot</option>
+					<select id="select-sort" class="form-control" >
+					    <option selected="selected" value="hot" tabindex="4">hot</option>
 					    <option value="new">new</option>
 					    <option value="rising">rising</option>
 					    <option value="day">top today</option>
@@ -81,8 +81,8 @@ if (isset($_GET["r"]))
 				</div>
 				-->
 				<div class="col-xs-1"></div>
-				<div id="options-button" class="col-xs-1">options</div>
-				<div id="about-button" class="col-xs-1">about</div>
+				<div id="options-button" class="col-xs-1" tabindex="5">options</div>
+				<div id="about-button" class="col-xs-1" tabindex="6">about</div>
 			</form>
 		</div>
 		<div class="row" id="main-top">
@@ -99,7 +99,7 @@ if (isset($_GET["r"]))
 </nav>
 
 <div class="container-fixed">
-	<div id="leftcolumn" class="col-xs-6">
+	<div id="leftcolumn" class="col-xs-6" tabindex="7">
 		<div class="row">
 			<div id="main" class="col-xs-12"></div>
 		</div>
@@ -108,10 +108,10 @@ if (isset($_GET["r"]))
 		</div>
 		
 	</div>
-	<div id="rightcolumn" class="col-xs-6">
+	<div id="rightcolumn" class="col-xs-6" tabindex="8">
 		<div id="options" style="display:none" class="row">
 			<div class="col-xs-6">
-				<h4>Options</h4>
+				<h4>Options</h4><small>Will be saved in your browser cookies for 30 days</small>
 				<div class="form-group">
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
 					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
@@ -119,7 +119,7 @@ if (isset($_GET["r"]))
 				</div>
 				
 				<div class="form-group">
-					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page (leave blank for default)">
+					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
 				</div>
 				
 			</div>
@@ -191,6 +191,8 @@ if (isset($_GET["r"]))
 </body>
 
 </html>
+
+<!-- HANDLEBARS TEMPLATES -->
 
 <script id="entry-template" type="text/x-handlebars-template">
 
