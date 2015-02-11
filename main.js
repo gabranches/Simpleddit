@@ -9,6 +9,7 @@ loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
 OP = "";
 id="";
 ResultLimit = 40;
+ht = $(window).height();
 
 $(function()
 {
@@ -27,7 +28,6 @@ $(function()
 
 function init()
 {
-
 	if(readCookie("theme") == "dark")
 	{
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
@@ -59,9 +59,6 @@ function init()
 	{
 		$("#input-title").val(readCookie("title"));
 	}
-
-	
-	
 }
 
 function buildHandlebars()
@@ -80,18 +77,11 @@ function buildHandlebars()
 
 function resize()	// Resize containers when window changes
 {
-	var ht = $(window).height();
+	ht = $(window).height();
 	$("#leftcolumn").css("height", ht-91 + "px");
 	$("#rightcolumn").css("height", ht-91 + "px");
-	$('#main').slimScroll({
-	       height: ht-91 + "px"
-   	});
-   	$('#main').slimScroll({
-	       height: ht-91 + "px"
-   	});
-   	$('#rightcolumn').slimScroll({
-	       height: ht-91 + "px"
-   	});
+	$('#main').slimScroll({	wheelStep: 10, height: ht-91 + "px"});
+   	$('#rightcolumn').slimScroll({ wheelStep: 10, height: ht-91 + "px"});
 }
 
 function setTitle() // Set page title if cookie exists
@@ -194,11 +184,12 @@ function getItems(sub, sort) // Get stories
 		{
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a>");
 		}
+
+		$('#main').slimScroll({wheelStep: 10, height: ht-91 + "px"});
+
 		$("#rightcolumn").focus();
 		
-	}
-
-	).fail(function(data) 
+	}).fail(function(data) 
 	{
 		ClearLeftSide();
 		$("#subnameheader").html("<div class='col-xs-12'>Could not get data from subreddit '"+sub+"'. Please make sure that this subreddit exists, or try again in a few minutes.</div>");
@@ -281,9 +272,12 @@ function getStory(sub,id)
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
 
+		$('#rightcolumn').slimScroll({wheelStep: 10, height: ht-91 + "px"});
+
 		$("#rightcolumn").focus();
-	}
-	).fail(function(data) 
+
+
+	}).fail(function(data) 
 	{
 		ClearRightSide();
 		$("#story").html("<div class='row'><div class='col-xs-12'>Could not fetch data from Reddit. Reddit may be experiencing heavy traffic. Please try again in a few minutes.</div></div>");
@@ -341,18 +335,24 @@ function getYoutubeId(url)  // Returns youtube data-id
 	}
 }
 
-function hashLocation(){
+function hashLocation()
+{
 	var hash = window.location.hash;
+
 	//check if a hash is present
-	if(hash!=""){
+	if(hash!="")
+	{
 		var i = hash.search("-");
-		if(i!=-1){
+		if(i!=-1)
+		{
 			sub = hash.slice(1, i);
 			ClearRightSide();
 			id = hash.slice(i+1);
 			getStory(sub, id);
 
-		}else{
+		}
+		else
+		{
 			sub = hash.slice(1);
 		}
 	}
@@ -361,7 +361,8 @@ function hashLocation(){
 function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
 {
     var exts = [".gifv", ".webm", ".mp4"];
-    for (var i in exts) {
+    for (var i in exts) 
+    {
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     return false;
@@ -369,11 +370,15 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
 
 function searchReddits(query)
 {
-	if($("#input-sub").val() == ""){
+	if($("#input-sub").val() == "")
+	{
 		$("#results").hide();
-	}else{
+	}
+	else
+	{
 		$("#results").show();
 	}
+
 	var html = '';
 	if(query.length > 0)
 	{
