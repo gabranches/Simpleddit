@@ -195,7 +195,7 @@ $(document).on("click", "#showimage", function() // Show story image
 	$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
 });
 
-$("#getmore").click(function() // Load more
+$(document).on("click", "#getmore", function() // Load more
 {
 	getItems(sub, sort);
 });
@@ -218,8 +218,17 @@ $("#select-sub").change(function() // Dropdown submit
 $("#select-theme").change(function() // Theme select
 {
 	theme = $('#select-theme').val();
-	$('#theme-style').remove();
-	if(theme.length) $('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
+
+	if(theme.length) // If it's the dark theme
+	{
+		$('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
+		createCookie("theme", "dark", 30);
+	} 
+	else
+	{
+		eraseCookie("theme");
+		$('#theme-style').remove();
+	}
 });
 
 $(window).resize(function(){

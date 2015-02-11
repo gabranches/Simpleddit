@@ -1,9 +1,93 @@
-body, #topnav, #main-top,.comment,#getmore{ background-color:#000; color: #eee; }
-.title small{ color: #fff; }
-#getmore{ background-color:#000; }
-.entries
+a
 {
-	border-top: 1px solid #474747;
+	color: #AAAAAA;
+}
+
+body, #topnav,.comment,#getmore
+{ 
+	background-color:#060606;
+	color: #AAAAAA;
+}
+.title small
+{ 
+	color: #fff; 
+}
+
+#getmore, .entries
+{ 
+	background-color:#111111; 
+	border-top: 1px solid #404040;
 }
 
 
+#main-top, .result
+{
+	background-color: #202020;
+	color: #fff;;
+	border-top: 1px solid #404040;
+	border-bottom: 1px solid #404040;
+}
+
+#getmore
+{
+	background-color: #202020;
+}
+
+
+.comment
+{
+	border-left: 1px solid #404040;
+}
+
+h4, #topnav, #topnav a, .story-title, #showimage
+{
+	color: #fff;
+}
+
+.btn-primary
+{
+	background-color: #111111;
+	border:0;
+}
+
+.selected, .result:hover
+{
+	background-color: black;
+}
+
+.comment small, .comment .glyphicon, .story-title small, .entries small
+{
+	color: #53776F;
+}
+
+#rightcolumn a
+{
+	color: #94963A;
+}
+
+.author
+{
+	color: #83C3B5;
+}
+
+.form-control
+{
+	color: #AAAAAA;
+	background-color: #111111;
+	border: 0;
+}
+
+#leftcolumn a:hover
+{
+	color: #fff;
+}
+
+#leftcolumn
+{
+	border-right: 1px solid #404040;
+}
+
+#story
+{
+	border-left: 1px solid #404040;
+}

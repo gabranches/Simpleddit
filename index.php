@@ -30,6 +30,7 @@ if (isset($_GET["r"]))
 <script src="lib/handlebars-v2.0.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/slimscroll.min.js"></script>
 
 </head>
 
@@ -71,15 +72,12 @@ if (isset($_GET["r"]))
 					</select>
 				</div>
 				
-				<div class="col-xs-1"></div>
-				<!-- Button for dark theme - WIP
+				<!-- <div class="col-xs-1"></div> -->
+		
 				<div class="col-xs-1">
-					<select id="select-theme" class="form-control">
-						<option value="">Light</option>
-						<option value="dark">Dark</option>
-					</select>
+					
 				</div>
-				-->
+				
 				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1" tabindex="5">options</div>
 				<div id="about-button" class="col-xs-1" tabindex="6">about</div>
@@ -103,9 +101,7 @@ if (isset($_GET["r"]))
 		<div class="row">
 			<div id="main" class="col-xs-12"></div>
 		</div>
-		<div class="row">
-			<div id="getmore" class="col-xs-12 text-center">Load more...</div>
-		</div>
+		
 		
 	</div>
 	<div id="rightcolumn" class="col-xs-6" tabindex="8">
@@ -113,6 +109,12 @@ if (isset($_GET["r"]))
 			<div class="col-xs-6">
 				<h4>Options</h4><small>Will be saved in your browser cookies for 30 days</small>
 				<div class="form-group">
+					<br />
+					<select id="select-theme" class="form-control">
+						<option value="">Light Theme</option>
+						<option value="dark">Dark Theme</option>
+					</select>
+					<br />
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
 					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
 					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW threads<br>
@@ -171,17 +173,16 @@ if (isset($_GET["r"]))
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
 					<li>Feb 10 2015 - Added keyboard shortcuts</li>
 					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
-					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
+
 				</ul>
 				<br />
 				<h4>Future plans</h4>
 				<ul>
 					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
-					<li>Allow option for a dark layout, maybe other themes</li>
-					<li>Enable https on web host</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>

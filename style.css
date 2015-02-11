@@ -66,7 +66,6 @@ body
 
 #comments
 {
-	border-top: 2px solid #eee;
 	margin-left: -15px;
 	padding-right: 0;
 }
@@ -91,7 +90,6 @@ body
 	background-color: rgb(250, 244, 244);
 	padding: 8px 0;
 	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
 }
 
 .glyphicon-arrow-up
@@ -135,6 +133,7 @@ input[type=checkbox]
 {
 	overflow-y: auto;
 	overflow-x: hidden;
+	border-right: 1px solid #eee;
 }
 
 #loadgif
@@ -192,7 +191,6 @@ p
 {
 	overflow-y: auto;
 	overflow-x: hidden;
-	border-left: 1px solid #eee;
 	padding-right: 0;
 }
 
@@ -200,6 +198,11 @@ p
 {
 	cursor: pointer;
 	color: #265379;
+}
+
+#story
+{
+	border-left: 1px solid #eee;
 }
 
 #storyimage
@@ -273,4 +276,9 @@ div
 .comment-header small
 {
 	font-size:90%;
+}
+
+#story
+{
+	padding-right:25px;
 }

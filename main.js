@@ -27,26 +27,41 @@ $(function()
 
 function init()
 {
-	console.log(readCookie("showLogo"));
-	if(readCookie("showLogo") == "0"){
+
+	if(readCookie("theme") == "dark")
+	{
+		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
+		$("#select-theme>option:eq(1)").attr("selected", true);
+	}
+
+	if(readCookie("showLogo") == "0")
+	{
 		$("#logo").hide();
 		$("#logo-filler").show();
 		document.getElementById("hide-logo").checked = true;
-	}else{
+	}
+	else
+	{
 		createCookie("showLogo", "1", 30);
 		document.getElementById("hide-logo").checked = false;
 	}
+
 	if(readCookie("nsfw")=="on")
 	{
 		document.getElementById("hide-nsfw").checked = false;
-	}else{
-		$(".glyphicon-nsfw").css({opacity: ".5"});
+	}
+	else
+	{
 		createCookie("nsfw", "off", 2);
 	}
+
 	if(readCookie("title")!=null)
 	{
 		$("#input-title").val(readCookie("title"));
 	}
+
+	
+	
 }
 
 function buildHandlebars()
@@ -68,6 +83,15 @@ function resize()	// Resize containers when window changes
 	var ht = $(window).height();
 	$("#leftcolumn").css("height", ht-91 + "px");
 	$("#rightcolumn").css("height", ht-91 + "px");
+	$('#main').slimScroll({
+	       height: ht-91 + "px"
+   	});
+   	$('#main').slimScroll({
+	       height: ht-91 + "px"
+   	});
+   	$('#rightcolumn').slimScroll({
+	       height: ht-91 + "px"
+   	});
 }
 
 function setTitle() // Set page title if cookie exists
@@ -151,6 +175,8 @@ function getItems(sub, sort) // Get stories
 
 	$.getJSON( url, function(data) 
 	{
+		$("#getmore").remove();
+
 		listItems(data, sub);
 		if(sort != "rising")
 		{
@@ -169,7 +195,9 @@ function getItems(sub, sort) // Get stories
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a>");
 		}
 		$("#rightcolumn").focus();
+		
 	}
+
 	).fail(function(data) 
 	{
 		ClearLeftSide();
@@ -202,12 +230,14 @@ function listItems(data,sub)
 			after = element.data.name;
 		}
 	});
+
+	$("#main").append("<div class='row'><div id='getmore' class='col-xs-12 text-center'>Load more...</div></div>");
 }
 
 function getStory(sub,id)
 {
 
-	$("#main > div").attr("class","row entries");
+	$("#main > .entries").attr("class","row entries");
 	$("div[data-id='"+id+"']").attr("class","row entries selected"); // Highlight entry
 
 	history.replaceState(undefined, undefined, "#"+sub + "-" + id);
