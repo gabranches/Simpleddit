@@ -136,32 +136,52 @@ if (isset($_GET["r"]))
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
+				<h4>Keyboard Shortcuts</h4>
+					<div class="row">
+						
+						<div class="col-xs-4">
+							<div class="row">
+								<div class="col-xs-2 text-right">H</div>
+								<div class="col-xs-10">Show/Hide Image</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2 text-right">J</div>
+								<div class="col-xs-10">Previous Thread</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2 text-right">K</div>
+								<div class="col-xs-10">Next Thread</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-2 text-right">L</div>
+								<div class="col-xs-10">Open URL</div>
+							</div>
+						</div>
+						<div class="col-xs-8"></div>
+					</div>
+					<br />
 				<h4>Browsing Tips</h4>
 				<ul>
-					<li>Use the "K" and "J" keys to move to the next/previous threads
 					<li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
-					<li>The "Popular Subreddits" dropdown reflects the current subs with the most activity and is sorted in order of popularity</li>
 					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a></li>
-					<li>See the options page for more browsing features</li>
+					<li>See the options page for more features</li>
 				</ul>
-
 				<br />
+			
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
-					<li>Feb 10 2015 - Added keyboard navigation. Use J and K to move between threads.</li>
+					<li>Feb 10 2015 - Added keyboard shortcuts</li>
 					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
 					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 					<li>Feb 03 2015 - Users are now able to hide/show nested thread comments</li>
 				</ul>
 				<br />
 				<h4>Future plans</h4>
-				Feedback from the reddit thread:<br /><br />
 				<ul>
 					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
 					<li>Allow option for a dark layout, maybe other themes</li>
 					<li>Enable https on web host</li>
-					<li>Use keyboard shortcuts for moving between posts</li>
 				</ul>
 				<br />
 				<h4>Feedback</h4>

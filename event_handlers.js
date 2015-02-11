@@ -63,6 +63,17 @@ $(document).keyup(function(e) {   // Keyboard navigation
 	        getStory(prevStorySub,prevStoryId);
         }
     }
+    else if (e.which==72 && !($("#input-sub").is(':focus'))) // Hide or show image
+    {
+    	$('#storyimage').toggle();
+		$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
+    }
+    else if (e.which==76 && !($("#input-sub").is(':focus'))) // Hide or show image
+    {
+    	var goUrl = $(".story-url a").attr("href");
+    	window.open(goUrl,'_blank');
+    }
+
   
 });
 
