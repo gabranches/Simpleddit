@@ -5,7 +5,7 @@
 
 .author
 {
-	color: #F28416;
+	color: #BE0C0C;
 }
 
 a:active
@@ -268,4 +268,9 @@ p
 div
 {
    outline: none;
+}
+
+.comment-header small
+{
+	font-size:90%;
 }
