@@ -77,17 +77,6 @@ $(document).keyup(function(e) {   // Keyboard navigation
 
 });
 
-$(document).keydown(function(e) {   
-	if (e.which==40 && !($("#input-sub").is(':focus')))// Hide or show image
-    {
-
-    	 $("#rightcolumn").slimScroll({ height: ht-91 + "px", scrollBy: '40px' });
-    }
-    else if (e.which==38 && !($("#input-sub").is(':focus')))// Hide or show image
-    {
-    	 $("#rightcolumn").slimScroll({ height: ht-91 + "px", scrollBy: '-40px' });
-    }
-});
 
 $(document).on("click", "#options-button", function() // Show options
 { 	
@@ -99,7 +88,6 @@ $(document).on("click", "#options-button", function() // Show options
 $(document).on("click", "#about-button", function() // Show about
 { 	
 	ClearRightSide();
-	$("#rightcolumn").slimScroll({ height: ht-91 + "px"});
 	$("#about").show();
 
 });

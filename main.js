@@ -61,6 +61,7 @@ function init()
 	{
 		$("#input-title").val(readCookie("title"));
 	}
+
 }
 
 function buildHandlebars()
@@ -82,8 +83,6 @@ function resize()	// Resize containers when window changes
 	ht = $(window).height();
 	$("#leftcolumn").css("height", ht-91 + "px");
 	$("#rightcolumn").css("height", ht-91 + "px");
-	$('#main').slimScroll({	wheelStep: 10, height: ht-91 + "px"});
-   	$('#rightcolumn').slimScroll({ wheelStep: 10, height: ht-91 + "px"});
 }
 
 function setTitle() // Set page title if cookie exists
@@ -187,8 +186,6 @@ function getItems(sub, sort) // Get stories
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a>");
 		}
 
-		$('#main').slimScroll({wheelStep: 10, height: ht-91 + "px"});
-
 		$("#rightcolumn").focus();
 		
 	}).fail(function(data) 
@@ -273,8 +270,6 @@ function getStory(sub,id)
 		// Change links to open in new window
 		$("a[href^='http://']").attr("target","_blank");
 		$("a[href^='https://']").attr("target","_blank");
-
-		$('#rightcolumn').slimScroll({wheelStep: 10, height: ht-91 + "px"});
 
 		$("#rightcolumn").focus();
 

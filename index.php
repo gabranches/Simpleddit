@@ -18,7 +18,7 @@ if (isset($_GET["r"]))
 <meta charset="utf-8">
 <title>Simple Reddit</title>
 <link id="favicon" rel="shortcut icon" type="image/png" href="" />
-<meta name="description" content="SimpleReddit is a simple and efficient way of browsing reddit using a two-column layout." />
+<meta name="description" content="Simple Reddit is a simple and efficient way of browsing reddit using a two-column layout." />
 <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
 
 <link rel="image_src" href="images/logo.png">
@@ -31,7 +31,8 @@ if (isset($_GET["r"]))
 <script src="lib/handlebars-v2.0.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/slimscroll.min.js"></script>
+
+
 
 </head>
 
@@ -75,11 +76,10 @@ if (isset($_GET["r"]))
 				
 				<!-- <div class="col-xs-1"></div> -->
 		
-				<div data-theme="light" id="theme-select" class="col-xs-1">
+				<div data-theme="light" id="theme-select" class="col-xs-2">
 					Light Theme
 				</div>
 				
-				<div class="col-xs-1"></div>
 				<div id="options-button" class="col-xs-1" tabindex="5">options</div>
 				<div id="about-button" class="col-xs-1" tabindex="6">about</div>
 			</form>
@@ -98,14 +98,14 @@ if (isset($_GET["r"]))
 </nav>
 
 <div class="container-fixed">
+
 	<div id="leftcolumn" class="col-xs-6" tabindex="7">
 		<div class="row">
 			<div id="main" class="col-xs-12"></div>
 		</div>
-		
-		
-	</div>
-	<div id="rightcolumn" class="col-xs-6" tabindex="8">
+	</div>	
+
+	<div id="rightcolumn" class="col-xs-6 scrollbar-outer" tabindex="8">
 		<div id="options" style="display:none" class="row">
 			<div class="col-xs-6">
 				<h4>Options</h4><small>Will be saved in your browser cookies for 30 days</small>
