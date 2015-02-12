@@ -91,3 +91,9 @@ h4, #topnav, #topnav a, .story-title, #showimage
 {
 	border-left: 1px solid #404040;
 }
+
+#theme-select
+{
+	color: #AAAAAA;
+	margin-top:5px;
+}

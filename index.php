@@ -75,8 +75,8 @@ if (isset($_GET["r"]))
 				
 				<!-- <div class="col-xs-1"></div> -->
 		
-				<div class="col-xs-1">
-					
+				<div data-theme="light" id="theme-select" class="col-xs-1">
+					Light Theme
 				</div>
 				
 				<div class="col-xs-1"></div>
@@ -137,7 +137,7 @@ if (isset($_GET["r"]))
 				<h4>About Simple Reddit</h4>
 				<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
 				<br />
-				<p>Note: The dark theme is now enabled by default. To switch back to the light theme, please go to the <strong>Options</strong> page.</p>
+				<p>Note: The dark theme is now enabled by default. To switch back to the light theme, please go to the <strong>Options</strong> page or click the link in the navigation bar.</p>
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />

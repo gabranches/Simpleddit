@@ -129,6 +129,12 @@ input[type=checkbox]
 	cursor: pointer;
 }
 
+#theme-select
+{
+	cursor:pointer;
+	margin-top:6px;
+}
+
 #leftcolumn
 {
 	overflow-y: auto;

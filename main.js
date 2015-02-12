@@ -32,6 +32,8 @@ function init()
 	{
 		$('#theme-style').remove();
 		$("#select-theme>option:eq(1)").attr("selected", true);
+		$("#theme-select").html("Dark Theme");
+		$("#theme-select").attr("data-theme", "dark");
 	}
 
 	if(readCookie("showLogo") == "0")
