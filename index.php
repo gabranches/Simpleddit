@@ -26,6 +26,7 @@ if (isset($_GET["r"]))
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="style.css">
+<link id="theme-style" rel="stylesheet" href="themes/dark.css">
 
 <script src="lib/handlebars-v2.0.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -111,8 +112,8 @@ if (isset($_GET["r"]))
 				<div class="form-group">
 					<br />
 					<select id="select-theme" class="form-control">
-						<option value="">Light Theme</option>
-						<option value="dark">Dark Theme</option>
+						<option value="">Dark Theme</option>
+						<option value="light">Light Theme</option>
 					</select>
 					<br />
 					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
@@ -135,6 +136,8 @@ if (isset($_GET["r"]))
 			<div class="col-xs-12">
 				<h4>About Simple Reddit</h4>
 				<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
+				<br />
+				<p>Note: The dark theme is now enabled by default. To switch back to the light theme, please go to the <strong>Options</strong> page.</p>
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
@@ -173,10 +176,10 @@ if (isset($_GET["r"]))
 				<h4>Recent updates</h4>
 				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
 				<ul>
+					<li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>			
 					<li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
 					<li>Feb 10 2015 - Added keyboard shortcuts</li>
 					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
-					<li>Feb 05 2015 - Added .gifv support and direct thread linking. Thanks to <a target="_blank" href="https://github.com/AustinDizzy">AustinDizzy</a> and <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a></li>
 
 				</ul>
 				<br />
@@ -239,7 +242,7 @@ if (isset($_GET["r"]))
 </div>
 <div class="row">
  	<div class='story-url col-xs-12'>
- 		<a href="{{url}}" target="_blank">{{url}}</a>
+ 		<a href="{{url}}" target="_blank">Link <small>(Source: {{domain}})<small></a>
  	</div>
  </div>
  <div class="row">

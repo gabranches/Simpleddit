@@ -233,15 +233,16 @@ $("#select-theme").change(function() // Theme select
 {
 	theme = $('#select-theme').val();
 
-	if(theme.length) // If it's the dark theme
+	if(theme.length) // If it's the light theme
 	{
-		$('<link/>', {rel: 'stylesheet', href: 'themes/'+theme+'.css', id: 'theme-style'}).appendTo('head');
-		createCookie("theme", "dark", 30);
+		$('#theme-style').remove();
+		createCookie("theme", "light", 30);
 	} 
 	else
 	{
+		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
 		eraseCookie("theme");
-		$('#theme-style').remove();
+		
 	}
 });
 

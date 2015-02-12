@@ -28,9 +28,9 @@ $(function()
 
 function init()
 {
-	if(readCookie("theme") == "dark")
+	if(readCookie("theme") == "light")
 	{
-		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
+		$('#theme-style').remove();
 		$("#select-theme>option:eq(1)").attr("selected", true);
 	}
 
