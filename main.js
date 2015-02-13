@@ -15,7 +15,6 @@ $(function()
 {
 	init();
 	hashLocation();
-	resize();
 	setTitle();
 	getPopularSubs();
 	buildHandlebars();
@@ -76,13 +75,6 @@ function buildHandlebars()
 	var raw_template = $('#story-template').html();
 	storyTemplate = Handlebars.compile(raw_template);
 	storyPlaceHolder = $("#story");
-}
-
-function resize()	// Resize containers when window changes
-{
-	ht = $(window).height();
-	$("#leftcolumn").css("height", ht-91 + "px");
-	$("#rightcolumn").css("height", ht-91 + "px");
 }
 
 function setTitle() // Set page title if cookie exists
