@@ -51,7 +51,7 @@ Handlebars.registerHelper("picHelper", function (data)
     var suffix = "'' />";
     var prefixEmbed = picButton;
 
-    if (data.url.indexOf("imgur.com/a/") != "-1")
+    if (data.url.indexOf("imgur.com/a/") != "-1" || data.url.indexOf("imgur.com/gallery/") != "-1" )
     {
         return "";
     }

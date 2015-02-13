@@ -137,7 +137,7 @@ if (isset($_GET["r"]))
 				<h4>About Simple Reddit</h4>
 				<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
 				<br />
-				<p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Which theme do you prefer?</a></p>
+				<p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Whihc theme do you prefer?</a></p>
 				<br />
 				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
 				<br />
