@@ -1,5 +1,6 @@
 <div class="col-xs-12">
-	<h4>About SimpleReddit.net</h4>
+	<h4>About Simple Reddit</h4>
+	<p><a href="http://simplereddit.net">http://simplereddit.net</a></p>
 	<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
 	
 	<h4>Feedback</h4>
