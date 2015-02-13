@@ -27,8 +27,14 @@ blockquote
 	background-color: rgba(128, 128, 128, 0.03);
 }
 
+html
+{
+	height: 100%;
+}
+
 body
 {
+	height: 100%;
 	padding-top: 91px;
 }
 
@@ -135,8 +141,14 @@ input[type=checkbox]
 	margin-top:6px;
 }
 
+.container-fixed
+{
+	height: 100%;
+}
+
 #leftcolumn
 {
+	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
 	border-right: 1px solid #eee;
@@ -195,6 +207,7 @@ p
 
 #rightcolumn
 {
+	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
 	padding-right: 0;
