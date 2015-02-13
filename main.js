@@ -359,6 +359,7 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
 
 function searchReddits(query)
 {
+	query = query.toLowerCase();
 	if($("#input-sub").val() == "")
 	{
 		$("#results").hide();
