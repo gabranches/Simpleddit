@@ -10,210 +10,181 @@ if (isset($_GET["r"]))
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="utf-8">
-<title>Simple Reddit</title>
-<link id="favicon" rel="shortcut icon" type="image/png" href="" />
-<meta name="description" content="Simple Reddit is a simple and efficient way of browsing reddit using a two-column layout." />
-<meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns" />
-
-<link rel="image_src" href="images/logo.png">
-<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="style.css">
-<link id="theme-style" rel="stylesheet" href="themes/dark.css">
-
-<script src="lib/handlebars-v2.0.0.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-
+  <meta charset="utf-8">
+  <title>Simple Reddit</title>
+  <link id="favicon" rel="shortcut icon" type="image/png" href="" />
+  <meta name="description" content="Simple Reddit is a simple and efficient way of browsing reddit using a two-column layout.">
+  <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns">
+  <link rel="image_src" href="images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
+  <!-- STYLESHEETS -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link id="theme-style" rel="stylesheet" href="themes/dark.css">
+  <!-- JAVASCRIPT -->
+  <script src="lib/handlebars-v2.0.0.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
+  <!-- NAVIGATION -->
+  <nav id="topnav" class="navbar navbar-fixed-top" role="navigation">
+    <div class="container-fixed">
+      <div id="formrow" class="row">
+        <form id="form-sub" role="form">
+          <div id="logo" class="col-xs-2 text-center" tabindex="1">
+            <a href="/">Simple Reddit</a>
+          </div>
+          <div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
+          </div>
+          <div class="col-xs-2">
+            <select id="select-sub" placeholder="Select Subreddit" class="form-control">
+              <option selected="selected" disabled tabindex="2">Popular Subreddits</option>
+              <option value="">Front Page</option>
+            </select>
+          </div>
+          <div class="col-xs-2" tabindex="3">
+            <input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
+          </div>
+          <div id="results" style="display: none">
+          </div>
+          <div class="col-xs-1">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+          <div class="col-xs-1">
+            <select id="select-sort" class="form-control">
+              <option selected="selected" value="hot" tabindex="4">hot</option>
+              <option value="new">new</option>
+              <option value="rising">rising</option>
+              <option value="day">top today</option>
+              <option value="week">top this week</option>
+              <option value="month">top this month</option>
+              <option value="year">top this year</option>]
+              <option value="all">top all time</option>
+            </select>
+          </div>
+          <div data-theme="light" id="theme-select" class="col-xs-2">
+            Light Theme
+          </div>
 
-<nav id="topnav"class="row-fluid navbar navbar-fixed-top" role="navigation">
-	<div class="container-fixed">
-		<div id="formrow" class="row">
-			<form id="form-sub" role="form">
-				<div id="logo" class="col-xs-2 text-center" tabindex="1">
-					<a href="/">Simple Reddit</a>
-				</div>
-				<div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
-				</div>
-				<div class="col-xs-2">
-					<select id="select-sub" placeholder="Select Subreddit" class="form-control" >
-						<option selected="selected" disabled tabindex="2">Popular Subreddits</option>
-						<option value="">Front Page</option>
-					</select>
-				</div>
-				<div class="col-xs-2" tabindex="3">
-					<input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit" >
-				</div>
-				<div id="results" style="display: none">
-				</div>
-				<div class="col-xs-1">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-				</div>
-				<div class="col-xs-1">
-					<select id="select-sort" class="form-control" >
-					    <option selected="selected" value="hot" tabindex="4">hot</option>
-					    <option value="new">new</option>
-					    <option value="rising">rising</option>
-					    <option value="day">top today</option>
-					    <option value="week">top this week</option>
-					    <option value="month">top this month</option>
-					    <option value="year">top this year</option>]
-					    <option value="all">top all time</option>
-					</select>
-				</div>
-				
-				<!-- <div class="col-xs-1"></div> -->
-		
-				<div data-theme="light" id="theme-select" class="col-xs-2">
-					Light Theme
-				</div>
-				
-				<div id="options-button" class="col-xs-1" tabindex="5">options</div>
-				<div id="about-button" class="col-xs-1" tabindex="6">about</div>
-			</form>
-		</div>
-		<div class="row" id="main-top">
-			<div class="col-xs-6">
-				<div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span></div>
-				<div id="subnameheader" class="col-xs-6 col-md-8 col-lg-10 text-center text-center"></div>
-				<div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-comment"></span></div>
-			</div>
-			<div class="col-xs-6">
-				<div id="storyheader" class="col-xs-12 text-center"></div>
-			</div>
-		</div>
-	</div>
-</nav>
-
-<div class="container-fixed">
-
-	<div id="leftcolumn" class="col-xs-6" tabindex="7">
-		<div class="row">
-			<div id="main" class="col-xs-12"></div>
-		</div>
-	</div>	
-
-	<div id="rightcolumn" class="col-xs-6 scrollbar-outer" tabindex="8">
-		<div id="options" style="display:none" class="row">
-			<div class="col-xs-6">
-				<h4>Options</h4><small>Will be saved in your browser cookies for 30 days</small>
-				<div class="form-group">
-					<br />
-					<select id="select-theme" class="form-control">
-						<option value="">Dark Theme</option>
-						<option value="light">Light Theme</option>
-					</select>
-					<br />
-					<input type="checkbox" id="hide-images" checked> Auto-hide thread images<br>
-					<input type="checkbox" id="hide-logo" checked> Hide the site logo<br>
-					<input type="checkbox" id="hide-nsfw" checked> Hide NSFW threads<br>
-				</div>
-				
-				<div class="form-group">
-					<input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
-				</div>
-				
-			</div>
-			<div class="col-xs-6">
-			</div>
-			<div class="col-xs-12">
-				<p>Would you like to see more functionality added here? Please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
-			</div>
-		</div>
-		<div id="about" class="row">
-			<div class="col-xs-12">
-				<h4>About Simple Reddit</h4>
-				<p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
-				<br />
-				<p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Whihc theme do you prefer?</a></p>
-				<br />
-				<p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
-				<br />
-				<h4>Keyboard Shortcuts</h4>
-					<div class="row">
-						
-						<div class="col-xs-4">
-							<div class="row">
-								<div class="col-xs-2 text-right">H</div>
-								<div class="col-xs-10">Show/Hide Image</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-2 text-right">J</div>
-								<div class="col-xs-10">Previous Thread</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-2 text-right">K</div>
-								<div class="col-xs-10">Next Thread</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-2 text-right">L</div>
-								<div class="col-xs-10">Open URL</div>
-							</div>
-						</div>
-						<div class="col-xs-8"></div>
-					</div>
-					<br />
-				<h4>Browsing Tips</h4>
-				<ul>
-					<li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a></li>
-					<li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a></li>
-					<li>See the options page for more features</li>
-				</ul>
-				<br />
-			
-				<h4>Recent updates</h4>
-				Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a><br /><br />
-				<ul>
-					<li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>			
-					<li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
-					<li>Feb 10 2015 - Added keyboard shortcuts</li>
-					<li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
-
-				</ul>
-				<br />
-				<h4>Future plans</h4>
-				<ul>
-					<li>Allow users to login, view their subreddits, up/downvote, and comment</li>
-				</ul>
-				<br />
-				<h4>Feedback</h4>
-				<p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
-				<br />
-				<h4>Contributions</h4>
-				<p>This site does not have and will never have ads. If you enjoy using SimpleReddit, please consider donating to the developer!</p>
-				<img id="btclogo" src="images/btc.png" />1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="E7JNNEU4WCBN2">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-				<br />
-			</div>
-		</div>
-		<div class="row">
-			<div id="story" class="col-xs-12"></div>
-		</div>
-		<div class="row">
-			<div id="comments" class="col-xs-12"></div>
-		</div>
-	</div>
-</div>
-
+          <div id="options-button" class="col-xs-1" tabindex="5">options</div>
+          <div id="about-button" class="col-xs-1" tabindex="6">about</div>
+        </form>
+      </div>
+      <div class="row" id="main-top">
+        <div class="col-xs-6">
+          <div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span>
+          </div>
+          <div id="subnameheader" class="col-xs-6 col-md-8 col-lg-10 text-center text-center"></div>
+          <div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-comment"></span>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div id="storyheader" class="col-xs-12 text-center"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+	<!-- MAIN CONTAINER -->
+  <div class="container-fixed">
+    <!-- LEFT COLUMN -->
+    <div id="leftcolumn" class="col-xs-6" tabindex="7">
+      <div class="row">
+        <div id="main" class="col-xs-12"></div>
+      </div>
+    </div>
+    <!-- RIGHT COLUMN -->
+    <div id="rightcolumn" class="col-xs-6 scrollbar-outer" tabindex="8">
+      <div id="options" style="display:none" class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+          	<h4>Options</h4>
+          	<small>Will be saved in your browser cookies for 30 days</small>
+            <select id="select-theme" class="form-control">
+              <option value="">Dark Theme</option>
+              <option value="light">Light Theme</option>
+            </select>
+          </div>
+          <div class="form-group">
+          	<input type="checkbox" id="hide-images" checked>
+            <label for="hide-images">Auto-hide thread images</label>
+          </div>
+          <div class="form-group">
+          	<input type="checkbox" id="hide-logo" checked>
+            <label for="hide-logo">Hide the site logo</label>
+          </div>
+          <div class="form-group">
+          	<input type="checkbox" id="hide-nsfw" checked>
+            <label for="hide-nsfw">Hide NSFW threads</label>
+          </div>
+          <div class="form-group">
+            <input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <p>Would you like to see more functionality added here? Please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
+        </div>
+      </div>
+      <div id="about" class="row">
+        <div class="col-xs-12">
+          <h4>About Simple Reddit</h4>
+          <p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
+          <p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Whihc theme do you prefer?</a>
+          </p>
+          <p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
+          <h4>Keyboard Shortcuts</h4>
+          <ul class="list-unstyled">
+          	<li><span class="spaced">H</span>Show/Hide Image</li>
+          	<li><span class="spaced">J</span>Previous Thread</li>
+          	<li><span class="spaced">K</span>Next Thread</li>
+          	<li><span class="spaced">L</span>Open URL</li>
+          </ul>
+          <h4>Browsing Tips</h4>
+          <ul>
+            <li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a>
+            </li>
+            <li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a>
+            </li>
+            <li>See the options page for more features</li>
+          </ul>
+          <h4>Recent updates</h4>
+          <p>Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a></p>
+          <ul>
+            <li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>
+            <li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
+            <li>Feb 10 2015 - Added keyboard shortcuts</li>
+            <li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
+          </ul>
+          <h4>Future plans</h4>
+          <ul>
+            <li>Allow users to login, view their subreddits, up/downvote, and comment</li>
+          </ul>
+          <h4>Feedback</h4>
+          <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
+          <h4>Contributions</h4>
+          <p>This site does not have and will never have ads. If you enjoy using SimpleReddit, please consider donating to the developer!</p>
+          <img id="btclogo" src="images/btc.png" />1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="E7JNNEU4WCBN2">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div id="story" class="col-xs-12"></div>
+      </div>
+      <div class="row">
+        <div id="comments" class="col-xs-12"></div>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
 
 <!-- HANDLEBARS TEMPLATES -->
