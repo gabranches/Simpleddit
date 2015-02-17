@@ -23,7 +23,6 @@ if (isset($_GET["r"]))
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <link id="theme-style" rel="stylesheet" href="themes/dark.css">
   <!-- JAVASCRIPT -->
   <script src="lib/handlebars-v2.0.0.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -67,8 +66,8 @@ if (isset($_GET["r"]))
               <option value="all">top all time</option>
             </select>
           </div>
-          <div data-theme="light" id="theme-select" class="col-xs-2">
-            Light Theme
+          <div data-theme="dark" id="theme-select" class="col-xs-2">
+            Dark Theme
           </div>
 
           <div id="options-button" class="col-xs-1" tabindex="5">options</div>
@@ -102,11 +101,13 @@ if (isset($_GET["r"]))
       <div id="options" style="display:none" class="row">
         <div class="col-xs-6">
           <div class="form-group">
-          	<h4>Options</h4>
-          	<small>Will be saved in your browser cookies for 30 days</small>
+            <div id="options-header">
+            	<h4>Options</h4>
+            	<small>Will be saved in your browser cookies for 30 days</small>
+            </div>
             <select id="select-theme" class="form-control">
-              <option value="">Dark Theme</option>
-              <option value="light">Light Theme</option>
+              <option value="">Light Theme</option>
+              <option value="dark">Dark Theme</option>
             </select>
           </div>
           <div class="form-group">
@@ -133,7 +134,7 @@ if (isset($_GET["r"]))
         <div class="col-xs-12">
           <h4>About Simple Reddit</h4>
           <p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
-          <p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Whihc theme do you prefer?</a>
+          <p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Which theme do you prefer?</a>
           </p>
           <p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
           <h4>Keyboard Shortcuts</h4>
@@ -152,7 +153,6 @@ if (isset($_GET["r"]))
             <li>See the options page for more features</li>
           </ul>
           <h4>Recent updates</h4>
-          <p>Check out my <a target="_blank" href="http://www.reddit.com/r/webdev/comments/2uvunk">reddit post!</a></p>
           <ul>
             <li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>
             <li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>

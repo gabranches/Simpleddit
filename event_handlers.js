@@ -221,19 +221,19 @@ $("#select-theme").change(function() // Theme select (options)
 {
 	theme = $('#select-theme').val();
 
-	if(theme.length) // If it's the light theme
+	if(!theme.length) // If it's the light theme
 	{
 		$('#theme-style').remove();
-		createCookie("theme", "light", 30);
+		eraseCookie("theme");
 		$("#theme-select").html("Dark Theme");
 		$("#theme-select").attr("data-theme", "dark");
 	} 
 	else
 	{
 		$("#theme-select").html("Light Theme");
-		$("#theme-select").attr("data-theme", "light");
+		$("#theme-select").attr("data-theme", "");
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
-		eraseCookie("theme");
+		createCookie("theme", "dark", 30);
 		
 	}
 });
@@ -242,21 +242,21 @@ $("#theme-select").click(function() // Theme select (nav bar)
 {
 	theme = $('#theme-select').attr("data-theme");
 
-	if(theme == "light") // If the light theme is selected
+	if(theme == "") // If the light theme is selected
 	{
 		$('#theme-style').remove();
-		createCookie("theme", "light", 30);
+		eraseCookie("theme");
 		$("#theme-select").html("Dark Theme");
 		$("#theme-select").attr("data-theme", "dark");
-		$("#select-theme>option:eq(1)").attr("selected", true);
+		$("#select-theme>option:eq(0)").attr("selected", true);
 	} 
 	else
 	{
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
-		eraseCookie("theme");
+		createCookie("theme", "dark", 30);
 		$("#theme-select").html("Light Theme");
-		$("#theme-select").attr("data-theme", "light");
-		$("#select-theme>option:eq(0)").attr("selected", true);
+		$("#theme-select").attr("data-theme", "");
+		$("#select-theme>option:eq(1)").attr("selected", true);
 	}
 });
 

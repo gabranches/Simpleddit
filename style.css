@@ -29,6 +29,7 @@ h4 {
 	font-size: 16px;
 	font-weight: bold;
 	font-family: 'Open Sans', sans-serif;
+	margin-top: 20px;
 }
 
 blockquote  {
@@ -66,20 +67,10 @@ input[type=checkbox] {
 
 /* OTHER */
 
-#about {
-	margin-top: 10px;
-}
-
 #btclogo {
 	width: 40px;
 	margin: 15px;
 }
-
-
-
-
-
-
 
 /* NAVIGATION BAR */
 

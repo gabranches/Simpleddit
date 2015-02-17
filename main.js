@@ -27,12 +27,12 @@ $(function()
 
 function init()
 {
-	if(readCookie("theme") == "light")
+	if(readCookie("theme") == "dark")
 	{
-		$('#theme-style').remove();
+		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
 		$("#select-theme>option:eq(1)").attr("selected", true);
-		$("#theme-select").html("Dark Theme");
-		$("#theme-select").attr("data-theme", "dark");
+		$("#theme-select").html("Light Theme");
+		$("#theme-select").attr("data-theme", "");
 	}
 
 	if(readCookie("showLogo") == "0")
