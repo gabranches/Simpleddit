@@ -7,7 +7,7 @@ Handlebars.registerHelper("nsfwHelper", function (over_18)
 
 Handlebars.registerHelper("subHelper", function (data)
 {
-    if (data.topsub == "" || data.topsub == "all")
+    if (data.topsub == "" || data.topsub == "all" || data.topsub.indexOf("+") != "-1")
     {
         return data.subreddit;
     }
