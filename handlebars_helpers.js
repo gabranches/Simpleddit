@@ -87,7 +87,7 @@ Handlebars.registerHelper("picHelper", function (data)
     {
         return prefix + suffix;
     }
-    else if (data.domain.indexOf("youtube") != -1)
+    else if (data.domain.indexOf("youtube") != -1 || data.domain.indexOf("youtu.be") != -1)
     {
         var id = getYoutubeId(data.url);
         var youtubeEmbed = "<div id='storyimage' " + hidden + "><iframe width='560' height='315' src='http://www.youtube.com/embed/"+id[1]+"' frameborder='0' allowfullscreen></iframe></div>";
