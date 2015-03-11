@@ -274,3 +274,7 @@ span.spaced {
 	display: inline-block;
 	width: 3em;
 }
+
+label {
+	display: compact;
+}

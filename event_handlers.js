@@ -150,16 +150,28 @@ $(document).on("change", '#hide-nsfw', function() {
 	var nsfw = readCookie("nsfw");
 	if(nsfw=="off")
 	{
-		createCookie("nsfw", "on", 2);
+		createCookie("nsfw", "on", 30);
 		$(".glyphicon-nsfw").css({opacity: "1"});
 	}
 	else
 	{
-		createCookie("nsfw", "off", 2);
+		createCookie("nsfw", "off", 30);
 		$(".glyphicon-nsfw").css({opacity: ".5"});
 	}
 	ClearLeftSide();
 	getItems(sub, sort);
+});
+
+$(document).on("change", '#hide-gif', function() {
+	var gif = readCookie("gif");
+	if(gif=="off")
+	{
+		eraseCookie("gif");
+	}
+	else
+	{
+		createCookie("gif", "off", 30);
+	}
 });
 
 $(document).on("click", "#options-button", function() // Show options

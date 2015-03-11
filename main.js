@@ -60,7 +60,10 @@ function init()
 	{
 		$("#input-title").val(readCookie("title"));
 	}
-
+	if(readCookie("gif"))
+	{
+		document.getElementById("hide-gif").checked = true;
+	}
 }
 
 function buildHandlebars()
@@ -352,8 +355,19 @@ function isImgurVid(url) // Returns true if url is .gifv, .webm, or .mp4
     var exts = [".gifv", ".webm", ".mp4"];
     for (var i in exts) 
     {
+        if(url.indexOf(exts[i]) == url.length - exts[i].length) return exts[i];
+    }
+    return false;
+}
+
+function isAnimated(url) // Returns true if media in not just an image
+{
+    var exts = [".gifv", ".webm", ".mp4", ".gif"];
+    for (var i in exts) 
+    {
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
+    if (url.indexOf("gfycat") != -1) return true;
     return false;
 }
 
@@ -405,3 +419,6 @@ function getResults(re)
 	if (matches2 != null) results = results.concat(matches2);
 	return results;
 }
+
+
+ 

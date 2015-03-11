@@ -51,51 +51,68 @@ Handlebars.registerHelper("picHelper", function (data)
     var suffix = "'' />";
     var prefixEmbed = picButton;
 
-    if (data.url.indexOf("imgur.com/a/") != "-1" || data.url.indexOf("imgur.com/gallery/") != "-1" )
+    if (isAnimated(data.url)) // check if it's a gif or video file
     {
-        return "";
-    }
-    else if (data.domain == "i.imgur.com" && !isImgurVid(data.url))
-    {
-        return prefix + suffix;
-    }
-    else if (data.domain == "i.imgur.com" && isImgurVid(data.url))
-    {
-        var nakedUrl = data.url.split(data.url.match(/\.([A-Za-z0-9]+)$/g)[0])[0];
-        var embededVideo = "<div id='storyimage' " + hidden + "><video autoplay loop muted>";
-        embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
-        embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
-        embededVideo += "</video></div>";
+        if ((data.domain == "gfycat.com")) // if it's gfycat
+        {
+            var embededVideo = "<div id='storyimage' " + hidden + "><iframe src="+data.url+" frameborder='0' scrolling='no' width='600' height='338' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);'' ></iframe></div>";
+            return readCookie("gif") == "off" ? "" : prefixEmbed + embededVideo; 
+        }
+        else if ((data.domain == "i.imgur.com" || data.domain == "imgur.com") && isImgurVid(data.url)) // if it's imgur and video
+        {
+            var nakedUrl = data.url.split(data.url.match(/\.([A-Za-z0-9]+)$/g)[0])[0];
+            var embededVideo = "<div id='storyimage' " + hidden + "><video autoplay loop muted>";
+            embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
+            embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
+            embededVideo += "</video></div>";
 
-        return prefixEmbed + embededVideo;
+            return readCookie("gif") == "off" ? "" : prefixEmbed + embededVideo; 
+        }
+        else if (data.domain == "i.imgur.com") // if it's from imgur and links to the file
+        {
+            return readCookie("gif") == "off" ? "" :  prefix + suffix;
+        }
+        else if (data.domain == "imgur.com") // if it's from imgur and links to the page
+        {
+            return readCookie("gif") == "off" ? "" :  prefix + ".gif" + suffix;
+        }
+        else if (data.domain.indexOf("tumblr") != -1) // if it's from tumblr
+        {
+            return prefix + suffix;
+        }
+        else 
+        {
+            return "";
+        }
     }
-    else if (data.domain == "imgur.com" && !isImgurVid(data.url))
-    {
-        return prefix + ".jpg" + suffix;
-    }
-    else if (data.domain == "imgur.com" && isImgurVid(data.url))
-    {
-        var nakedUrl = data.url.split(data.url.match(/\.([A-Za-z0-9]+)$/g)[0])[0];
-        var embededVideo = "<div id='storyimage' " + hidden + "><video autoplay loop muted>";
-        embededVideo += "<source src='" + nakedUrl + ".webm' type='video/webm'>";
-        embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
-        embededVideo += "</video></div>";
-
-        return prefixEmbed + embededVideo;
-    }
-    else if (data.domain.indexOf("tumblr") != -1)
-    {
-        return prefix + suffix;
-    }
-    else if (data.domain.indexOf("youtube") != -1 || data.domain.indexOf("youtu.be") != -1)
+    else if (data.domain.indexOf("youtube") != -1 || data.domain.indexOf("youtu.be") != -1) // if it's a youtube link
     {
         var id = getYoutubeId(data.url);
         var youtubeEmbed = "<div id='storyimage' " + hidden + "><iframe width='560' height='315' src='http://www.youtube.com/embed/"+id[1]+"' frameborder='0' allowfullscreen></iframe></div>";
         return prefixEmbed + youtubeEmbed;
     }
-    else
+    else // if it's not gif or video
     {
-        return "";
+        if (data.url.indexOf("imgur.com/a/") != "-1" || data.url.indexOf("imgur.com/gallery/") != "-1" ) // if it's an album
+        {
+            return "";
+        }
+        else if (data.domain == "imgur.com") // if it's imgur and doesn't link directly to the file
+        {
+            return prefix + ".jpg" + suffix;
+        }
+        else if (data.domain == "i.imgur.com") // if it's imgur and links to the file
+        {
+            return prefix + suffix;
+        }
+        else if (data.domain.indexOf("tumblr") != -1) // if it's from tumblr
+        {
+            return prefix + suffix;
+        }
+        else
+        {
+            return "";
+        }
     }
 });
 

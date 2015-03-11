@@ -123,6 +123,12 @@ if (isset($_GET["r"]))
             <label for="hide-nsfw">Hide NSFW threads</label>
           </div>
           <div class="form-group">
+            <input type="checkbox" id="hide-gif">
+            <label for="hide-gif">Don't auto-load gifs or videos</label><br />
+            <small>(check this if your browser lags when viewing gifs or videos)</small>
+          </div>
+          <br />
+          <div class="form-group">
             <input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
           </div>
         </div>
@@ -154,10 +160,9 @@ if (isset($_GET["r"]))
           </ul>
           <h4>Recent updates</h4>
           <ul>
+            <li>Mar 11 2015 - Addid gfycat embedding and improved imgur embeds. Added the option to disable video/gif embedding to reduce lag.</li>
             <li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>
             <li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
-            <li>Feb 10 2015 - Added keyboard shortcuts</li>
-            <li>Feb 08 2015 - NSFW threads can now be filtered out. The search box now gives subreddit suggestions. Thread titles now show in the page title unless one is set in the options page. You can now hide the site logo if desired (Thanks again to <a target="_blank" href="https://github.com/orbweaver-">orbweaver</a> for the great contributions). Also, fixed thread titles not escaping properly (Thanks to <a target="_blank" href="https://github.com/allanhortle">allanhortle</a>)</li>
           </ul>
           <h4>Future plans</h4>
           <ul>
