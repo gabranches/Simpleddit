@@ -102,5 +102,13 @@ h4, #topnav, #topnav a, .story-title, #showimage
 }
 
 .glyphicon-comment {
-	color: rgb(170, 170, 170);
+	color: rgb(108, 108, 108);
+}
+
+.glyphicon-arrow-up{
+	color:rgb(237, 237, 237);
+}
+
+.score{
+	color:white;
 }

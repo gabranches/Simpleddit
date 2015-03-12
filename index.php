@@ -198,7 +198,7 @@ if (isset($_GET["r"]))
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
 		<div class="col-xs-3 col-md-2 entry-info text-center">
       <div class="row">
-       <div class="col-xs-12 text-right">{{score}} <span class="glyphicon glyphicon-arrow-up"></div>
+       <div class="col-xs-12 text-right score">{{score}} <span class="glyphicon glyphicon-arrow-up"></div>
       </div>
       <div class="row text-right">
        <div class="col-xs-12"> {{num_comments}} <span class="glyphicon glyphicon-comment"></div>
