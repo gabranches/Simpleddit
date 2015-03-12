@@ -182,6 +182,8 @@ function getItems(sub, sort) // Get stories
 		}
 
 		$("#rightcolumn").focus();
+
+		$("#select-sub").val("Popular Subreddits");
 		
 	}).fail(function(data) 
 	{

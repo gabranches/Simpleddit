@@ -1,4 +1,7 @@
 /* GENERAL STYLES */
+*{
+-webkit-overflow-scrolling: touch;
+}
 
 html {
 	height: 100%;
@@ -278,3 +281,4 @@ span.spaced {
 label {
 	display: compact;
 }
+

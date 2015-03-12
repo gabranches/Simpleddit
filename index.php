@@ -34,18 +34,18 @@ if (isset($_GET["r"]))
     <div class="container-fixed">
       <div id="formrow" class="row">
         <form id="form-sub" role="form">
-          <div id="logo" class="col-xs-2 text-center" tabindex="1">
+          <div id="logo" class="hidden-xs col-sm-2 text-center" tabindex="1">
             <a href="/">Simple Reddit</a>
           </div>
           <div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
           </div>
-          <div class="col-xs-2">
+          <div class="col-xs-3 col-lg-2">
             <select id="select-sub" placeholder="Select Subreddit" class="form-control">
               <option selected="selected" disabled tabindex="2">Popular Subreddits</option>
               <option value="">Front Page</option>
             </select>
           </div>
-          <div class="col-xs-2" tabindex="3">
+          <div class="col-xs-3 col-sm-2" tabindex="3">
             <input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
           </div>
           <div id="results" style="display: none">
@@ -54,7 +54,7 @@ if (isset($_GET["r"]))
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
             </button>
           </div>
-          <div class="col-xs-1">
+          <div class="col-xs-2 col-lg-1">
             <select id="select-sort" class="form-control">
               <option selected="selected" value="hot" tabindex="4">hot</option>
               <option value="new">new</option>
@@ -66,7 +66,7 @@ if (isset($_GET["r"]))
               <option value="all">top all time</option>
             </select>
           </div>
-          <div data-theme="dark" id="theme-select" class="col-xs-2">
+          <div data-theme="dark" id="theme-select" class="hidden-xs hidden-sm hidden-md col-lg-2">
             Dark Theme
           </div>
 
@@ -76,10 +76,10 @@ if (isset($_GET["r"]))
       </div>
       <div class="row" id="main-top">
         <div class="col-xs-6">
-          <div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span>
+          <div class="col-xs-3 col-sm-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span>
           </div>
-          <div id="subnameheader" class="col-xs-6 col-md-8 col-lg-10 text-center text-center"></div>
-          <div class="col-xs-3 col-md-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-comment"></span>
+          <div id="subnameheader" class="col-xs-6 col-sm-8 col-lg-10 text-center text-center"></div>
+          <div class="col-xs-3 col-sm-2 col-lg-1 text-center"><span class="glyphicon glyphicon-comment"></span>
           </div>
         </div>
         <div class="col-xs-6">
@@ -105,10 +105,7 @@ if (isset($_GET["r"]))
             	<h4>Options</h4>
             	<small>Will be saved in your browser cookies for 30 days</small>
             </div>
-            <select id="select-theme" class="form-control">
-              <option value="">Light Theme</option>
-              <option value="dark">Dark Theme</option>
-            </select>
+            
           </div>
           <div class="form-group">
           	<input type="checkbox" id="hide-images" checked>
@@ -128,6 +125,10 @@ if (isset($_GET["r"]))
             <small>(uncheck if your browser lags when viewing gifs or videos)</small>
           </div>
           <br />
+          <select id="select-theme" class="form-control">
+              <option value="">Light Theme</option>
+              <option value="dark">Dark Theme</option>
+            </select>
           <div class="form-group">
             <input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
           </div>
@@ -197,9 +198,9 @@ if (isset($_GET["r"]))
 <script id="entry-template" type="text/x-handlebars-template">
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
-		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{score}}</span></div>
-		<div class="col-xs-6 col-md-8 col-lg-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
-		<div class="col-xs-3 col-md-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
+		<div class="col-xs-3 col-sm-2  col-lg-1 text-center">{{score}}</span></div>
+		<div class="col-xs-6 col-sm-8 col-lg-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+		<div class="col-xs-3 col-sm-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
 	</div>
 
 </script>
