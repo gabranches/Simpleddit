@@ -159,6 +159,7 @@ input[type=checkbox] {
 
 .title {
 	color: #428bca;
+	vertical-align: middle;
 }
 
 .title small {
@@ -262,15 +263,23 @@ input[type=checkbox] {
 
 .glyphicon-arrow-up {
 	top: 1px;
+	left: 5px;
+	color: rgb(170, 170, 170);
 }
 
 .glyphicon-comment {
 	top: 3px;
+	left: 5px;
+	color: rgb(170, 170, 170);
 }
 
 .glyphicon-nsfw {
 	width: 30%;
 	cursor: pointer;
+}
+
+.glyphicon{
+	font-size:12px;
 }
 
 span.spaced {
@@ -280,5 +289,10 @@ span.spaced {
 
 label {
 	display: compact;
+}
+
+.entry-info{
+	font-size:12px;
+	color: rgb(137, 137, 137);
 }
 

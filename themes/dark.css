@@ -95,5 +95,12 @@ h4, #topnav, #topnav a, .story-title, #showimage
 #theme-select
 {
 	color: #AAAAAA;
+}
 
+.entry-info{
+	color: #AAAAAA;
+}
+
+.glyphicon-comment {
+	color: rgb(170, 170, 170);
 }

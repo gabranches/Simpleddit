@@ -76,11 +76,9 @@ if (isset($_GET["r"]))
       </div>
       <div class="row" id="main-top">
         <div class="col-xs-6">
-          <div class="col-xs-3 col-sm-2 col-lg-1 text-center text-center"><span class="glyphicon glyphicon-arrow-up"></span>
-          </div>
-          <div id="subnameheader" class="col-xs-6 col-sm-8 col-lg-10 text-center text-center"></div>
-          <div class="col-xs-3 col-sm-2 col-lg-1 text-center"><span class="glyphicon glyphicon-comment"></span>
-          </div>
+
+          <div id="subnameheader" class="col-xs-12 text-center"></div>
+
         </div>
         <div class="col-xs-6">
           <div id="storyheader" class="col-xs-12 text-center"></div>
@@ -161,9 +159,9 @@ if (isset($_GET["r"]))
           </ul>
           <h4>Recent updates</h4>
           <ul>
-            <li>Mar 11 2015 - Addid gfycat embedding and improved imgur embeds. Added the option to disable video/gif embedding to reduce lag.</li>
-            <li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default.</li>
-            <li>Feb 11 2015 - <strong>Dark theme</strong> now available! Check out the options page to enable it.</li>
+            <li>Mar 12 2015 - Bootstrap fixes for tablet</li>
+            <li>Mar 11 2015 - Added gfycat embedding and improved imgur embeds. Added the option to disable video/gif embedding to reduce lag</li>
+            <li>Feb 12 2015 - Fixed a bug where long post urls were making the right panel too large. Enabled dark theme by default</li>
           </ul>
           <h4>Future plans</h4>
           <ul>
@@ -198,9 +196,15 @@ if (isset($_GET["r"]))
 <script id="entry-template" type="text/x-handlebars-template">
 
 	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
-		<div class="col-xs-3 col-sm-2  col-lg-1 text-center">{{score}}</span></div>
-		<div class="col-xs-6 col-sm-8 col-lg-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
-		<div class="col-xs-3 col-sm-2 col-lg-1 text-center">{{num_comments}}<br /></span></div>
+		<div class="col-xs-3 col-md-2 entry-info text-center">
+      <div class="row">
+       <div class="col-xs-12 text-right">{{score}} <span class="glyphicon glyphicon-arrow-up"></div>
+      </div>
+      <div class="row text-right">
+       <div class="col-xs-12"> {{num_comments}} <span class="glyphicon glyphicon-comment"></div>
+      </div>
+    </div>
+		<div class="col-xs-9 col-md-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
 	</div>
 
 </script>
