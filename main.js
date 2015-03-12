@@ -62,7 +62,7 @@ function init()
 	}
 	if(readCookie("gif"))
 	{
-		document.getElementById("hide-gif").checked = true;
+		document.getElementById("hide-gif").checked = false;
 	}
 }
 

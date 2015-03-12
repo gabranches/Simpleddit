@@ -163,14 +163,13 @@ $(document).on("change", '#hide-nsfw', function() {
 });
 
 $(document).on("change", '#hide-gif', function() {
-	var gif = readCookie("gif");
-	if(gif=="off")
+	if(readCookie("gif"))
 	{
 		eraseCookie("gif");
 	}
 	else
 	{
-		createCookie("gif", "off", 30);
+		createCookie("gif", "on", 30);
 	}
 });
 

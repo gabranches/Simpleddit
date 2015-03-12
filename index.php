@@ -123,9 +123,9 @@ if (isset($_GET["r"]))
             <label for="hide-nsfw">Hide NSFW threads</label>
           </div>
           <div class="form-group">
-            <input type="checkbox" id="hide-gif">
-            <label for="hide-gif">Don't auto-load gifs or videos</label><br />
-            <small>(check this if your browser lags when viewing gifs or videos)</small>
+            <input type="checkbox" id="hide-gif" checked>
+            <label for="hide-gif">Embed gifs and videos</label><br />
+            <small>(uncheck if your browser lags when viewing gifs or videos)</small>
           </div>
           <br />
           <div class="form-group">

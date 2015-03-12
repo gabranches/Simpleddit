@@ -56,7 +56,7 @@ Handlebars.registerHelper("picHelper", function (data)
         if ((data.domain == "gfycat.com")) // if it's gfycat
         {
             var embededVideo = "<div id='storyimage' " + hidden + "><iframe src="+data.url+" frameborder='0' scrolling='no' width='600' height='338' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);'' ></iframe></div>";
-            return readCookie("gif") == "off" ? "" : prefixEmbed + embededVideo; 
+            return readCookie("gif") ? "" : prefixEmbed + embededVideo; 
         }
         else if ((data.domain == "i.imgur.com" || data.domain == "imgur.com") && isImgurVid(data.url)) // if it's imgur and video
         {
@@ -66,15 +66,15 @@ Handlebars.registerHelper("picHelper", function (data)
             embededVideo += "<source src='" + nakedUrl + ".mp4' type='video/mp4'>";
             embededVideo += "</video></div>";
 
-            return readCookie("gif") == "off" ? "" : prefixEmbed + embededVideo; 
+            return readCookie("gif")  ? "" : prefixEmbed + embededVideo; 
         }
         else if (data.domain == "i.imgur.com") // if it's from imgur and links to the file
         {
-            return readCookie("gif") == "off" ? "" :  prefix + suffix;
+            return readCookie("gif") ? "" :  prefix + suffix;
         }
         else if (data.domain == "imgur.com") // if it's from imgur and links to the page
         {
-            return readCookie("gif") == "off" ? "" :  prefix + ".gif" + suffix;
+            return readCookie("gif")  ? "" :  prefix + ".gif" + suffix;
         }
         else if (data.domain.indexOf("tumblr") != -1) // if it's from tumblr
         {
