@@ -93,7 +93,24 @@ Handlebars.registerHelper("picHelper", function (data)
     }
     else // if it's not gif or video
     {
-        if (data.url.indexOf("imgur.com/a/") != "-1" || data.url.indexOf("imgur.com/gallery/") != "-1" ) // if it's an album
+        if (data.url.indexOf("imgur.com/a/") != "-1") // if it's an album
+        {
+            var albumId = data.url.split("/").pop();
+            var embedThumbs = "";
+
+            $.getJSON("https://api.imgur.com/3/album/"+albumId, function(data)
+            {
+                $.each(data.data.images,function(index,element)
+                { 
+                    console.log(element.id);
+                    $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/a/"+albumId+"/#"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
+                });
+            });
+
+            return prefixEmbed + "<div id='albumthumbs'"+hidden+"></div>";
+           
+        }
+        else if (data.url.indexOf("imgur.com/gallery/") != "-1" ) // if it's imgur and doesn't link directly to the file
         {
             return "";
         }

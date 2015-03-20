@@ -66,6 +66,7 @@ $(document).keyup(function(e) {   // Keyboard navigation
     else if (e.which==72 && !($("#input-sub").is(':focus'))) // Hide or show image
     {
     	$('#storyimage').toggle();
+    	$('#albumthumbs').toggle();
 		$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
     }
     else if (e.which==76 && !($("#input-sub").is(':focus'))) // Hide or show image
@@ -205,6 +206,7 @@ $(document).on("keyup", "#input-title", function() // Change page title
 $(document).on("click", "#showimage", function() // Show story image
 { 	
 	$('#storyimage').toggle();
+	$('#albumthumbs').toggle();
 	$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
 });
 
