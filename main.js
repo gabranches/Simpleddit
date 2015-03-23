@@ -420,8 +420,4 @@ function getResults(re)
 	if (matches != null) results = results.concat(matches);
 	if (matches2 != null) results = results.concat(matches2);
 	return results;
-}
-
-
-
- 
+} 

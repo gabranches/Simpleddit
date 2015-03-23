@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+</body>
+
+</html>
+
+<script>
+
+$(document).ready(function(){
+	getSubs(null, 0);
+});
+
+function getSubs(after, count){
+
+	var url = after ? "http://www.reddit.com/reddits.json?limit=100&count="+count+"&after=t5_"+after : "http://www.reddit.com/reddits.json?limit=100";
+
+	$.getJSON(url, function(data)
+	{
+		$.each(data.data.children,function(index,element)
+		{ 
+			document.write(element.data.display_name+"<br />");
+			after = element.data.id;
+		});
+
+		setTimeout(
+		  function() 
+		  {
+		    getSubs(after, count+100);
+		  }, 5000);
+		
+	});
+}
+
+
+
+</script>

@@ -93,20 +93,28 @@ Handlebars.registerHelper("picHelper", function (data)
     }
     else // if it's not gif or video
     {
-        if (data.url.indexOf("imgur.com/a/") != "-1") // if it's an album
+        if (data.url.indexOf("imgur.com/a/") != "-1") // if it's an imgur album
         {
             var albumId = data.url.split("/").pop();
             var embedThumbs = "";
 
             $.ajax({                                      
-                url: 'https://api.imgur.com/3/album/'+albumId,                    
+                url: 'https://api.imgur.com/3/album/'+albumId,       
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Client-ID 53f530acc5e2988");
+                    },            
                     dataType: 'json',   
-                    success: function(data) {
-                         $.each(data.data.images,function(index,element)
+                    success: function(data) 
+                    {
+                        $.each(data.data.images,function(index,element)
                         { 
                             console.log(element.id);
                             $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/a/"+albumId+"/#"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
                         });
+                    },
+                    error: function(data)
+                    {
+                        $("#albumthumbs").append("<br />Failed to load thumbnails. Please click album link below.");
                     }
             });
 
@@ -114,9 +122,34 @@ Handlebars.registerHelper("picHelper", function (data)
             return prefixEmbed + "<div id='albumthumbs'"+hidden+"></div>";
            
         }
-        else if (data.url.indexOf("imgur.com/gallery/") != "-1" ) // if it's imgur and doesn't link directly to the file
+        else if (data.url.indexOf("imgur.com/gallery/") != "-1" ) // if it's an imgur gallery
         {
-            return "";
+            var splitUrl = data.url.split("/");
+            splitUrl.splice(-1,1);
+            var albumId = splitUrl.pop();
+            var embedThumbs = "";
+
+            $.ajax({                                      
+                url: 'https://api.imgur.com/3/gallery/'+albumId,   
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Client-ID 53f530acc5e2988");
+                    }, 
+                    dataType: 'json',   
+                    success: function(data) 
+                    {
+                        $.each(data.data.images,function(index,element)
+                        { 
+                            console.log(element.id);
+                            $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
+                        });
+                    },
+                    error: function(data)
+                    {
+                        $("#albumthumbs").append("<br />Failed to load thumbnails. Please click album link below.");
+                    }
+            });
+
+            return prefixEmbed + "<div id='albumthumbs'"+hidden+"></div>";
         }
         else if (data.domain == "imgur.com") // if it's imgur and doesn't link directly to the file
         {
