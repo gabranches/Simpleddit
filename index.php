@@ -148,8 +148,7 @@ if (isset($_GET["r"]))
           	<li><span class="spaced">J</span>Previous Thread</li>
           	<li><span class="spaced">K</span>Next Thread</li>
           	<li><span class="spaced">L</span>Open URL</li>
-          </ul>
-          <h4>Browsing Tips</h4>
+          </ul>          <h4>Browsing Tips</h4>
           <ul>
             <li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a>
             </li>

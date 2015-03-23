@@ -98,14 +98,18 @@ Handlebars.registerHelper("picHelper", function (data)
             var albumId = data.url.split("/").pop();
             var embedThumbs = "";
 
-            $.getJSON("https://api.imgur.com/3/album/"+albumId, function(data)
-            {
-                $.each(data.data.images,function(index,element)
-                { 
-                    console.log(element.id);
-                    $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/a/"+albumId+"/#"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
-                });
+            $.ajax({                                      
+                url: 'https://api.imgur.com/3/album/'+albumId,                    
+                    dataType: 'json',   
+                    success: function(data) {
+                         $.each(data.data.images,function(index,element)
+                        { 
+                            console.log(element.id);
+                            $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/a/"+albumId+"/#"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
+                        });
+                    }
             });
+
 
             return prefixEmbed + "<div id='albumthumbs'"+hidden+"></div>";
            
