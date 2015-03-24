@@ -109,7 +109,7 @@ Handlebars.registerHelper("picHelper", function (data)
                         $.each(data.data.images,function(index,element)
                         { 
                             console.log(element.id);
-                            $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/a/"+albumId+"/#"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
+                            $("#albumthumbs").append("<a target='_blank' href='http://imgur.com/"+element.id+"'><img class='albumthumb' src='http://imgur.com/"+element.id+"b.jpg' /></a>");
                         });
                     },
                     error: function(data)
