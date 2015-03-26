@@ -303,3 +303,9 @@ label {
 .albumthumb{
 	margin:5px;
 }
+
+.glyphicon-repeat{
+	margin-left:10px;
+	margin-top:2px;
+	cursor: pointer;
+}

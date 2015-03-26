@@ -16,6 +16,12 @@ $(document).on("click", ".story-sublink span", function() // Go to subreddit on 
 	getItems(sub, sort);
 });
 
+$(document).on("click", "#reload-button", function() // Go to subreddit on click
+{ 	
+	ClearLeftSide();
+	getItems(sub, sort);
+});
+
 $(document).on("click", ".entries", function() // Go to story (div handler)
 { 	
 	ClearRightSide();

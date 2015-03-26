@@ -174,11 +174,11 @@ function getItems(sub, sort) // Get stories
 		
 		if(sub=="") // Change sub name header
 		{
-		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/'>Front Page</a>");
+		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/'>Front Page</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>");
 		} 
 		else 
 		{
-		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a>");
+		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>");
 		}
 
 		$("#rightcolumn").focus();

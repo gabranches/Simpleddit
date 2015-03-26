@@ -158,10 +158,10 @@ if (isset($_GET["r"]))
           </ul>
           <h4>Recent updates</h4>
           <ul>
+            <li>Mar 26 2015 - Added refresh button for subreddits.</li>
             <li>Mar 23 2015 - Added support for imgur galleries.</li>
             <li>Mar 22 2015 - Added imgur album thumbnails for posts linking to album pages</li>
             <li>Mar 12 2015 - Bootstrap fixes for tablet</li>
-            <li>Mar 11 2015 - Added gfycat embedding and improved imgur embeds. Added the option to disable video/gif embedding to reduce lag</li>
           </ul>
           <h4>Future plans</h4>
           <ul>
