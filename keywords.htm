@@ -150,44 +150,49 @@ function getParameterByName(name) {
 function getItems(sub, keywordArr) // Get stories
 {
 
+  var url = "https://a.4cdn.org/"+ sub + "/catalog.json";
 
-  var subUrl    = (sub == "" ) ? "" : "/r/"+sub;
-  
-  var url = "https://www.reddit.com" + subUrl + "/hot/.json?limit=100";
-
-  $.getJSON( url, function(data) 
-  {
-
-     $.each(keywordArr, function (index1, value){
-          
-          $("#main-keywords").append("<div data-key='"+value+"' class='key row'><div class='col-xs-1'>"+value+"</div><div data-id='"+value+"' class='col-xs-6'></div></div>");
-
-          var count = 0;
-
-          keywordPlaceHolder = $('*[data-key="'+value+'"]');
-          entryPlaceHolder = $('*[data-id="'+value+'"]');
-
-          $.each(data.data.children,function(index2,element)
-          { 
-              var title = element.data.title.toLowerCase();
-
-              element.data.keyword = value;
-              var html = entryTemplate(element.data);
-
-              if (title.indexOf(value)!=-1){
-                count++;
-                entryPlaceHolder.append(html);
-              }
-          });
-
-          if (count == 0)
-          {
-            keywordPlaceHolder.hide();
-          }
-
-    });
+  $.ajax({                                      
+    url: url,       
+    dataType: 'jsonp',   
+    crossDomain:true,
+    jsonp : "callback",
+    jsonpCallback: "jsonpcallback"
   });
+}
 
+function jsonpcallback(data)
+{
+  console.log("success");
+    $.each(keywordArr, function (index, value)
+    {
+      $("#main-keywords").append("<div data-key='"+value+"' class='key row'><div class='col-xs-1'>"+value+"</div><div data-id='"+value+"' class='col-xs-6'></div></div>");
+
+      var count = 0;
+
+      keywordPlaceHolder = $('*[data-key="'+value+'"]');
+      entryPlaceHolder = $('*[data-id="'+value+'"]');
+
+      $.each(data,function(index,page)
+      { 
+        $.each(page.threads,function(index,thread)
+        { 
+          var title = thread.com.toLowerCase();
+          thread.keyword = value;
+          var html = entryTemplate(thread);
+          if (title.indexOf(value)!=-1)
+          {
+            count++;
+            entryPlaceHolder.append(html);
+          }
+        });
+      });
+
+      if (count == 0)
+      {
+        keywordPlaceHolder.hide();
+      }
+    });
 }
 
 </script>
