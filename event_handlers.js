@@ -92,7 +92,7 @@ $(document).keyup(function(e) {   // Keyboard navigation
 $(document).on("click", "#logout", function() // Logout
 { 	
 	eraseCookie("reddit_token");
-	window.location.href = "http://localhost/simplereddit";
+	window.location.href = "http://simplereddit.net";
 });
 
 $(document).on("click", "#options-button", function() // Show options
