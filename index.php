@@ -1,11 +1,10 @@
 <?php 
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 if(isset($_GET['oa']))
 {
-  if ($_GET['oa']==1){
+  if ($_GET['oa']==1)
+  {
     require('reddit-php-sdk/reddit.php');
     $reddit = new reddit();
   }
@@ -21,10 +20,10 @@ if (isset($_GET["r"]))
 
 if (isset($reddit))   // Check if user logged in through oauth
 {
-  $logged_in = 1;
-  $r = $reddit->getSubscriptions();
-  $defsubs = "";
   
+  $r = $reddit->getSubscriptions();
+  $logged_in = 1;
+  $defsubs = "";
   foreach($r->data->children as $key => $value)
   {
     if($defsubs != "")
@@ -33,11 +32,17 @@ if (isset($reddit))   // Check if user logged in through oauth
     }
     $defsubs .= ($value->data->display_name);
   }
+  if ($defsubs == "")
+  {
+    $logged_in = 0;
+  }
 }
 else
 {
   $defsubs = "";
 }
+
+
 
 ?>
 

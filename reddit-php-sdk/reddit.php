@@ -13,6 +13,7 @@ class reddit{
     private $access_token;
     private $token_type;
     private $auth_mode = 'basic';
+    private $fail = false;
     
     /**
     * Class Constructor
@@ -44,7 +45,7 @@ class reddit{
                 $code = $_GET["code"];
                 
                 //construct POST object for access token fetch request
-                $postvals = sprintf("code=%s&redirect_uri=%s&grant_type=authorization_code&client_id=%s",
+                $postvals = sprintf("code=%s&redirect_uri=%s&grant_type=authorization_code&client_id=%s&duration=permanent",
                                     $code,
                                     redditConfig::$ENDPOINT_OAUTH_REDIRECT,
                                     redditConfig::$CLIENT_ID);
@@ -63,7 +64,7 @@ class reddit{
                 }
             } else {
                 $state = rand();
-                $urlAuth = sprintf("%s?response_type=code&client_id=%s&redirect_uri=%s&scope=%s&state=%s",
+                $urlAuth = sprintf("%s?response_type=code&client_id=%s&redirect_uri=%s&scope=%s&state=%s&duration=permanent",
                                    redditConfig::$ENDPOINT_OAUTH_AUTHORIZE,
                                    redditConfig::$CLIENT_ID,
                                    redditConfig::$ENDPOINT_OAUTH_REDIRECT,
@@ -762,7 +763,8 @@ class reddit{
 
           if(curl_errno($ch))
         {
-            echo 'error:' . curl_error($ch);
+            //print error
+            $this->$fail = true;
         }
 
         
