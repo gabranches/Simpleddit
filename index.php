@@ -1,10 +1,42 @@
 <?php 
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if(isset($_GET['oa']))
+{
+  if ($_GET['oa']==1){
+    require('reddit-php-sdk/reddit.php');
+    $reddit = new reddit();
+  }
+}
+
 $sub = "";
+$logged_in = 0;
 
 if (isset($_GET["r"]))
 {	
 	$sub = $_GET["r"];	
+}
+
+if (isset($reddit))   // Check if user logged in through oauth
+{
+  $logged_in = 1;
+  $r = $reddit->getSubscriptions();
+  $defsubs = "";
+  
+  foreach($r->data->children as $key => $value)
+  {
+    if($defsubs != "")
+    {
+      $defsubs .= "+";
+    }
+    $defsubs .= ($value->data->display_name);
+  }
+}
+else
+{
+  $defsubs = "";
 }
 
 ?>
@@ -54,24 +86,24 @@ if (isset($_GET["r"]))
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>
             </button>
           </div>
-          <div class="col-xs-2 col-lg-1">
+          <div class="col-xs-1">
             <select id="select-sort" class="form-control">
               <option selected="selected" value="hot" tabindex="4">hot</option>
               <option value="new">new</option>
               <option value="rising">rising</option>
               <option value="day">top today</option>
-              <option value="week">top this week</option>
-              <option value="month">top this month</option>
-              <option value="year">top this year</option>]
-              <option value="all">top all time</option>
+              <option value="week">top week</option>
+              <option value="month">top month</option>
+              <option value="year">top year</option>]
+              <option value="all">top all</option>
             </select>
           </div>
-          <div data-theme="dark" id="theme-select" class="hidden-xs hidden-sm hidden-md col-lg-2">
-            Dark Theme
-          </div>
 
-          <div id="options-button" class="col-xs-1" tabindex="5">options</div>
-          <div id="about-button" class="col-xs-1" tabindex="6">about</div>
+
+           <div id="login-button" class="col-xs-1 text-center" tabindex="5"><span id='login'><a href='?oa=1'>login</a></span></div>
+
+          <div id="options-button" class="col-xs-1 text-center" tabindex="5">options</div>
+          <div id="about-button" class="col-xs-1 text-center" tabindex="6">about</div>
         </form>
       </div>
       <div class="row" id="main-top">
@@ -139,16 +171,16 @@ if (isset($_GET["r"]))
         <div class="col-xs-12">
           <h4>About Simple Reddit</h4>
           <p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
-          <p><strong>User survey:</strong> <a target="_blank" href="http://strawpoll.me/3631510">Which theme do you prefer?</a>
-          </p>
-          <p>This site is built with Javascript and uses the Reddit API. The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
-          <h4>Keyboard Shortcuts</h4>
-          <ul class="list-unstyled">
-          	<li><span class="spaced">H</span>Show/Hide Image</li>
-          	<li><span class="spaced">J</span>Previous Thread</li>
-          	<li><span class="spaced">K</span>Next Thread</li>
-          	<li><span class="spaced">L</span>Open URL</li>
-          </ul>          <h4>Browsing Tips</h4>
+          <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
+          <h4>Recent updates</h4>
+          <ul>
+            <li><strong>Jul 27 2015</strong> - You can now see your own front page, with your subscribed subs, by <a href='?oa=1'>logging in</a> with your Reddit account.</li>
+            <li><strong>Jul 26 2015</strong> - Added a refresh feature for the left panel.</li>
+            <li><strong>Mar 26 2015</strong> - Added refresh button for subreddits. Fixed bug that opened a new tab when setting the page title.</li>
+            <li><strong>Mar 23 2015</strong> - Added support for imgur galleries.</li>
+
+          </ul>
+          <h4>Browsing Tips</h4>
           <ul>
             <li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a>
             </li>
@@ -156,28 +188,24 @@ if (isset($_GET["r"]))
             </li>
             <li>See the options page for more features</li>
           </ul>
-          <h4>Recent updates</h4>
-          <ul>
-            <li>Mar 26 2015 - Added refresh button for subreddits.</li>
-            <li>Mar 23 2015 - Added support for imgur galleries.</li>
-            <li>Mar 22 2015 - Added imgur album thumbnails for posts linking to album pages</li>
-            <li>Mar 12 2015 - Bootstrap fixes for tablet</li>
+          <h4>Keyboard Shortcuts</h4>
+          <ul class="list-unstyled">
+            <li><span class="spaced">H</span>Show/Hide Image</li>
+            <li><span class="spaced">J</span>Previous Thread</li>
+            <li><span class="spaced">K</span>Next Thread</li>
+            <li><span class="spaced">L</span>Open URL</li>
           </ul>
           <h4>Future plans</h4>
           <ul>
-            <li>Allow users to login, view their subreddits, up/downvote, and comment</li>
+            <li>Allow users to up/downvote, and comment</li>
           </ul>
           <h4>Feedback</h4>
           <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
           <h4>Contributions</h4>
           <p>This site does not have and will never have ads. If you enjoy using SimpleReddit, please consider donating to the developer!</p>
-          <img id="btclogo" src="images/btc.png" />1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="E7JNNEU4WCBN2">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          </form>
+          <p>BTC: 1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k</p>
+          <p><a href='https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=LhxJJw1VmcoZ3DZkqnEnMpfml3tggl5SeYzyo5XK57oEfCs1kWdM9hLPo3O&dispatch=5885d80a13c0db1f8e263663d3faee8d5c97cbf3d75cb63effe5661cdf3adb6d'>Donate with PayPal</a>
+       
         </div>
       </div>
       <div class="row">
@@ -210,6 +238,7 @@ if (isset($_GET["r"]))
 </script>
 
 <script id="story-template" type="text/x-handlebars-template">
+
 	<div class="row">
 		<div class='story-title col-xs-12'>
 			<strong>{{{title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
@@ -231,12 +260,12 @@ if (isset($_GET["r"]))
  		<strong><span>{{subreddit}}</span></strong>
  	</div>
  </div>
- 
 </div>
 
 </script>
 
 <script id="comment-template" type="text/x-handlebars-template">
+
  	<div id="{{id}}" class='comment col-xs-12 '>
  		<div class="row">
  			<div class="col-xs-12 comment-header">
@@ -254,11 +283,11 @@ if (isset($_GET["r"]))
 
 <script>
 
-	// For local version
-	sub = ""; 
+sub = <?php echo json_encode($sub); ?>;
+logged_in = <?php echo($logged_in); ?>;
+defsubs = <?php echo('"' . $defsubs . '"'); ?>;
 
-	// For server version
-	sub = <?php echo json_encode($sub); ?>;
+
 
 </script>
 

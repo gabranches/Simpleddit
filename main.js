@@ -5,11 +5,13 @@ after = null;
 count = 0;
 limit = 47;
 sort = "hot";
-loadHtml = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
+spinner_html = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
+frontpage_html = "<a target='_blank' href='http://www.reddit.com/'>Front Page</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>";
 OP = "";
 id="";
 ResultLimit = 40;
 ht = $(window).height();
+options_mode = 0;
 
 $(function()
 {
@@ -18,6 +20,11 @@ $(function()
 	setTitle();
 	getPopularSubs();
 	buildHandlebars();
+
+	if (logged_in == 1){
+		sub = defsubs;
+	}
+
 	getItems(sub, sort);
 
 }); 
@@ -27,6 +34,11 @@ $(function()
 
 function init()
 {
+
+	if(logged_in == 1)
+	{
+		$("#login-button").html("<span id='logout'>logout</span>");
+	}
 	if(readCookie("theme") == "dark")
 	{
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
@@ -103,11 +115,12 @@ function ClearRightSide() // Clear all stories
 	$("#options").hide();
 	$("#story").html("");
 	$("#comments").html("");
+	options_mode = 0;
 }
 
 function getItems(sub, sort) // Get stories
 {
-	history.replaceState(undefined, undefined, "#"+sub);
+	//history.replaceState(undefined, undefined, "#"+sub);
 
 	$("#input-sub").val("");
 
@@ -116,7 +129,7 @@ function getItems(sub, sort) // Get stories
 	var afterUrl 	= (after == null) ? "" : "&after="+after;
 	var countUrl 	= (count == 0) ? "" : "&count="+count;
 
-	$("#subnameheader").html(loadHtml);
+	setSubHeader(spinner_html);
 
 	switch(sort) 
 	{	
@@ -154,8 +167,8 @@ function getItems(sub, sort) // Get stories
 			break;
 	}
 	
-	$("#subnameheader").html(loadHtml);
-	$("#getmore").html(loadHtml);
+	setSubHeader(spinner_html);
+	$("#getmore").html(spinner_html);
 	
 	var url = "https://www.reddit.com" + subUrl + "/" + sortType + "/.json?" + sortUrl + "&" + limitUrl + afterUrl + countUrl;
 
@@ -174,8 +187,12 @@ function getItems(sub, sort) // Get stories
 		
 		if(sub=="") // Change sub name header
 		{
-		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/'>Front Page</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>");
+		 	setSubHeader(frontpage_html);
 		} 
+		else if (sub == defsubs)
+		{
+			setSubHeader(frontpage_html);
+		}
 		else 
 		{
 		  $("#subnameheader").html("<a target='_blank' href='http://www.reddit.com/r/" + sub + "'>r/"+sub+"</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>");
@@ -193,7 +210,8 @@ function getItems(sub, sort) // Get stories
 
 }
 
-function getPopularSubs()
+
+function getPopularSubs() // Get top 100 subreddits
 {
 	$.getJSON("https://www.reddit.com/subreddits/popular/.json?limit=100", function(data)
 	{
@@ -204,7 +222,8 @@ function getPopularSubs()
 	});
 }
 
-function listItems(data,sub)
+
+function listItems(data,sub) // Append stories to the left side panel
 {
 	$.each(data.data.children,function(index,element)
 	{ 
@@ -221,13 +240,14 @@ function listItems(data,sub)
 	$("#main").append("<div class='row'><div id='getmore' class='col-xs-12 text-center'>Load more...</div></div>");
 }
 
-function getStory(sub,id)
+
+function getStory(sub,id) // Get story details
 {
 
 	$("#main > .entries").attr("class","row entries");
 	$("div[data-id='"+id+"']").attr("class","row entries selected"); // Highlight entry
 
-	history.replaceState(undefined, undefined, "#"+sub + "-" + id);
+	//history.replaceState(undefined, undefined, "#"+sub + "-" + id);
 
 	if (sub == "")
 	{
@@ -238,15 +258,13 @@ function getStory(sub,id)
 		var url = "r/"+sub+"/comments/"+id;
 	}
 
-
-
-	$("#storyheader").html(loadHtml);
+	setStoryHeader(spinner_html);
 
 	var requestUrl = "https://www.reddit.com/"+url+"/.json";
 
 	$.getJSON(requestUrl, function(data)
 	{
-		$("#storyheader").html("<a target='_blank' href='http://www.reddit.com/"+url+"'>"+url+"</a>");
+		setStoryHeader("<a target='_blank' href='http://www.reddit.com/"+url+"'>"+url+"</a>");
 
 		$.each(data,function(index,element)
 		{ 
@@ -278,13 +296,23 @@ function getStory(sub,id)
 	});
 }
 
+function setSubHeader(text)
+{
+	$("#subnameheader").html(text);
+}
+
+function setStoryHeader(text)
+{
+	$("#storyheader").html(text);
+}
+
 function printTitle(data)
 {
 	var html = storyTemplate(data.data);
 	storyPlaceHolder.append(html); 
 }
 
-function printComment(data, numNest, lastComment) // Recursive function to print comments
+function printComment(data, numNest, lastComment)  // Recursive function to print comments
 {
 	data = data.data;
 
@@ -329,11 +357,9 @@ function getYoutubeId(url)  // Returns youtube data-id
 	}
 }
 
-function hashLocation()
+function hashLocation()  // Hash sub and story navigation
 {
 	var hash = window.location.hash;
-
-	//check if a hash is present
 	if(hash!="")
 	{
 		var i = hash.search("-");
@@ -343,7 +369,6 @@ function hashLocation()
 			ClearRightSide();
 			id = hash.slice(i+1);
 			getStory(sub, id);
-
 		}
 		else
 		{

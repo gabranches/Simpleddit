@@ -90,7 +90,7 @@ input[type=checkbox] {
 	margin-top:6px;
 }
 
-#logo, #options-button, #about-button {
+#logo, #options-button, #about-button, #login-button {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
 	margin-top: 5px;
@@ -207,6 +207,10 @@ input[type=checkbox] {
 }
 
 /* COMMENTS */
+
+#about, #options{
+	margin-right: 20px;
+}
 
 #comments {
 	margin-left: -15px;

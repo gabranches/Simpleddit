@@ -39,57 +39,67 @@ $(document).on("click", ".entries a", function(event) // Go to story (anchor han
 
 $(document).keyup(function(e) {   // Keyboard navigation
 
-	if(e.which==75 && !($("#input-sub").is(':focus')))  // Next story
-	{
-    	var currentStory = $(".entries.selected");
-    	if (currentStory.attr("data-id") == undefined) // If no current story is set
-    	{
-    		var nextStoryId = $(".entries:first").attr("data-id");  // Use first story
-    		var nextStorySub = $(".entries:first").attr("data-sub");
-    	}
-    	else
-    	{
-	        var nextStoryId = currentStory.next().attr("data-id"); // Select next story
-	        var nextStorySub = currentStory.next().attr("data-sub");
-    	}
-        if (nextStoryId !== undefined)
-        {
-	        ClearRightSide();
-	        getStory(nextStorySub,nextStoryId);
-        }
-    }
-    else if (e.which==74 && !($("#input-sub").is(':focus')))  // Previous story
-    {
-    	var currentStory = $(".entries.selected");
-        var prevStoryId = currentStory.prev().attr("data-id");  // Select previous story
-        var prevStorySub = currentStory.prev().attr("data-sub");
-	    if (prevStoryId !== undefined)
-        {
-	        ClearRightSide();
-	        getStory(prevStorySub,prevStoryId);
-        }
-    }
-    else if (e.which==72 && !($("#input-sub").is(':focus'))) // Hide or show image
-    {
-    	$('#storyimage').toggle();
-    	$('#albumthumbs').toggle();
-		$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
-    }
-    else if (e.which==76 && !($("#input-sub").is(':focus'))) // Hide or show image
-    {
-    	var goUrl = $(".story-url a").attr("href");
-    	window.open(goUrl,'_blank');
-    }
+	if (options_mode == 0){
+		
+		if(e.which==75 && !($("#input-sub").is(':focus')))  // Next story
+		{
+	    	var currentStory = $(".entries.selected");
+	    	if (currentStory.attr("data-id") == undefined) // If no current story is set
+	    	{
+	    		var nextStoryId = $(".entries:first").attr("data-id");  // Use first story
+	    		var nextStorySub = $(".entries:first").attr("data-sub");
+	    	}
+	    	else
+	    	{
+		        var nextStoryId = currentStory.next().attr("data-id"); // Select next story
+		        var nextStorySub = currentStory.next().attr("data-sub");
+	    	}
+	        if (nextStoryId !== undefined)
+	        {
+		        ClearRightSide();
+		        getStory(nextStorySub,nextStoryId);
+	        }
+	    }
+	    else if (e.which==74 && !($("#input-sub").is(':focus')))  // Previous story
+	    {
+	    	var currentStory = $(".entries.selected");
+	        var prevStoryId = currentStory.prev().attr("data-id");  // Select previous story
+	        var prevStorySub = currentStory.prev().attr("data-sub");
+		    if (prevStoryId !== undefined)
+	        {
+		        ClearRightSide();
+		        getStory(prevStorySub,prevStoryId);
+	        }
+	    }
+	    else if (e.which==72 && !($("#input-sub").is(':focus'))) // Hide or show image
+	    {
+	    	$('#storyimage').toggle();
+	    	$('#albumthumbs').toggle();
+			$('#showimage').text() == " Show Image" ? $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Hide Image") : $('#showimage').html("<span class='glyphicon glyphicon-picture'></span> Show Image");
+	    }
+	    else if (e.which==76 && !($("#input-sub").is(':focus'))) // Hide or show image
+	    {
+	    	var goUrl = $(".story-url a").attr("href");
+	    	window.open(goUrl,'_blank');
+	    }
+	}
+
     
 
 });
 
 
+$(document).on("click", "#logout", function() // Logout
+{ 	
+	eraseCookie("reddit_token");
+	window.location.href = "http://localhost/simplereddit";
+});
+
 $(document).on("click", "#options-button", function() // Show options
 { 	
 	ClearRightSide();
-
 	$("#options").show();
+	
 });
 
 $(document).on("click", "#about-button", function() // Show about
@@ -209,6 +219,15 @@ $(document).on("keyup", "#input-title", function() // Change page title
 	}
 });
 
+$(document).on("focus", "#input-title", function() // Change page title, change to options_mode = 1 so that "L" doesn't open a new page
+{ 	
+	options_mode = 1;
+});
+
+
+
+
+
 $(document).on("click", "#showimage", function() // Show story image
 { 	
 	$('#storyimage').toggle();
@@ -233,6 +252,12 @@ $("#select-sub").change(function() // Dropdown submit
 	sub = $("#select-sub").val();
 	ClearLeftSide();
 	$("#input-sub").val(sub);
+
+	if (sub == "" && logged_in == 1)
+	{
+		sub = defsubs;
+	}
+
 	getItems(sub, sort);
 });
 
