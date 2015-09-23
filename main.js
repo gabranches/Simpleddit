@@ -24,9 +24,7 @@ $(function()
 	if (logged_in == 1){
 		sub = defsubs;
 	}
-
 	getItems(sub, sort);
-
 }); 
 
 
@@ -397,52 +395,3 @@ function isAnimated(url) // Returns true if media in not just an image
     if (url.indexOf("gfycat") != -1) return true;
     return false;
 }
-
-function searchReddits(query)
-{
-	query = query.toLowerCase();
-	if($("#input-sub").val() == "")
-	{
-		$("#results").hide();
-	}
-	else
-	{
-		$("#results").show();
-	}
-
-	var html = '';
-	if(query.length > 0)
-	{
-		var re = new RegExp('[^:]*'+query+'[^:]*','g');
-		matches = getResults(re);
-		if(matches != null && matches.length > 0)
-		{
-			for(var i = 0; i < matches.length; i++)
-			{
-				var name = matches[i];
-				var start = name.search(query);
-				var displayName = name.substring(0,start) + '<span class="match">' + name.substring(start,start + query.length) + '</span>' + name.substring(start + query.length);
-				html += '<div class="result" num="'+i+'" reddit="'+name+'">' + displayName + '</div>';
-				if(i == ResultLimit - 1)
-					break;
-			}			
-		}
-		
-		if(html.length == 0)
-		{
-			html = '<div class="no_results">No results</div>';
-		}
-	}
-		
-	$('#results').html(html);
-}
-
-function getResults(re)
-{
-	var matches = RedditSearch.match(re);
-	var matches2 = RedditSearch2.match(re);
-	var results = [];
-	if (matches != null) results = results.concat(matches);
-	if (matches2 != null) results = results.concat(matches2);
-	return results;
-} 

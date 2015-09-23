@@ -8,6 +8,16 @@ $("#form-sub").submit(function(e) // Subreddit form submit
 	getItems(sub, sort);
 });
 
+$('#input-sub').typeahead( // Autofill
+{
+	onSelect: function(item) 
+	{
+		ClearLeftSide();
+        getItems(item.value, sort);
+    },
+    ajax: 'lib/suggestions.js'
+});
+
 $(document).on("click", ".story-sublink span", function() // Go to subreddit on click
 { 	
 	sub = $(this).html();
@@ -83,16 +93,12 @@ $(document).keyup(function(e) {   // Keyboard navigation
 	    	window.open(goUrl,'_blank');
 	    }
 	}
-
-    
-
 });
-
 
 $(document).on("click", "#logout", function() // Logout
 { 	
 	eraseCookie("reddit_token");
-	window.location.href = "http://simplereddit.net";
+	window.location.href = "http://simpleddit.com";
 });
 
 $(document).on("click", "#options-button", function() // Show options
@@ -124,7 +130,6 @@ $(document).on("click", ".nested-toggle", function() // Toggle nested thread com
 	{
 		$(this).attr("class" ,"nested-toggle glyphicon glyphicon-minus");
 	}
-
 });
 
 $(document).on('click', '.glyphicon-nsfw', function(){
@@ -143,7 +148,6 @@ $(document).on('click', '.glyphicon-nsfw', function(){
 	getItems(sub, sort);
 });
 
-
 $(document).on("change", "#hide-images", function() // Auto-hide images toggle
 { 	
 	readCookie("showImages") == "1" ? createCookie("showImages", "0", 30) : createCookie("showImages", "1", 30);
@@ -156,13 +160,15 @@ $(document).on("change", '#hide-logo', function(){
 		createCookie("showLogo", "0", 30);
 		$("#logo").hide();
 		$("#logo-filler").show()
-	}else
+	}
+	else
 	{
 		createCookie("showLogo", "1", 30);
 		$("#logo").show();
 		$("#logo-filler").hide();
 	}
 });
+
 $(document).on("change", '#hide-nsfw', function() {
 	var nsfw = readCookie("nsfw");
 	if(nsfw=="off")
@@ -210,7 +216,7 @@ $(document).on("keyup", "#input-title", function() // Change page title
 	if (newTitle == "")
 	{
 		eraseCookie("title");
-		document.title = "simplereddit.net";
+		document.title = "simpleddit.com";
 	}
 	else
 	{
@@ -223,10 +229,6 @@ $(document).on("focus", "#input-title", function() // Change page title, change 
 { 	
 	options_mode = 1;
 });
-
-
-
-
 
 $(document).on("click", "#showimage", function() // Show story image
 { 	
@@ -278,7 +280,6 @@ $("#select-theme").change(function() // Theme select (options)
 		$("#theme-select").attr("data-theme", "");
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
 		createCookie("theme", "dark", 30);
-		
 	}
 });
 
@@ -311,73 +312,4 @@ $(window).resize(function(){
 $(document).on("click", "", function(){
 	$("#results").empty();
 	$("#results").hide();
-});
-
-$('#input-sub').keyup(function(e) {
-	if((e.keyCode >= 37 && e.keyCode <= 40)
-	   || e.keyCode == 13)
-	{
-		// no arrow keys
-		return;
-	}
-	var query = $(this).val();
-	searchReddits($(this).val());
-	
-}).keydown(function (e) {
-	if(e.keyCode == 40 || e.keyCode == 38)
-	{	
-		// Up/down keys
-		if($('#results .result').length)
-		{
-			var delta = (e.keyCode == 40 ? 1 : -1);
-			// down arrow
-			var selected = $('#results .result.selected');
-
-			if(selected.length > 0)
-			{
-				var num = parseInt(selected.attr('num'));
-				num  = num + delta;
-				var next = $('#results .result[num='+num+']');
-				if(next.length > 0)
-				{
-					selected.removeClass('selected');
-					next.addClass('selected');
-				}
-				else if(delta < 0)
-				{
-					selected.removeClass('selected');
-				}
-				
-			}
-			else
-			{
-				// select first result
-				$('#results .result').first().addClass('selected');
-			}
-		}
-	}
-	else if(e.keyCode == 13)
-	{
-		// Enter
-		var selected = $('#results .result.selected');
-		if(selected.length > 0)
-		{
-			var name = selected.attr('reddit');
-			$("#input-sub").val(name);
-		}
-		else
-		{
-			// select first result
-			$('#results .result').first().addClass('selected');
-		}
-	}
-});
-
-$(document).on("click", ".result", function(){
-	ClearLeftSide();
-	var s = $(this)[0].innerHTML;
-	s = s.replace("<span class=\"match\">", "");
-	s = s.replace("</span>", "");
-	sub = s;
-	getItems(s, sort);
 });

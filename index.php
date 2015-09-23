@@ -1,48 +1,37 @@
 <?php 
 
-
-if(isset($_GET['oa']))
-{
-  if ($_GET['oa']==1)
-  {
-    require('reddit-php-sdk/reddit.php');
-    $reddit = new reddit();
-  }
+if(isset($_GET['oa'])) {
+    if ($_GET['oa']==1) {
+        require('reddit-php-sdk/reddit.php');
+        $reddit = new reddit();
+    }
 }
 
 $sub = "";
 $logged_in = 0;
 
-if (isset($_GET["r"]))
-{	
-	$sub = $_GET["r"];	
+if (isset($_GET["r"])) {	
+    $sub = $_GET["r"];	
 }
 
-if (isset($reddit))   // Check if user logged in through oauth
-{
-  
-  $r = $reddit->getSubscriptions();
-  $logged_in = 1;
-  $defsubs = "";
-  foreach($r->data->children as $key => $value)
-  {
-    if($defsubs != "")
-    {
-      $defsubs .= "+";
+if (isset($reddit)) {  // Check if user logged in through oauth
+    $r = $reddit->getSubscriptions();
+    $logged_in = 1;
+    $defsubs = "";
+
+    foreach($r->data->children as $key => $value) {
+        if($defsubs != "") {
+            $defsubs .= "+";
+        }
+        $defsubs .= ($value->data->display_name);
     }
-    $defsubs .= ($value->data->display_name);
-  }
-  if ($defsubs == "")
-  {
-    $logged_in = 0;
-  }
-}
-else
-{
-  $defsubs = "";
-}
+    if ($defsubs == "") {// Logout if there is no default sub list
+        $logged_in = 0;
+    }
 
-
+} else {
+    $defsubs = "";
+}
 
 ?>
 
@@ -50,10 +39,10 @@ else
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Simple Reddit</title>
+  <title>simpleddit</title>
   <link id="favicon" rel="shortcut icon" type="image/png" href="" />
-  <meta name="description" content="Simple Reddit is a simple and efficient way of browsing reddit using a two-column layout.">
-  <meta name="keywords" content="simplereddit,simple,reddit,work,discreet,efficient,columns">
+  <meta name="description" content="simpleddit is a simple and efficient way of browsing reddit using a two-column layout.">
+  <meta name="keywords" content="simpleddit,simple,reddit,work,discreet,efficient,columns">
   <link rel="image_src" href="images/logo.png">
   <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
   <!-- STYLESHEETS -->
@@ -64,6 +53,7 @@ else
   <script src="lib/handlebars-v2.0.0.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="lib/bootstrap-typeahead.js"></script>
 </head>
 <body>
   <!-- NAVIGATION -->
@@ -72,7 +62,7 @@ else
       <div id="formrow" class="row">
         <form id="form-sub" role="form">
           <div id="logo" class="hidden-xs col-sm-2 text-center" tabindex="1">
-            <a href="/">Simple Reddit</a>
+            <a href="/">simpleddit</a>
           </div>
           <div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
           </div>
@@ -103,19 +93,14 @@ else
               <option value="all">top all</option>
             </select>
           </div>
-
-
            <div id="login-button" class="col-xs-1 text-center" tabindex="5"><span id='login'><a href='?oa=1'>login</a></span></div>
-
           <div id="options-button" class="col-xs-1 text-center" tabindex="5">options</div>
           <div id="about-button" class="col-xs-1 text-center" tabindex="6">about</div>
         </form>
       </div>
       <div class="row" id="main-top">
         <div class="col-xs-6">
-
           <div id="subnameheader" class="col-xs-12 text-center"></div>
-
         </div>
         <div class="col-xs-6">
           <div id="storyheader" class="col-xs-12 text-center"></div>
@@ -137,10 +122,9 @@ else
         <div class="col-xs-6">
           <div class="form-group">
             <div id="options-header">
-            	<h4>Options</h4>
+            	<h4>options</h4>
             	<small>Will be saved in your browser cookies for 30 days</small>
             </div>
-            
           </div>
           <div class="form-group">
           	<input type="checkbox" id="hide-images" checked>
@@ -174,22 +158,14 @@ else
       </div>
       <div id="about" class="row">
         <div class="col-xs-12">
-          <h4>About Simple Reddit</h4>
-          <p>SimpleReddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">Reddit</a>.</p>
-          <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simplereddit">Github page</a>.</p>
-          <h4>Recent updates</h4>
-          <ul>
-            <li><strong>Jul 27 2015</strong> - You can now see your own front page, with your subscribed subs, by <a href='?oa=1'>logging in</a> with your Reddit account.</li>
-            <li><strong>Jul 26 2015</strong> - Added a refresh feature for the left panel.</li>
-            <li><strong>Mar 26 2015</strong> - Added refresh button for subreddits. Fixed bug that opened a new tab when setting the page title.</li>
-            <li><strong>Mar 23 2015</strong> - Added support for imgur galleries.</li>
-
-          </ul>
+          <h4>About Simpleddit</h4>
+          <p>Simpleddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">reddit</a>.</p>
+          <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simpleddit">Github page</a>.</p>
           <h4>Browsing Tips</h4>
           <ul>
-            <li>Link directly to a subreddit with simplereddit.net/{sub}, simplereddit.net/r/{sub}, or simplereddit.net/#{sub} Example: <a href="pics">simplereddit.net/pics</a>
+            <li>Link directly to a subreddit with simpleddit.com/{sub}, simpleddit.com/r/{sub} Example: <a href="pics">simpleddit.com/pics</a>
             </li>
-            <li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit" You can also link directly to multiple subs like this: <a href="http://simplereddit.net/#pics+funny+askreddit">simplereddit.net/#pics+funny+askreddit</a>
+            <li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"
             </li>
             <li>See the options page for more features</li>
           </ul>
@@ -200,17 +176,8 @@ else
             <li><span class="spaced">K</span>Next Thread</li>
             <li><span class="spaced">L</span>Open URL</li>
           </ul>
-          <h4>Future plans</h4>
-          <ul>
-            <li>Allow users to up/downvote, and comment</li>
-          </ul>
           <h4>Feedback</h4>
-          <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
-          <h4>Contributions</h4>
-          <p>This site does not have and will never have ads. If you enjoy using SimpleReddit, please consider donating to the developer!</p>
-          <p>BTC: 1KdtdaA9NXu6Pgf7cW3iCkiw7yWos9hz5k</p>
-          <p><a href='https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=LhxJJw1VmcoZ3DZkqnEnMpfml3tggl5SeYzyo5XK57oEfCs1kWdM9hLPo3O&dispatch=5885d80a13c0db1f8e263663d3faee8d5c97cbf3d75cb63effe5661cdf3adb6d'>Donate with PayPal</a>
-       
+          <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>       
         </div>
       </div>
       <div class="row">

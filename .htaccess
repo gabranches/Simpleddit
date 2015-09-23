@@ -7,5 +7,5 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^r/(.*)$ http://www.simplereddit.net/$1 [L,R=301]
+RewriteRule ^r/(.*)$ http://www.simpleddit.com/$1 [L,R=301]
 RewriteRule ^([^/.]+)/?$ index.php?r=$1 [L,NC,QSA]
