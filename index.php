@@ -39,7 +39,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>simpleddit</title>
+  <title>Simpleddit</title>
   <link id="favicon" rel="shortcut icon" type="image/png" href="" />
   <meta name="description" content="simpleddit is a simple and efficient way of browsing reddit using a two-column layout.">
   <meta name="keywords" content="simpleddit,simple,reddit,work,discreet,efficient,columns">
@@ -62,7 +62,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
       <div id="formrow" class="row">
         <form id="form-sub" role="form">
           <div id="logo" class="hidden-xs col-sm-2 text-center" tabindex="1">
-            <a href="/">simpleddit</a>
+            <a href="/">Simpleddit</a>
           </div>
           <div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
           </div>
@@ -268,8 +268,6 @@ defsubs = <?php echo('"' . $defsubs . '"'); ?>;
 <script src="handlebars_helpers.js"></script>
 
 <script src="lib/cookies.js"></script>
-<script src="lib/subreddits.js"></script>
-<script src="lib/subreddits2.js"></script>
 
 <!-- Google Analytics -->
 

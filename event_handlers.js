@@ -270,7 +270,7 @@ $("#select-theme").change(function() // Theme select (options)
 	if(!theme.length) // If it's the light theme
 	{
 		$('#theme-style').remove();
-		eraseCookie("theme");
+		createCookie("theme", "light", 30);
 		$("#theme-select").html("Dark Theme");
 		$("#theme-select").attr("data-theme", "dark");
 	} 
