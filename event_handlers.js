@@ -51,7 +51,7 @@ $(document).keyup(function(e) {   // Keyboard navigation
 
 	if (options_mode == 0){
 		
-		if(e.which==75 && !($("#input-sub").is(':focus')))  // Next story
+		if(e.which==74 && !($("#input-sub").is(':focus')))  // Next story
 		{
 	    	var currentStory = $(".entries.selected");
 	    	if (currentStory.attr("data-id") == undefined) // If no current story is set
@@ -63,6 +63,8 @@ $(document).keyup(function(e) {   // Keyboard navigation
 	    	{
 		        var nextStoryId = currentStory.next().attr("data-id"); // Select next story
 		        var nextStorySub = currentStory.next().attr("data-sub");
+		      	currentStory.next().get(0).scrollIntoView();
+
 	    	}
 	        if (nextStoryId !== undefined)
 	        {
@@ -70,11 +72,12 @@ $(document).keyup(function(e) {   // Keyboard navigation
 		        getStory(nextStorySub,nextStoryId);
 	        }
 	    }
-	    else if (e.which==74 && !($("#input-sub").is(':focus')))  // Previous story
+	    else if (e.which==75 && !($("#input-sub").is(':focus')))  // Previous story
 	    {
 	    	var currentStory = $(".entries.selected");
 	        var prevStoryId = currentStory.prev().attr("data-id");  // Select previous story
 	        var prevStorySub = currentStory.prev().attr("data-sub");
+	        currentStory.prev().get(0).scrollIntoView();
 		    if (prevStoryId !== undefined)
 	        {
 		        ClearRightSide();
