@@ -172,8 +172,8 @@ if (isset($reddit)) {  // Check if user logged in through oauth
           <h4>Keyboard Shortcuts</h4>
           <ul class="list-unstyled">
             <li><span class="spaced">H</span>Show/Hide Image</li>
-            <li><span class="spaced">J</span>Previous Thread</li>
-            <li><span class="spaced">K</span>Next Thread</li>
+            <li><span class="spaced">J</span>Next Thread</li>
+            <li><span class="spaced">K</span>Previous Thread</li>
             <li><span class="spaced">L</span>Open URL</li>
           </ul>
           <h4>Feedback</h4>
