@@ -37,12 +37,11 @@ function init()
 	{
 		$("#login-button").html("<span id='logout'>logout</span>");
 	}
+
 	if(readCookie("theme") == "dark")
 	{
 		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
 		$("#select-theme>option:eq(1)").attr("selected", true);
-		$("#theme-select").html("Light Theme");
-		$("#theme-select").attr("data-theme", "");
 	}
 
 	if(readCookie("showLogo") == "0")
@@ -70,9 +69,17 @@ function init()
 	{
 		$("#input-title").val(readCookie("title"));
 	}
+	
 	if(readCookie("gif"))
 	{
 		document.getElementById("hide-gif").checked = false;
+	}
+
+	if(readCookie("column"))
+	{
+		var colSize = readCookie("column");
+		$("#column-size option[value=" + colSize + "]").attr("selected", "selected");
+		setColumnWidth(colSize);
 	}
 }
 
@@ -395,4 +402,12 @@ function isAnimated(url) // Returns true if media in not just an image
     }
     if (url.indexOf("gfycat") != -1) return true;
     return false;
+}
+
+function setColumnWidth(size) {
+	$("#leftcolumn").attr("class", "col-xs-" + size);
+	$("#subnameheader").parent().attr("class", "text-center col-xs-" + size);
+
+	$("#rightcolumn").attr("class", "scrollbar-outer col-xs-" + (12 - size));
+	$("#storyheader").parent().attr("class", "text-center col-xs-" + (12 - size));
 }

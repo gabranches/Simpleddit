@@ -144,13 +144,20 @@ if (isset($reddit)) {  // Check if user logged in through oauth
             <small>(uncheck if your browser lags when viewing gifs or videos)</small>
           </div>
           <br />
+          <label>Site theme:</label>
           <select id="select-theme" class="form-control">
               <option value="">Light Theme</option>
               <option value="dark">Dark Theme</option>
-            </select>
-          <div class="form-group">
-            <input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
-          </div>
+          </select><br />
+          <label>Left column size (Large is default):</label>
+          <select id="column-size" class="form-control">
+              <option value=6>Large</option>
+              <option value=5>Medium</option>
+              <option value=4>Small</option>
+              <option value=3>Tiny</option>
+          </select><br />
+          <label>Page title:</label>
+          <input type="input" class="form-control" id="input-title" placeholder="Change the title of the page">
         </div>
         <div class="col-xs-12">
           <p>Would you like to see more functionality added here? Please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>

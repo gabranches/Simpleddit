@@ -286,26 +286,12 @@ $("#select-theme").change(function() // Theme select (options)
 	}
 });
 
-$("#theme-select").click(function() // Theme select (nav bar)
+$("#column-size").change(function() // Theme select (options)
 {
-	theme = $('#theme-select').attr("data-theme");
+	size = $('#column-size').val();
+	setColumnWidth(size);
+	createCookie("column", size, 30);
 
-	if(theme == "") // If the light theme is selected
-	{
-		$('#theme-style').remove();
-		eraseCookie("theme");
-		$("#theme-select").html("Dark Theme");
-		$("#theme-select").attr("data-theme", "dark");
-		$("#select-theme>option:eq(0)").attr("selected", true);
-	} 
-	else
-	{
-		$('<link/>', {rel: 'stylesheet', href: 'themes/dark.css', id: 'theme-style'}).appendTo('head');
-		createCookie("theme", "dark", 30);
-		$("#theme-select").html("Light Theme");
-		$("#theme-select").attr("data-theme", "");
-		$("#select-theme>option:eq(1)").attr("selected", true);
-	}
 });
 
 $(window).resize(function(){
