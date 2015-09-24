@@ -167,6 +167,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
             </li>
             <li>You can view multiple subreddits at once by using "+" in the Enter Subreddit box. Example: "pics+funny+askreddit"
             </li>
+            <li>Login with reddit to see your subscribed subreddits</li>
             <li>See the options page for more features</li>
           </ul>
           <h4>Keyboard Shortcuts</h4>
