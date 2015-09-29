@@ -13,7 +13,8 @@ $('#input-sub').typeahead( // Autofill
 	onSelect: function(item) 
 	{
 		ClearLeftSide();
-        getItems(item.value, sort);
+		sub = item.value
+        getItems(sub, sort);
     },
     ajax: 'lib/suggestions.js'
 });
