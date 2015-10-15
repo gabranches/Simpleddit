@@ -10,8 +10,8 @@ if(isset($_GET['oa'])) {
 $sub = "";
 $logged_in = 0;
 
-if (isset($_GET["r"])) {	
-    $sub = $_GET["r"];	
+if (isset($_GET["r"])) {  
+    $sub = $_GET["r"];  
 }
 
 if (isset($reddit)) {  // Check if user logged in through oauth
@@ -108,7 +108,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
       </div>
     </div>
   </nav>
-	<!-- MAIN CONTAINER -->
+  <!-- MAIN CONTAINER -->
   <div class="container-fixed">
     <!-- LEFT COLUMN -->
     <div id="leftcolumn" class="col-xs-6" tabindex="7">
@@ -122,20 +122,20 @@ if (isset($reddit)) {  // Check if user logged in through oauth
         <div class="col-xs-6">
           <div class="form-group">
             <div id="options-header">
-            	<h4>options</h4>
-            	<small>Will be saved in your browser cookies for 30 days</small>
+              <h4>options</h4>
+              <small>Will be saved in your browser cookies for 30 days</small>
             </div>
           </div>
           <div class="form-group">
-          	<input type="checkbox" id="hide-images" checked>
+            <input type="checkbox" id="hide-images" checked>
             <label for="hide-images">Auto-hide thread images</label>
           </div>
           <div class="form-group">
-          	<input type="checkbox" id="hide-logo" checked>
+            <input type="checkbox" id="hide-logo" checked>
             <label for="hide-logo">Hide the site logo</label>
           </div>
           <div class="form-group">
-          	<input type="checkbox" id="hide-nsfw" checked>
+            <input type="checkbox" id="hide-nsfw" checked>
             <label for="hide-nsfw">Hide NSFW threads</label>
           </div>
           <div class="form-group">
@@ -203,8 +203,8 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 
 <script id="entry-template" type="text/x-handlebars-template">
 
-	<div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
-		<div class="col-xs-3 col-md-2 entry-info text-center">
+  <div data-id="{{id}}" data-sub="{{subreddit}}" class="row entries">
+    <div class="col-xs-3 col-md-2 entry-info text-center">
       <div class="row">
        <div class="col-xs-12 text-right score">{{score}} <span class="glyphicon glyphicon-arrow-up"></div>
       </div>
@@ -212,33 +212,33 @@ if (isset($reddit)) {  // Check if user logged in through oauth
        <div class="col-xs-12"> {{num_comments}} <span class="glyphicon glyphicon-comment"></div>
       </div>
     </div>
-		<div class="col-xs-9 col-md-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
-	</div>
+    <div class="col-xs-9 col-md-10 title"><a>{{{title}}}</a> <small>{{{nsfwHelper over_18}}} {{{stickyHelper stickied}}} {{subHelper this}}</small> </div>
+  </div>
 
 </script>
 
 <script id="story-template" type="text/x-handlebars-template">
 
-	<div class="row">
-		<div class='story-title col-xs-12'>
-			<strong>{{{title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
- 	</div>
+  <div class="row">
+    <div class='story-title col-xs-12'>
+      <strong>{{{title}}}</strong><br /><small>{{{authorHelper author}}} - {{timeHelper created_utc}}</small>
+   </div>
 </div>
 <div class="row">
-	<div class='story-selftext col-xs-12'>
-		{{{htmlHelper selftext_html}}}
-		{{{picHelper this}}}
-	</div>
+  <div class='story-selftext col-xs-12'>
+    {{{htmlHelper selftext_html}}}
+    {{{picHelper this}}}
+  </div>
 </div>
 <div class="row">
- 	<div class='story-url col-xs-12'>
- 		<a href="{{url}}" target="_blank">Link <small>(Source: {{domain}})<small></a>
- 	</div>
+   <div class='story-url col-xs-12'>
+     <a href="{{url}}" target="_blank">Link <small>(Source: {{domain}})<small></a>
+   </div>
  </div>
  <div class="row">
- 	<div class='story-sublink col-xs-12'>
- 		<strong><span>{{subreddit}}</span></strong>
- 	</div>
+   <div class='story-sublink col-xs-12'>
+     <strong><span>{{subreddit}}</span></strong>
+   </div>
  </div>
 </div>
 
@@ -246,18 +246,18 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 
 <script id="comment-template" type="text/x-handlebars-template">
 
- 	<div id="{{id}}" class='comment col-xs-12 '>
- 		<div class="row">
- 			<div class="col-xs-12 comment-header">
- 				<span class='nested-toggle glyphicon glyphicon-minus'></span> <small> {{ptsHelper ups}}</small>  <small>{{{authorHelper author}}}</small>   <small>{{timeHelper created_utc}}</small>
- 			</div>
- 		</div>
- 		<div class="row">
- 			<div class="col-xs-12 comment-body">
-	 			{{{htmlHelper body_html}}}
-	 		</div>
-	 	</div>
- 	</div>
+   <div id="{{id}}" class='comment col-xs-12 '>
+     <div class="row">
+       <div class="col-xs-12 comment-header">
+         <span class='nested-toggle glyphicon glyphicon-minus'></span> <small> {{ptsHelper ups}}</small>  <small>{{{authorHelper author}}}</small>   <small>{{timeHelper created_utc}}</small>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-xs-12 comment-body">
+         {{{htmlHelper body_html}}}
+       </div>
+     </div>
+   </div>
 
 </script>
 
