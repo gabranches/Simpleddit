@@ -4,12 +4,12 @@
 }
 
 html {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	height: 100%;
-	padding-top: 91px;
+    height: 100%;
+    padding-top: 91px;
 }
 
 div {
@@ -17,299 +17,299 @@ div {
 }
 
 a:active {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 h1 {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 h4 {
-	font-size: 16px;
-	font-weight: bold;
-	font-family: 'Open Sans', sans-serif;
-	margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 20px;
 }
 
 blockquote  {
-	padding: 10px 20px;
-	margin: 5px 0 10px;
-	font-size: 12px;
-	border-left: 3px solid rgba(66, 139, 202, 0.32);
-	background-color: rgba(128, 128, 128, 0.03);
+    padding: 10px 20px;
+    margin: 5px 0 10px;
+    font-size: 12px;
+    border-left: 3px solid rgba(66, 139, 202, 0.32);
+    background-color: rgba(128, 128, 128, 0.03);
 }
 
 input[type=checkbox] {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 /* STRUCTURAL */
 
 .container-fixed {
-	height: 100%;
+    height: 100%;
 }
 
 #leftcolumn, #rightcolumn {
-	height: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
 #leftcolumn {
-	border-right: 1px solid #eee;
+    border-right: 1px solid #eee;
 }
 
 #rightcolumn {
-	padding-right: 0;
+    padding-right: 0;
 }
 
 /* OTHER */
 
 #btclogo {
-	width: 40px;
-	margin: 15px;
+    width: 40px;
+    margin: 15px;
 }
 
 /* NAVIGATION BAR */
 
 #logo img {
-	margin-top: -5px;
+    margin-top: -5px;
 }
 
 #formrow {
-	padding: 10px;
+    padding: 10px;
 }
 
 #theme-select {
-	cursor:pointer;
-	margin-top:6px;
+    cursor:pointer;
+    margin-top:6px;
 }
 
 #logo, #options-button, #about-button, #login-button {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	margin-top: 5px;
-	cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 #main-top {
-	background-color: rgb(250, 244, 244);
-	padding: 8px 0;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-	font-size: 14px;
+    background-color: rgb(250, 244, 244);
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
 }
 
 #options div {
-	margin: 10px 0;
+    margin: 10px 0;
 }
 
 #topnav {
-	background-color: white;
+    background-color: white;
 }
 
 /* ENTRIES */
 
 .entries {
-	background-color: rgba(250, 244, 244, 0.19);
-	padding: 8px 0;
-	border-top: 1px solid #eee;
-	cursor: pointer;
+    background-color: rgba(250, 244, 244, 0.19);
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    cursor: pointer;
 }
 
 #getmore {
-	display: none;
-	cursor: pointer;
-	background-color: rgb(250, 244, 244);
-	padding: 8px 0;
-	border-top: 1px solid #eee;
+    display: none;
+    cursor: pointer;
+    background-color: rgb(250, 244, 244);
+    padding: 8px 0;
+    border-top: 1px solid #eee;
 }
 
 #loadgif {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 
 #showimage {
-	cursor: pointer;
-	color: #265379;
+    cursor: pointer;
+    color: #265379;
 }
 
 #story {
-	border-left: 1px solid #eee;
+    border-left: 1px solid #eee;
 }
 
 #story .row {
-	padding: 10px 0;
+    padding: 10px 0;
 }
 
 #storyimage {
-	max-width: 100%;
-	margin-top: 10px;
+    max-width: 100%;
+    margin-top: 10px;
 }
 
 .story-sublink span {
-	cursor: pointer;
-	font-size: 12px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 .title {
-	color: #428bca;
-	vertical-align: middle;
+    color: #428bca;
+    vertical-align: middle;
 }
 
 .title small {
-	cursor: pointer;
-	font-size: 80%;
-	margin-left: 3px;
-	color: black;
+    cursor: pointer;
+    font-size: 80%;
+    margin-left: 3px;
+    color: black;
 }
 
 .author {
-	color: #be0c0c;
+    color: #be0c0c;
 }
 
 #results {
-	padding: 0px;
-	position: absolute;
-	background-color: white;
-	width: 300px;
-	height: 500px;
-	margin-left: 35%;
-	margin-top: 45px;
-	z-index: 10;
-	overflow: scroll;
+    padding: 0px;
+    position: absolute;
+    background-color: white;
+    width: 300px;
+    height: 500px;
+    margin-left: 35%;
+    margin-top: 45px;
+    z-index: 10;
+    overflow: scroll;
 }
 
 .result {
-	width: 100%;
-	font-size: 14px;
-	padding: 8px;
-	border-bottom: 1px solid #eee;
-	cursor: pointer;
-	color: #428bca;
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    color: #428bca;
 }
 
 .result:hover {
-	background-color: rgba(66, 139, 202, 0.04);
+    background-color: rgba(66, 139, 202, 0.04);
 }
 
 .selected {
-	background-color: rgba(66, 139, 202, 0.04);
+    background-color: rgba(66, 139, 202, 0.04);
 }
 
 #story {
-	padding-right:25px;
+    padding-right:25px;
 }
 
 /* COMMENTS */
 
 #about, #options{
-	margin-right: 20px;
+    margin-right: 20px;
 }
 
 #comments {
-	margin-left: -15px;
-	padding-right: 0;
+    margin-left: -15px;
+    padding-right: 0;
 }
 
 .comment {
-	background-color: #fff;
-	border-left: 1px solid #eee;
-	font-size: 12px;
-	padding-right: 0;
+    background-color: #fff;
+    border-left: 1px solid #eee;
+    font-size: 12px;
+    padding-right: 0;
 }
 
 .comment small {
-	color: #428bca;
-	margin-right: 8px;
+    color: #428bca;
+    margin-right: 8px;
 }
 
 .comment-body {
-	margin-bottom: 10px;
-	padding-right: 25px;
+    margin-bottom: 10px;
+    padding-right: 25px;
 }
 
 .comment-body p {
-	margin: 0;
+    margin: 0;
 }
 
 .comment-header {
-	margin-top: 10px;
-	padding-bottom: 3px;
+    margin-top: 10px;
+    padding-bottom: 3px;
 }
 
 .comment-header small {
-	font-size: 90%;
+    font-size: 90%;
 }
 
 .nested-toggle {
-	cursor: pointer;
-	font-weight: bold;
-	margin-right: 5px;
-	color: #428bca;
-	font-size: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+    color: #428bca;
+    font-size: 10px;
 }
 
 /* HELPER CLASSES */
 
 .red {
-	color: red;
+    color: red;
 }
 
 .green {
-	color: rgb(55, 184, 41);
+    color: rgb(55, 184, 41);
 }
 
 .glyphicon-arrow-up {
-	top: 1px;
-	left: 5px;
-	color:rgb(90, 90, 90);
+    top: 1px;
+    left: 5px;
+    color:rgb(90, 90, 90);
 }
 
 .glyphicon-comment {
-	top: 3px;
-	left: 5px;
-	color: rgb(170, 170, 170);
+    top: 3px;
+    left: 5px;
+    color: rgb(170, 170, 170);
 }
 
 .glyphicon-nsfw {
-	width: 30%;
-	cursor: pointer;
+    width: 30%;
+    cursor: pointer;
 }
 
 .glyphicon{
-	font-size:12px;
+    font-size:12px;
 }
 
 span.spaced {
-	display: inline-block;
-	width: 3em;
+    display: inline-block;
+    width: 3em;
 }
 
 label {
-	display: compact;
+    display: compact;
 }
 
 .entry-info{
-	font-size:12px;
-	color: rgb(137, 137, 137);
+    font-size:12px;
+    color: rgb(137, 137, 137);
 }
 
 .score{
-	color:black;
+    color:black;
 }
 
 .albumthumb{
-	margin:5px;
+    margin:5px;
 }
 
 .glyphicon-repeat{
-	margin-left:10px;
-	margin-top:2px;
-	cursor: pointer;
+    margin-left:10px;
+    margin-top:2px;
+    cursor: pointer;
 }

@@ -2,7 +2,7 @@
 
 Handlebars.registerHelper("nsfwHelper", function (over_18)
 {
-       return over_18 == true ? "<span class='red'>NSFW</span>" : "";
+    return over_18 == true ? "<span class='red'>NSFW</span>" : "";
 });
 
 Handlebars.registerHelper("subHelper", function (data)
@@ -209,7 +209,6 @@ Handlebars.registerHelper("timeHelper", function (created_utc)
             unit = "month";
         }
     } 
-
     return (diff + " " + unit + " ago");
 });
 
