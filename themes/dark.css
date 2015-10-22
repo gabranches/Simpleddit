@@ -114,6 +114,6 @@ h4, #topnav, #topnav a, .story-title, #showimage
 }
 
 
-li>a {
+#topnav li > a {
 	color: black;
 }
