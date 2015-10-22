@@ -112,3 +112,8 @@ h4, #topnav, #topnav a, .story-title, #showimage
 .score{
 	color:white;
 }
+
+
+li>a {
+	color: black;
+}
