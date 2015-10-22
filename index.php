@@ -73,7 +73,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
             </select>
           </div>
           <div class="col-xs-3 col-sm-2" tabindex="3">
-            <input type="input" class="form-control" id="input-sub" placeholder="Enter Subreddit">
+            <input type="input" autocomplete="off" class="form-control" id="input-sub" placeholder="Enter Subreddit">
           </div>
           <div id="results" style="display: none">
           </div>
