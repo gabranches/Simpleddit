@@ -39,9 +39,9 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Simpleddit</title>
+  <title>Simpleddit: a simple reddit browser</title>
   <link id="favicon" rel="shortcut icon" type="image/png" href="" />
-  <meta name="description" content="simpleddit is a simple and efficient way of browsing reddit using a two-column layout.">
+  <meta name="description" content="Simpleddit is a simple and efficient way of browsing reddit using a two-column layout.">
   <meta name="keywords" content="simpleddit,simple,reddit,work,discreet,efficient,columns">
   <link rel="image_src" href="images/logo.png">
   <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
