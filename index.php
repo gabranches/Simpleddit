@@ -62,7 +62,11 @@ if (isset($reddit)) {  // Check if user logged in through oauth
       <div id="formrow" class="row">
         <form id="form-sub" role="form">
           <div id="logo" class="hidden-xs col-sm-2 text-center" tabindex="1">
-            <a href="/">Simpleddit</a>
+            <?php if ($logged_in == 1) { ?>
+              <a href="/?oa=1">Simpleddit</a>
+            <?php } else { ?>
+              <a href="/">Simpleddit</a>
+            <?php } ?>
           </div>
           <div id="logo-filler" class="col-xs-2 text-center" style="display: none;">
           </div>

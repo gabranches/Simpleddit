@@ -4,6 +4,12 @@ $("#form-sub").submit(function(e) // Subreddit form submit
 {     
     e.preventDefault();
     sub = $("#input-sub").val();
+
+    if (sub == "" && logged_in == 1)
+    {
+        sub = defsubs;
+    }
+
     ClearLeftSide();
     getItems(sub, sort);
 });
