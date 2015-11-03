@@ -177,6 +177,16 @@ if (isset($reddit)) {  // Check if user logged in through oauth
           <h4>About Simpleddit</h4>
           <p>Simpleddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">reddit</a>.</p>
           <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simpleddit">Github page</a>.</p>
+
+          <h4>Recent Updates (Nov. 1st, 2015)</h4>
+          <ul>
+            <li>The "Popular Subreddits" dropdown will now change to "Your Subreddits" once a user logs in.
+            </li>
+            <li>The width of the left panel is now adjustable (see options page).
+            </li>
+            <li>Fixed a bug that would log users out when trying to return to their front page.</li>
+          </ul>
+
           <h4>Browsing Tips</h4>
           <ul>
             <li>Link directly to a subreddit with simpleddit.com/{sub}, simpleddit.com/r/{sub} Example: <a href="pics">simpleddit.com/pics</a>
