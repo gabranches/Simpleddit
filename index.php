@@ -72,8 +72,13 @@ if (isset($reddit)) {  // Check if user logged in through oauth
           </div>
           <div class="col-xs-3 col-lg-2">
             <select id="select-sub" placeholder="Select Subreddit" class="form-control">
-              <option selected="selected" disabled tabindex="2">Popular Subreddits</option>
+              <?php if ($logged_in == 1) { ?>
+                <option selected="selected" disabled tabindex="2">Your Subreddits</option>
+              <?php } else { ?>
+                <option selected="selected" disabled tabindex="2">Popular Subreddits</option>
+              <?php } ?>
               <option value="">Front Page</option>
+              
             </select>
           </div>
           <div class="col-xs-3 col-sm-2" tabindex="3">

@@ -218,13 +218,24 @@ function getItems(sub, sort) // Get stories
 
 function getPopularSubs() // Get top 100 subreddits
 {
-    $.getJSON("https://www.reddit.com/subreddits/popular/.json?limit=100", function(data)
+    // If logged in, get subscribed subs instead
+    if (logged_in === 1)
     {
-        $.each(data.data.children,function(index,element)
-        { 
-            $("#select-sub").append("<option value='"+element.data.display_name+"' label='"+element.data.display_name+"'>"+element.data.display_name+"</option>");
+        defsublist = defsubs.split("+");
+        defsublist.forEach(function(name) {
+            $("#select-sub").append("<option value='"+name+"' label='"+name+"'>"+name+"</option>");
         });
-    });
+    }
+    else
+    {
+        $.getJSON("https://www.reddit.com/subreddits/popular/.json?limit=100", function(data)
+        {
+            $.each(data.data.children,function(index,element)
+            { 
+                $("#select-sub").append("<option value='"+element.data.display_name+"' label='"+element.data.display_name+"'>"+element.data.display_name+"</option>");
+            });
+        });
+    }
 }
 
 
