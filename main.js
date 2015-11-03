@@ -219,7 +219,7 @@ function getItems(sub, sort) // Get stories
 function getPopularSubs() // Get top 100 subreddits
 {
     // If logged in, get subscribed subs instead
-    if (logged_in === 1)
+    if (logged_in == 1)
     {
         defsublist = defsubs.split("+");
         defsublist.forEach(function(name) {
