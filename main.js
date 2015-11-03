@@ -205,7 +205,15 @@ function getItems(sub, sort) // Get stories
 
         $("#rightcolumn").focus();
 
-        $("#select-sub").val("Popular Subreddits");
+        if (logged_in ==1)
+        {
+            $("#select-sub").val("Your Subreddits");
+
+        }
+        else
+        {
+            $("#select-sub").val("Popular Subreddits");
+        }
         
     }).fail(function(data) 
     {
@@ -223,6 +231,7 @@ function getPopularSubs() // Get top 100 subreddits
     {
         defsublist = defsubs.split("+");
         defsublist.forEach(function(name) {
+
             $("#select-sub").append("<option value='"+name+"' label='"+name+"'>"+name+"</option>");
         });
     }
