@@ -180,11 +180,11 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 
           <h4>Recent Updates (Nov. 1st, 2015)</h4>
           <ul>
-            <li>The "Popular Subreddits" dropdown will now change to "Your Subreddits" once a user logs in.
+            <li>The "Popular Subreddits" dropdown will now change to "Your Subreddits" once logged in.
             </li>
             <li>The width of the left panel is now adjustable (see options page).
             </li>
-            <li>Fixed a bug that would log users out when trying to return to their front page.</li>
+            <li>Fixed a bug that would log users out when navigating back to front page.</li>
           </ul>
 
           <h4>Browsing Tips</h4>
