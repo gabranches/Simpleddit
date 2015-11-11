@@ -92,7 +92,8 @@ if (isset($reddit)) {  // Check if user logged in through oauth
           </div>
           <div class="col-xs-1">
             <select id="select-sort" class="form-control">
-              <option selected="selected" value="hot" tabindex="4">hot</option>
+              <option value="" selected disabled>sort</option>
+              <option value="hot">hot</option>
               <option value="new">new</option>
               <option value="rising">rising</option>
               <option value="day">top today</option>
