@@ -55,8 +55,20 @@ Handlebars.registerHelper("picHelper", function (data)
     {
         if ((data.domain == "gfycat.com")) // if it's gfycat
         {
-            var embededVideo = "<div id='storyimage' " + hidden + "><iframe src="+data.url+" frameborder='0' scrolling='no' width='600' height='338' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);'' ></iframe></div>";
-            return readCookie("gif") ? "" : prefixEmbed + embededVideo; 
+            
+            var embeddedVideo = '<div id="storyimage" ' + hidden + ' ></div>';
+            
+            attachGfycat(data.url);
+            
+            return readCookie("gif") ? "" : prefixEmbed + embeddedVideo; 
+        } 
+        else if ((data.domain == "streamable.com")) {// if it's streamable.com 
+            
+            var id = /[^/]*$/.exec(data.url)[0];
+            
+            var embeddedVideo = '<div id="storyimage" ' + hidden + ' ><video width="100%" poster="//cdn.streamable.com/image/'+id+'_first.jpg" autoplay muted loop controls><source src="//cdn.streamable.com/video/webm/'+id+'.webm"  type="video/webm"><source src="//cdn.streamable.com/video/mp4/'+id+'.mp4" type="video/mp4"></video></div>';
+            
+            return readCookie("gif") ? "" : prefixEmbed + embeddedVideo; 
         }
         else if ((data.domain == "i.imgur.com" || data.domain == "imgur.com") && isImgurVid(data.url)) // if it's imgur and video
         {

@@ -1,17 +1,21 @@
 // Global Variables
 
-maxNest = 15;
-after = null;
-count = 0;
-limit = 47;
-sort = "hot";
-spinner_html = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
-frontpage_html = "<a target='_blank' href='http://www.reddit.com/'>Front Page</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>";
-OP = "";
-id="";
-ResultLimit = 40;
-ht = $(window).height();
-options_mode = 0;
+var maxNest = 15;
+var after = null;
+var count = 0;
+var limit = 47;
+var sort = "hot";
+var spinner_html = "Loading <img id='loadgif' src='images/ajax-loader.gif' />";
+var frontpage_html = "<a target='_blank' href='http://www.reddit.com/'>Front Page</a> <span id='reload-button' class='glyphicon glyphicon-repeat'></span>";
+var OP = "";
+var id="";
+var ResultLimit = 40;
+var ht = $(window).height();
+var options_mode = 0;
+
+var ignore_subs = ['blog'];
+
+
 
 $(function()
 {
@@ -252,13 +256,22 @@ function listItems(data,sub) // Append stories to the left side panel
 {
     $.each(data.data.children,function(index,element)
     { 
-        if((element.data.over_18==true&&readCookie("nsfw")=="on")||element.data.over_18==false)
-        {
-            element.data.topsub = sub;
-            var html = entryTemplate(element.data);
-            entryPlaceHolder.append(html);
-            count++;
-            after = element.data.name;
+
+        // Check ignore subs list
+        if (ignore_subs.indexOf(element.data.subreddit) == -1) {
+
+            // Check nsfw filter
+            if((element.data.over_18==true
+                    &&readCookie("nsfw")=="on")
+                    ||element.data.over_18==false)
+            {
+                element.data.topsub = sub;
+                var html = entryTemplate(element.data);
+                entryPlaceHolder.append(html);
+                count++;
+                after = element.data.name;
+            }
+            
         }
     });
 
@@ -421,7 +434,25 @@ function isAnimated(url) // Returns true if media in not just an image
         if(url.indexOf(exts[i]) == url.length - exts[i].length) return true;
     }
     if (url.indexOf("gfycat") != -1) return true;
+    if (url.indexOf("streamable") != -1) return true;
     return false;
+}
+
+
+function attachGfycat(url) {
+    
+    var id = /[^/]*$/.exec(url)[0];
+    
+    $.ajax({
+        url:'http://gfycat.com/cajax/get/'+id,
+        jsonp: 'callback',
+        dataType: 'jsonp',
+        success: function( response ) {
+            console.log( response );
+            
+            $('#storyimage').html('<video width="100%" poster='+url+'-poster.jpg autoplay muted loop controls><source src="'+response.gfyItem.webmUrl+'"  type="video/webm"><source src="'+response.gfyItem.mp4Url+'"  type="video/mp4"></video>')
+        }
+    });
 }
 
 function setColumnWidth(size) {

@@ -179,13 +179,14 @@ if (isset($reddit)) {  // Check if user logged in through oauth
           <p>Simpleddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">reddit</a>.</p>
           <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simpleddit">Github page</a>.</p>
 
-          <h4>Recent Updates (Nov. 1st, 2015)</h4>
+          <h4>Recent Updates (Feb. 15th, 2015)</h4>
           <ul>
-            <li>The "Popular Subreddits" dropdown will now change to "Your Subreddits" once logged in.
+            <li>Gfycat.com webm and mp4 video embedding should now work properly
             </li>
-            <li>The width of the left panel is now adjustable (see options page).
+            <li>Streamable.com webm and mp4 videos added
             </li>
-            <li>Fixed a bug that would log users out when navigating back to front page.</li>
+            <li>Fixed a bug where reddit blog posts would persist on the left panel when the user was logged in
+            </li>
           </ul>
 
           <h4>Browsing Tips</h4>
