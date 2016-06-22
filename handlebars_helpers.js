@@ -167,7 +167,7 @@ Handlebars.registerHelper("picHelper", function (data)
         {
             return prefix + ".jpg" + suffix;
         }
-        else if (data.domain == "i.imgur.com") // if it's imgur and links to the file
+        else if (data.domain == "i.imgur.com" || data.domain == "i.redd.it") // if it's imgur (or reddit) and links to the file
         {
             return prefix + suffix;
         }
