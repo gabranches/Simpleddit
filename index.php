@@ -178,15 +178,13 @@ if (isset($reddit)) {  // Check if user logged in through oauth
         <div class="col-xs-12">
           <h4>About Simpleddit</h4>
           <p>Simpleddit is a simple and efficient way of browsing <a target="_blank" href="http://reddit.com">reddit</a>.</p>
-          <p>The source code is available on my <a target="_blank" href="http://github.com/gvdasolutions/simpleddit">Github page</a>.</p>
-
-          <h4>Recent Updates (Feb. 15th, 2015)</h4>
+          <p>The source code is available on <a target="_blank" href="http://github.com/gvdasolutions/simpleddit">Github</a>.</p>
+          <br />
+          <h4>Recent Updates (Aug. 1st, 2016)</h4>
           <ul>
-            <li>Gfycat.com webm and mp4 video embedding should now work properly
+            <li>Fixed i.reddituploads.com links
             </li>
-            <li>Streamable.com webm and mp4 videos added
-            </li>
-            <li>Fixed a bug where reddit blog posts would persist on the left panel when the user was logged in
+            <li>Subreddits can now be sorted by "controversial"
             </li>
           </ul>
 
@@ -206,8 +204,9 @@ if (isset($reddit)) {  // Check if user logged in through oauth
             <li><span class="spaced">K</span>Previous Thread</li>
             <li><span class="spaced">L</span>Open URL</li>
           </ul>
-          <h4>Feedback</h4>
-          <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>       
+          <h4>Contact / Feedback</h4>
+          <p>If you have any questions or comments, please feel free to fill out this <a target="_blank" href="http://goo.gl/forms/SZ6w8x0Mnc">Feedback Sheet</a> on Google Forms.</p>
+          <p>You can also tweet or DM the developer <a target="_blank" href="http://twitter.com/_gabranches">@_gabranches</a></p>
         </div>
       </div>
       <div class="row">
