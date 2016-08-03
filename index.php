@@ -101,6 +101,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
               <option value="month">top month</option>
               <option value="year">top year</option>]
               <option value="all">top all</option>
+              <option value="controversial">controversial</option>
             </select>
           </div>
            <div id="login-button" class="col-xs-1 text-center" tabindex="5"><span id='login'><a href='?oa=1'>login</a></span></div>
@@ -253,7 +254,7 @@ if (isset($reddit)) {  // Check if user logged in through oauth
 </div>
 <div class="row">
    <div class='story-url col-xs-12'>
-     <a href="{{url}}" target="_blank">Link <small>(Source: {{domain}})<small></a>
+     <a href="{{linkHelper this}}" target="_blank">Link <small>(Source: {{domain}})<small></a>
    </div>
  </div>
  <div class="row">

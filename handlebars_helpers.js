@@ -32,6 +32,20 @@ Handlebars.registerHelper("ptsHelper", function (ups)
    return ups + " pts";
 });
 
+
+Handlebars.registerHelper("linkHelper", function(data) 
+{
+    if (data.domain === "i.reddituploads.com")
+    {
+        return data.preview.images[0].source.url
+    }
+    else
+    {
+        return data.url
+    }
+});
+
+
 Handlebars.registerHelper("picHelper", function (data)
 {
     if (readCookie("showImages") == "1")

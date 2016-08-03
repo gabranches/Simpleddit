@@ -170,6 +170,10 @@ function getItems(sub, sort) // Get stories
             var sortType = "top";
             var sortUrl = "sort=top&t=year";
             break;
+        case "controversial":
+            var sortType = "controversial";
+            var sortUrl = "sort=controversial";
+            break;
         case "all":
             var sortType = "top";
             var sortUrl = "sort=top&t=all";
